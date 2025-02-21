@@ -1,0 +1,137 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styling for Form Container */
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* Form Header */
+h2 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #c00c3f;
+    font-weight: bold;
+}
+
+/* Form Group */
+.mb-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.mb-3 label {
+    font-size: 15px;
+    color: #232222;
+    font-weight: normal;
+}
+
+/* Input Fields */
+input[type="text"], 
+input[type="email"], 
+input[type="date"],
+textarea, 
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #fff;
+    transition: 0.2s ease-in-out;
+    box-sizing: border-box;
+    height: 36px;
+}
+
+textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+/* Read-Only Field */
+.read-only-field {
+    background: #e9ecef;
+    cursor: not-allowed;
+}
+
+/* Effective Dates - Two Fields in One Row */
+.effective-dates {
+    display: flex;
+    gap: 15px;
+}
+
+.half-width {
+    flex: 1;
+}
+
+/* Button Styling */
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-top: 15px;
+}
+
+button {
+    min-width: 120px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    background: #c2083d;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    background: #0056b3;
+    transform: scale(1.02);
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    /* Effective Dates Stack on Small Screens */
+    .effective-dates {
+        flex-direction: column;
+    }
+}

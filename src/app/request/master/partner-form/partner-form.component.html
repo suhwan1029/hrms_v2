@@ -1,0 +1,49 @@
+<div class="container">
+    <h2>Partner Management Form</h2>
+
+    <form [formGroup]="partnerForm" (ngSubmit)="submitForm()">
+        <!-- Partner Code (Read-Only) -->
+        <div class="mb-3">
+            <label>Partner Code:</label>
+            <input type="text" class="form-control read-only-field" formControlName="partnerCode" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label>Partner Name:</label>
+            <input type="text" class="form-control" formControlName="partnerName" />
+        </div>
+
+        <div class="mb-3">
+            <label>Partner Email:</label>
+            <input type="email" class="form-control" formControlName="partnerEmail" />
+        </div>
+
+        <div class="mb-3">
+            <label>Contact Person:</label>
+            <input type="text" class="form-control" formControlName="partnerContactPerson" />
+        </div>
+
+        <div class="mb-3">
+            <label>Contact Number:</label>
+            <input type="text" class="form-control" formControlName="contactNumber" />
+        </div>
+
+        <div class="mb-3">
+            <label>Address:</label>
+            <textarea class="form-control" formControlName="partnerAddress"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label>Active Status:</label>
+            <select class="form-control" formControlName="activeStatus">
+                <option value="Y">Active</option>
+                <option value="N">Inactive</option>
+            </select>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+             <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+        </div>
+    </form>
+</div>

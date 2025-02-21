@@ -1,0 +1,62 @@
+<div class="container">
+    <h2>Organization Management Form</h2>
+
+    <form [formGroup]="organizationForm" (ngSubmit)="onSubmit()">
+        <!-- Organization ID (Read-Only) -->
+        <div class="mb-3">
+            <label>Organization ID:</label>
+            <input type="text" class="form-control read-only-field" formControlName="organizationId" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label>Organization Code:</label>
+            <input type="text" class="form-control" formControlName="organizationCode" />
+        </div>
+
+        <div class="mb-3">
+            <label>Organization Name:</label>
+            <input type="text" class="form-control" formControlName="organizationName" />
+        </div>
+
+        <div class="mb-3">
+            <label>Organization Address:</label>
+            <textarea class="form-control" formControlName="orgAddress"></textarea>
+        </div>
+
+        <!-- Effective Dates (In One Row) -->
+        <div class="effective-dates">
+            <div class="mb-3 half-width">
+                <label>Effective From Date:</label>
+                <input type="date" class="form-control" formControlName="effectiveFromDate" />
+            </div>
+
+            <div class="mb-3 half-width">
+                <label>Effective End Date:</label>
+                <input type="date" class="form-control" formControlName="effectiveEndDate" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label>Operating Unit:</label>
+            <input type="text" class="form-control" formControlName="operatingUnit" />
+        </div>
+
+        <div class="mb-3">
+            <label>Legal Entity:</label>
+            <input type="text" class="form-control" formControlName="legalEntity" />
+        </div>
+
+        <div class="mb-3">
+            <label>Enabled Status:</label>
+            <select class="form-control" formControlName="enabledFlag">
+                <option value="Y">Enabled</option>
+                <option value="N">Disabled</option>
+            </select>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,239 @@
+<form [formGroup]="rfrForm" (ngSubmit)="onSubmit()" class="rfr-form">
+  <h1>Request for Resource (RFR)</h1>
+
+  <!-- First Row -->
+  <div class="form-container">
+    <div class="form-group">
+      <label>Organization Group:</label>
+      <input formControlName="orgGroup" placeholder="Enter Org Group" required>
+    </div>
+    <div class="form-group">
+      <label>RFR No:</label>
+      <input formControlName="rfrNo" placeholder="Enter RFR No" required>
+    </div>
+    <div class="form-group">
+      <label>Project Name:</label>
+      <input formControlName="projectName" placeholder="Enter Project Name" required>
+    </div>
+  </div>
+
+  <!-- Second Row -->
+  <div class="form-container">
+    <div class="form-group">
+      <label>Location:</label>
+      <input formControlName="location" placeholder="Enter Location" required>
+    </div>
+    <div class="form-group">
+      <label>Onsite:</label>
+      <input formControlName="onsite" placeholder="Onsite Location" required>
+    </div>
+    <div class="form-group">
+      <label>Billability:</label>
+      <select formControlName="billability">
+        <option value="billable">Billable</option>
+        <option value="non-billable">Non-Billable</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Resource Management Group:</label>
+      <select formControlName="resourceManagementGroup">
+        <option value="Internal Movement">Internal Movement</option>
+        <option value="Outsource">Outsource</option>
+        <option value="Hire">Hire</option>
+        <option value="Drop">Drop</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Immediately Billable:</label>
+      <select formControlName="Immediately Billable">
+        <option value="Yes">Immediately Billable</option>
+        <option value="No">Outsource</option>
+          </select>
+    </div>
+  </div>
+
+  <!-- Third Row -->
+  <div class="form-container">
+    <div class="form-group">
+      <label>Function Type:</label>
+      <select formControlName="functionType">
+        <option value="development">Development</option>
+        <option value="testing">Testing</option>
+        <option value="management">Management</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Vacancy Type:</label>
+      <select formControlName="vacancyType">
+        <option value="permanent">Permanent</option>
+        <option value="contract">Contract</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Positions:</label>
+      <input type="number" formControlName="positions" min="1" required>
+    </div>
+  </div>
+
+  <!-- Fourth Row -->
+  <div class="form-container">
+    <div class="form-group">
+      <label>Designation:</label>
+      <input formControlName="designation" required>
+    </div>
+    <div class="form-group">
+      <label>Screening By:</label>
+      <input formControlName="screeningBy">
+    </div>
+    <div class="form-group">
+      <label>Education:</label>
+      <input formControlName="education" required>
+    </div>
+  </div>
+
+  <!-- Fifth Row -->
+  <div class="form-container">
+    <div class="form-group">
+      <label>Experience (in years):</label>
+      <input type="number" formControlName="experience" min="0" required>
+    </div>
+    <div class="form-group">
+      <label>Industry:</label>
+      <input formControlName="industry" required>
+    </div>
+  </div>
+
+  <br>
+  <!-- Button Row: Reopen & CTC Analysis -->
+  <div class="button-container">
+    <button type="button" class="tab-btn" (click)="toggleCtcAnalysis()">CTC Analysis</button>
+    <button type="button" class="tab-btn" (click)="toggleHRReccomendation()">HR Recommendation</button>
+    <button type="button" class="tab-btn" (click)="toggleStatus()">Status</button>
+    <button type="button" class="tab-btn" (click)="toggleReopenDate()">Reopen Date</button>
+  </div>
+
+  <!-- CTC Analysis Tab Content -->
+  <div *ngIf="showCtcAnalysis" class="ctc-container">
+    <fieldset class="form-group">
+      <legend>CTC Analysis</legend>
+      <table class="ctc-analysis">
+        <thead>
+          <tr>
+            <th>CP Tolerance of Project</th>
+            <th>Manager Recommendation</th>
+            <th>Unit Price (Per Month / Hour / FP)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input formControlName="cpTolerance" type="text" required></td>
+            <td><input formControlName="managerRecommendation" type="text" required></td>
+            <td><input formControlName="unitPrice" type="text" required></td>
+          </tr>
+          <tr>
+            <td><label>Reason:</label><textarea formControlName="reasonCpTolerance" rows="2"></textarea></td>
+            <td><label>Reason:</label><textarea formControlName="reasonManagerRecommendation" rows="2"></textarea></td>
+            <td><label>Reason:</label><textarea formControlName="reasonUnitPrice" rows="2"></textarea></td>
+          </tr>
+        </tbody>
+      </table>
+    </fieldset>
+  </div>
+  <!-- HR Recommemd Tab Content -->
+  <div *ngIf="showHRReccomendation" class="ctc-container">
+    <fieldset class="form-group">
+      <legend>HR Reccomendation</legend>
+      <table class="ctc-analysis">
+        <thead>
+          <tr>
+            <th>Current Internal Average</th>
+            <th>Market Average</th>
+            <th>Quartile Based Average</th>
+            <th>HR Reccomendation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input formControlName="Current Internal Average" type="text" required></td>
+            <td><input formControlName="Market Average" type="text" required></td>
+            <td><input formControlName="Quartile Based Average" type="text" required></td>
+            <td><input formControlName="HR Reccomendation" type="text" required></td>
+          </tr>
+          </tbody>
+      </table>
+    </fieldset>
+  </div>
+
+<!-- status Tab Content -->
+<div *ngIf="showStatus" class="status-container">
+  <fieldset class="form-group">
+    <legend>Status</legend>
+
+    <!-- Hold & Its Date Field -->
+    <div class="form-container">
+      <div class="form-group">
+        <label>
+          <input type="checkbox" formControlName="hold"> Hold
+        </label>
+        <input type="date" formControlName="statusDate">
+      </div>
+
+      <!-- Closed & Its Date Field -->
+      <div class="form-group">
+        <label>
+          <input type="checkbox" formControlName="closed"> Closed
+        </label>
+        <input type="date" formControlName="additionalStatusDate">
+      </div>
+    </div>
+
+  </fieldset>
+</div>
+
+  <!-- Reopen Date Tab Content -->
+  <div *ngIf="showReopenDate" class="reopen-container">
+    <fieldset class="form-group">
+      <legend>Reopen Date (In Case)</legend>
+      <table class="reopen-table">
+        <thead>
+          <tr>
+            <th>Head of Department</th>
+            <th>Head HR</th>
+            <th>President</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><label>Date:</label><input formControlName="reopenDateDept" type="date"></td>
+            <td><label>Date:</label><input formControlName="reopenDateHR" type="date"></td>
+            <td><label>Date:</label><input formControlName="reopenDatePresident" type="date"></td>
+          </tr>
+          <tr>
+            <td><label>Signature:</label><input formControlName="signatureDept" type="text"></td>
+            <td><label>Signature:</label><input formControlName="signatureHR" type="text"></td>
+            <td><label>Signature:</label><input formControlName="signaturePresident" type="text"></td>
+          </tr>
+        </tbody>
+      </table>
+    </fieldset>
+  </div>
+  <br>
+  <!-- Skills Section -->
+  <div class="form-container skills-section">
+    <div class="form-group">
+      <label>Essential Skills:</label>
+      <textarea formControlName="essentialSkills" rows="3" class="skills-textarea"></textarea>
+    </div>
+  
+    <div class="form-group">
+      <label>Desirable Skills:</label>
+      <textarea formControlName="desirableSkills" rows="3" class="skills-textarea"></textarea>
+    </div>
+  </div>
+  <br>
+  <!-- Submit Button -->
+  <button type="submit" [disabled]="rfrForm.invalid">Submit</button>
+  <button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
+
+  
+</form>
