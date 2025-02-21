@@ -37,9 +37,9 @@ import { ViewRequestComponent } from './request/view-request/view-request.compon
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RfrComponent } from './request/rfr/rfr.component';
-import { MasterComponent } from './request/master/master.component';
-import { OrganizationFormComponent } from './request/master/organization-form/organization-form.component';
-import { PartnerFormComponent } from './request/master/partner-form/partner-form.component';
+
+import { OrganizationFormComponent } from './master/organization-form/organization-form.component';
+import { PartnerFormComponent } from './master/partner-form/partner-form.component';
 import { ReportComponent } from './report/report.component';
 
 
@@ -76,7 +76,6 @@ import { ReportComponent } from './report/report.component';
     ViewRequestComponent,
     DashboardComponent ,
     RfrComponent,
-    MasterComponent,
     OrganizationFormComponent,
     PartnerFormComponent,
     ReportComponent

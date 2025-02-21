@@ -6,9 +6,9 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './setting/setting.component';
 import { RfrComponent } from './request/rfr/rfr.component';
-import { MasterComponent } from './request/master/master.component';
-import { OrganizationFormComponent } from './request/master/organization-form/organization-form.component';
-import { PartnerFormComponent } from './request/master/partner-form/partner-form.component';
+
+import { OrganizationFormComponent } from './master/organization-form/organization-form.component';
+import { PartnerFormComponent } from './master/partner-form/partner-form.component';
 import { ViewRequestComponent } from './request/view-request/view-request.component';
 import { SignupComponent } from './signup/signup.component';
 import { AdminComponent } from './admin/admin.component';
