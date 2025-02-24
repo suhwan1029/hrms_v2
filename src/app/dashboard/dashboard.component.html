@@ -51,6 +51,20 @@
           <li><a routerLink="/dashboard/request/view-request">View Request</a></li>
         </ul>
       </li>
+
+      <li class="dropdown">
+        <a (click)="toggleMenu('report')">
+          <i class="fa fa-file"></i> Report
+          <i class="fa fa-chevron-down dropdown-icon"></i>
+        </a>
+        <ul *ngIf="openMenu === 'report'">
+          <li><a routerLink="/dashboard/report/alp">Appointment Letter Report</a></li>
+          <li><a routerLink="/dashboard/report/olp">Offer Letter Report</a></li>
+          <li><a routerLink="/dashboard/report/rlp">Request Letter Report</a></li>
+          <li><a routerLink="/dashboard/report/ulp">Undertaking Letter Report</a></li>
+        </ul>
+      </li>
+
       <li class="dropdown">
         <a (click)="toggleMenu('master')">
           <i class="fa fa-file"></i> Master
@@ -137,26 +151,26 @@
   
   
   
-    <div class="main-content">
-      <header class="top-nav">
-        <div class="welcome-text">
-          <h2>Welcome, {{ user.name }} </h2>
-        </div>
+  <div class="main-content">
+    <header class="top-nav">
+      <div class="welcome-text">
+        <h2>Welcome, {{ user.name }}</h2>
+      </div>
   
-        
-        <div class="user-info">
-          <img [src]="user.profilePic" alt="User Profile" class="profile-pic">
-          <div>
-            <p><strong>{{ user.name }}</strong></p>
-            <p>ID: {{ user.employeeId }}</p>
-          </div>
+      <div class="user-info">
+        <img [src]="user.profilePic" alt="User Profile" class="profile-pic">
+        <div>
+          <p><strong>{{ user.name }}</strong></p>
+          <p>ID: {{ user.employeeId }}</p>
         </div>
-      </header>
+      </div>
+    </header>
   
-      <section class="content">
-        <router-outlet></router-outlet>
-      </section>
-    </div>
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+  
   </div>
   
 

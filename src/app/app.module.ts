@@ -41,6 +41,10 @@ import { RfrComponent } from './request/rfr/rfr.component';
 import { OrganizationFormComponent } from './master/organization-form/organization-form.component';
 import { PartnerFormComponent } from './master/partner-form/partner-form.component';
 import { ReportComponent } from './report/report.component';
+import { AlpComponent } from './report/alp/alp.component';
+import { OlpComponent } from './report/olp/olp.component';
+import { RlpComponent } from './report/rlp/rlp.component';
+import { UlpComponent } from './report/ulp/ulp.component';
 
 
 @NgModule({
@@ -78,7 +82,13 @@ import { ReportComponent } from './report/report.component';
     RfrComponent,
     OrganizationFormComponent,
     PartnerFormComponent,
-    ReportComponent
+    ReportComponent,
+    AlpComponent,
+    OlpComponent,
+    RlpComponent,
+    UlpComponent
+    
+
   ],
   imports: [
     BrowserModule,

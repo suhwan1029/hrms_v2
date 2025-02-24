@@ -1,0 +1,76 @@
+@page {
+    size: A4;
+    margin: 2cm;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #f5f5f5;
+}
+
+.offer-letter {
+    width: 80%;
+    max-width: 21cm;
+    min-height: 29.7cm;
+    margin: auto;
+    padding: 2cm;
+    font-size: 14px;
+    box-sizing: border-box;
+    background: white;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.center {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: underline;
+    margin-bottom: 8px;
+}
+
+.right {
+    text-align: left;
+    font-weight: bold;
+}
+
+.left {
+    text-align: left;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 6px;
+    font-size: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #d3d3d3;
+    font-weight: bold;
+}
+
+button {
+    min-width: 100px;
+    padding: 6px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    background: #c2083d;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+

@@ -1,0 +1,58 @@
+<button (click)="generatePDF()">Download PDF</button>
+
+
+<div #pdfContent class="offer-letter">
+    <br>
+    <br>
+    <br>
+
+    <p class="right"><b>{{ currentDate }}</b></p>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+    <h3 class="center">UNDERTAKING AND FINANCIAL GUARANTEE</h3>
+    <br>
+    <br>
+
+    <p>
+        Ms. <b>{{ employee.name }}</b>, having Passport No. <b>{{ employee.passportNo }}</b>, is being appointed as 
+        <b>{{ employee.designation }}</b> in our company, <b>{{ company.name }}</b>, having a registered address at 
+        <b>{{ company.address }}</b>. On payment of full salary with perks as per rules in India, we take full 
+        responsibility for her activities and conduct during her stay in India.
+        In case of any adverse notice during her stay, we undertake and assure to repatriate her at our cost.
+        The Korea address of <b>{{ employee.name }}</b> is as follows:
+    </p>
+    <p> <b>{{ employee.name }}</b> is a permanent resident of {{ employee.address }} Will be entitled for issuance of her multiple EV. The details of her passport No is as follows :</p>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Passport Number</th>
+            <th>Details</th>
+        </tr>
+        <tr>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.passportNo }}</td>
+            <td>Self</td>
+        </tr>
+    </table>
+
+    <p>For <b>{{ company.name }}</b></p>
+
+    <br>
+    <br>
+    <br>
+
+    <p class="right"><b>ABC</b></p>
+    <p class="right">Managing Director</p>
+
+    <p class="right">Working Address:</p>
+    <p><b>{{ company.name }}</b></p>
+    <p>{{ company.address }}</p>
+
+   
+</div>
+

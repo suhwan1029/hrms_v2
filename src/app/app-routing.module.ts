@@ -30,7 +30,10 @@ import { HrPoliciesComponent } from './policies/hr-policies/hr-policies.componen
 import { RequestComponent } from './request/request.component';
 import { SystemSettingsComponent } from './admin/system-settings/system-settings.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
-
+import { AlpComponent } from './report/alp/alp.component';
+import { OlpComponent } from './report/olp/olp.component';
+import { RlpComponent } from './report/rlp/rlp.component';
+import { UlpComponent } from './report/ulp/ulp.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -101,6 +104,16 @@ const routes: Routes = [
           { path: '', component: RequestComponent }, 
           { path: 'organization-form', component: OrganizationFormComponent }, 
           { path: 'partner-form', component: PartnerFormComponent } 
+        ] 
+      },
+      { 
+        path: 'report',  
+        children: [  
+          { path: '', component: RequestComponent }, 
+          { path: 'alp', component: AlpComponent }, 
+          { path: 'olp', component: OlpComponent},
+          { path: 'rlp', component: RlpComponent},
+          { path: 'ulp', component: UlpComponent}    
         ] 
       }
     ]

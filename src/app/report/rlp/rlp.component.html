@@ -1,0 +1,58 @@
+<button (click)="generatePDF()">Download PDF</button>
+
+<div #pdfContent class="offer-letter">
+    <p class="right">{{ currentDate }}</p>
+  
+    <p><strong>To,</strong><br>Abc<br><strong>New Delhi-110066</strong></p>
+  
+    <p>Dear Sir,</p>
+  
+    <br>
+    <br>
+    <h3 class="center">SUB: - RESIDENTIAL PERMIT FOR {{ employee.name }}</h3>
+  
+    <p>
+      {{ company.name }} is a company in the field of Business IT Services and Consulting.
+      <strong>{{ employee.name }}</strong>, a South Korean Citizen, holding Passport No.
+      <strong>{{ employee.passportNo }}</strong>, is employed with {{ company.name }} as
+      an <strong>Assistant Manager</strong> in Greater Noida office.
+    </p>
+  
+    <p>
+      This letter is being issued for the purpose of granting <strong>{{ employee.name }}</strong> a resident permit.
+   <br>
+      <strong>His details are as follows:</strong></p>
+    <table class="comp-table">
+      <tr>
+        <th>Detail</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Employee Name</td>
+        <td>{{ employee.name }}</td>
+      </tr>
+      <tr>
+        <td>Passport No</td>
+        <td>{{ employee.passportNo }}</td>
+      </tr>
+      <tr>
+        <td>Visa No</td>
+        <td>{{ employee.visaNo }}</td>
+      </tr>
+    </table>
+  
+    <p><strong>He is residing at:</strong></p>
+    <p>{{ employee.address }}
+    <br>
+     We kindly request you to grant {{ employee.name }} a resident permit.
+     <br>
+     Thanking You,</p>
+  
+    <p>Yours Sincerely,</p>
+   <br><br>  
+    <p><strong>For {{ company.name }}</strong></p>
+  
+    <p><strong>abc</strong><br>
+      <strong>Team Leader – Business Management</strong></p>
+  </div>
+  

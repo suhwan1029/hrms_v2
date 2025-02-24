@@ -43,8 +43,8 @@
   text-decoration: none;
   display: flex;
   align-items: center;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 6px;
+  border-radius: 4px;
   transition: background 0.3s, color 0.3s;
 }
 

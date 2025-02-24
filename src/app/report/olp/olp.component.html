@@ -1,0 +1,186 @@
+<button (click)="generatePDF()">Download PDF</button>
+
+<div  #pdfContent id="pdfContent">
+<div class="offer-letter">
+  <img src="5.png" alt="Company Logo" style="width: 100px; height: auto; margin-right: 20px;">
+ 
+  <br>
+
+<div >
+  <p class="left"><b>{{ offerLetter.employeeName }}</b><br>
+  <b>{{ offerLetter.location }} </b> </p>
+  <p  class="right"><b>{{ offerLetter.offerDate }}</b></p>
+  </div>
+ 
+<br>
+<br>   
+<h2 class="center">OFFER LETTER</h2>
+<p class="left">Dear <b>{{ offerLetter.employeeName }},</b></p>
+  <p>
+    We are pleased to offer you employment in our company having registered office at <b>{{ offerLetter.companyName }}</b>, 
+    {{ offerLetter.companyAddress }} and working location at <b>{{ offerLetter.location }}</b>,  designated as an 
+    <b>"{{ offerLetter.designation }}"</b> at location on the following terms and conditions:
+  </p>
+<br>
+  <ol>
+    <li>
+      Your compensation package on cost to the company (CTC) basis would be 
+      <b>{{ offerLetter.compensation }}/- per annum</b>. This would comprise of basic salary, allowances, and company’s provident 
+      fund contribution, benefits, and reimbursements as governed by company policies and Income Tax regulations.
+    </li>
+    <li>A detailed letter of employment outlining the break-up of your salary would be given upon joining.</li>
+    <li>You will be on probation for three months, which may extend up to six months if necessary.</li>
+    <li>Our office timing is <b>{{ offerLetter.officeTiming }}</b>.</li>
+    <li>Five-day working norms shall be applicable due to business needs.</li>
+    <li>
+      You authorize {{ offerLetter.companyName }} to undertake background verification. If any falsification is found, 
+      the company reserves the right to terminate your employment immediately in case of any falsification found.
+    </li>
+    <li>
+      Your documents will go for background verification. If any discrepancy is found, appropriate action will be taken.
+    </li>
+    <li>
+      Please sign and return a duplicate copy of this letter in acceptance on or before <b>{{ offerLetter.acceptanceDate }}</b>. 
+      You are required to join on or before <b>{{ offerLetter.joiningDate }}</b>.
+    </li>
+  </ol>
+
+  <p>We look forward to your joining the {{ offerLetter.companyName }} family.</p>
+<br>
+<p style=" font-weight: bold;">Sincerely,</p>
+<br>
+<br>
+<br>
+  <p class="sign-off"><b>{{ offerLetter.managingDirector }}</b><br>Managing Director</p>
+  <br>
+  <p class="acceptance "><b>ACCEPTED</b><br>
+    I accept the above offer and would join on or before ________________
+  </p>
+</div>
+
+  <div class="page-break"></div>
+  <div class="offer-letter">
+
+ 
+    <h4 class="center">Compensation Structure</h4>
+    <br>
+    <br>
+    <br>
+    <table>
+      <tr class="highlight">
+        <th colspan="1"></th>
+        <th>Employee Name</th>
+        <th>{{ employee.name }}</th>
+      </tr>
+      <tr>
+        <td colspan="1"></td>
+        <td>Designation</td>
+        <td>{{ employee.designation }}</td>
+      </tr>
+      <tr>
+        <td colspan="1"></td>
+        <td>Professional Level</td>
+        <td>{{ employee.level }}</td>
+      </tr>
+    
+      <tr class="highlight">
+        <th colspan="1">I</th>
+        <th>Compensation Components</th>
+        <th>Amount</th>
+      </tr>
+    
+      <tr *ngFor="let comp of employee.compensation">
+        <td>{{ comp.id }}</td>
+        <td>{{ comp.name }}</td>
+        <td>{{ comp.amount }}</td>
+      </tr>
+    
+      <tr class="highlight">
+        <td>A</td>
+        <td>Gross Monthly</td>
+        <td>{{ employee.grossMonthly }}</td>
+      </tr>
+    
+      <tr class="highlight">
+        <th>B</th>
+        <th>Annualized Monthly Gross</th>
+        <th>{{ employee.annualizedGross }}</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>Performance Linked Incentive</th>
+        <th>{{ employee.performanceIncentive }}</th>
+      </tr>
+      <tr>
+        <th>C</th>
+        <th>Annual Gross</th>
+        <th>{{ employee.annualGross }}</th>
+      </tr>
+    
+      <tr>
+        <td colspan="3">
+          In addition, you will also be entitled to other Welfare Benefits as per prevailing policies:
+        </td>
+      </tr>
+    
+      <tr class="highlight">
+        <th colspan="1">II</th>
+        <th>Welfare Benefits</th>
+        <th>Amount</th>
+      </tr>
+    
+      <tr *ngFor="let benefit of employee.welfareBenefits">
+        <td>{{ benefit.id }}</td>
+        <td>{{ benefit.name }}</td>
+        <td>{{ benefit.amount }}</td>
+      </tr>
+    
+      <tr class="highlight">
+        <th>D</th>
+        <th>Total</th>
+        <th>{{ employee.totalWelfare }}</th>
+      </tr>
+    
+      <tr>
+        <td></td>
+        <td>CTC before Gratuity</td>
+        <td>{{ employee.ctcBeforeGratuity }}</td>
+      </tr>
+    
+      <tr class="highlight">
+        <th colspan="1">III</th>
+        <th>Others</th>
+        <th>Amount</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Gratuity</td>
+        <td>{{ employee.gratuity }}</td>
+      </tr>
+      <tr class="highlight">
+        <th>E</th>
+        <th>CTC</th>
+        <th>{{ employee.ctc }}</th>
+      </tr>
+    </table>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+  <p class="note">
+    *Flexi Benefits: Applicable as per company’s policy<br>
+    *Tax will be applicable as per Indian Tax law<br>
+    *Group Medical Insurance, Group Personal Accidental Insurance, and Group Term Insurance will be separate<br>
+    *Performance Incentive & Bonus will be separated and will be decided by management
+  </p>
+  </div>
+  </div>
+
+  

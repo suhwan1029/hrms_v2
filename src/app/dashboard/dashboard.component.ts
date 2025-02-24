@@ -36,13 +36,18 @@ export class DashboardComponent implements OnInit {
   }
 
   toggleMenu(menu: string) {
-    if (menu === 'requests') {
-      this.openMenu = this.openMenu === 'requests' ? null : 'requests';
-      this.openSubMenu = null;
-    } else if (menu === 'master') {
-      this.openSubMenu = this.openSubMenu === 'master' ? null : 'master';
+    if (menu === 'master' || menu === 'report' || menu === 'requests') {
+      if (this.openMenu === menu) {
+        this.openMenu = null;  // Close the menu if it's already open
+        this.openSubMenu = null;
+      } else {
+        this.openMenu = menu;
+        this.openSubMenu = menu;  // Ensure submenus work properly
+      }
     }
   }
+  
+  
 
   isDisabled: boolean = true;
 

@@ -1,0 +1,179 @@
+/* Set A4 page size and standard margins */
+@page {
+  size: A4;
+  margin: 2cm; /* Standard margin */
+}
+
+/* General Body Styling */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  margin: 0;
+  background: #f5f5f5; /* Light background for contrast */
+}
+button {
+  min-width: 100px;
+  padding: 6px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  background: #c2083d;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+
+
+/* Offer Letter Container */
+.offer-letter {
+  width: 80%; /* Adjust width */
+  max-width: 21cm; /* A4 width */
+  min-height: 29.7cm; /* A4 height */
+  margin: auto; /* Center horizontally */
+  padding: 2cm;
+  font-size: 14px;
+  box-sizing: border-box;
+  background: white;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+   }
+
+/* Centered Header */
+.center {
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px; /* Adjusted for readability */
+  text-decoration: underline;
+  margin-bottom: 8px;
+}
+.acceptance {
+  text-align: center;
+}
+.right { text-align: right;
+         font-weight: bold;}
+.left {
+  text-align: left;
+}
+/* Page Break for A4 Printing */
+.page-break {
+  page-break-before: always;
+  display: block;
+  height: 1px;
+  visibility: hidden;
+}
+
+/* Table Styling */
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 49px auto;
+}
+
+table, th, td {
+  border: 1px solid black;
+  padding: 3px;
+  font-size: 12px; /* Standardized font size */
+  text-align: left;
+}
+
+th {
+  background-color: #d3d3d3;
+  font-weight: bold;
+}
+
+/* Section Headings */
+h3, h4 {
+  font-weight: bold;
+  text-decoration: underline;
+  margin-top: 15px;
+}
+
+/* Yellow Highlight for Important Text */
+.offer-letter b {
+  font-weight: bold;
+  
+  padding: 2px;
+}
+
+/* Alternating Row Colors */
+tr:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+tr:nth-child(even) {
+  background: white;
+}
+
+/* Ensure Proper Alignment */
+tr td:first-child {
+  font-weight: bold;
+}
+
+/* Notes Section */
+.note {
+  font-size: 10px;
+  font-style: italic;
+  margin-top: 10px;
+  border-top: 1px solid black;
+  padding-top: 5px;
+  font-weight: bold;
+}
+
+/* Page Break After Each Section */
+.section {
+  page-break-after: always;
+}
+
+/* Table Styling */
+.comp-table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 12px;
+}
+
+.comp-table, .comp-table th, .comp-table td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.comp-table th {
+  background-color: #d3d3d3;
+  font-weight: bold;
+}
+
+/* Section Headers */
+.section-header {
+  background: #c0c0c0;
+  font-weight: bold;
+  text-align: left;
+  padding: 10px;
+}
+
+/* Sub-Headers */
+.sub-header {
+  background: #f0f0f0;
+  font-weight: bold;
+}
+
+/* Adjusted Centered Header */
+.center {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px; /* Ensured consistency */
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+.highlight {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+.highlight1 {
+  text-align: center;
+}

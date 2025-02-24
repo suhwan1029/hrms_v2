@@ -1,0 +1,217 @@
+<button (click)="generatePDF()">Download PDF</button>
+<div #pdfContent>
+<div class="offer-letter" >
+    <p>05-11-2024</p>
+
+    <p>Mr. {{ employee.name }}<br>Employee No: {{ employee.empNo }}<br>{{ employee.location }}</p>
+
+    <h2 class="center">APPOINTMENT LETTER</h2>
+
+    <p>Dear {{ employee.name }},</p>
+
+    <p>We are pleased to appoint you as a <b>{{ employee.designation }}</b> in Professional Level <b>{{ employee.professionalLevel }}</b> on the following terms and conditions, with effect from <b>{{ employee.joiningDate }}</b>.</p>
+
+    <ol>
+        <li>Your gross monthly salary would be Rs. <b>{{ employee.salary }}</b>. This would comprise:</li>
+        
+        <table class="comp-table1 offer-letter1">
+          <tr>
+            <th>Component</th>
+            <th>Amount</th>
+          </tr>
+          <tr *ngFor="let item of employee.compensation">
+            <td>{{ item.name }}</td>
+            <td>{{ item.amount }}</td>
+          </tr>
+          </table>
+          
+     
+        
+
+        <li>Your employment benefits at LG CNS-I would be in accordance with prevailing personnel policies and would include medical insurance and leave</li>
+  
+      <li>You would be eligible for Birthday & Diwali gift cards of INR 2,500/- each. In case if you leave the organisation before your Birthday & Diwali festival, amount will be paid on a prorate basis along with the final settlement.</li>
+  
+      <li>The remuneration offered to you has taken into consideration your appointment in the executive / management cadre of LG CNS-I. You will, thus, not be entitled to any other payment by way of deferred wage, overtime or other allowances.</li>
+
+      <li>You will be based at LG CNS-I. Due to business needs, please note that the five days working norms shall be applicable to you. Our office timing is 8:00 AM to 5:00 PM or 9:00 AM to 6:00 PM </li>
+        
+      <li>You may be required to travel on LG CNS-I’s business within India and overseas on as required basis. In instances of business travel, you will be entitled to reimbursement of travel expenses including per-diems in accordance with the prevailing LG CNS-I travel policies</li>
+  
+      <li>You may resign from LG CNS-I’s services with a written notice period of 60 days after confirmation and notice period of 30 days in case you are on probation. Any shortfall in notice period, may or may not be accommodated depending on business exigencies, the decision for which lies solely at the discretion of LG CNS-I.</li>
+   </ol>
+
+    </div>
+
+<div class="offer-letter" >
+  <ol>
+      <li>LG CNS-I may terminate your services without assigning any reasons whatsoever by giving 60 days’ notice period after confirmation or 30 days’ notice period while on probation or by giving gross salary in lieu of notice period. However, no notice period to serve or salary thereof shall be given to employees in case the services have been/is being terminated due to integrity reasons/issues</li>
+  
+      <li>You authorize LG CNS-I to undertake background verification check to determine the correctness of your credentials submitted at the time of extending the offer to you. Following the outcome from such background verification check, the company reserves the right to terminate your employment immediately in case of any falsification found. </li>
+  
+      <li>The position in which you are appointed is one of utmost confidence and requires a high degree of personal and professional integrity. This appointment is, therefore, subject to continuity of such confidence.</li>
+  
+      <li>Your appointment with LG CNS-I would require you to be bound by all rules, regulations and guidelines issued by the company from time to time, in relation to personal and professional conduct, non-disclosure of confidential information and discipline. You are also required to sign the ‘Code of Conduct’ and ‘Non Disclosure Agreement’. Your acceptability of these agreements and compliance to rules, regulations and policies shall also be deemed to be a part of employment terms at LG CNS-I.</li>
+  
+      <li>Employee shall be responsible to understand the organizations security policies and comply with them during his/her term of employment without fail and shall be liable for disciplinary and legal action if found to be violating these intentionally.</li>
+  
+      <li>Employee is required to report any weakness/misuse of the Information Infrastructure that is identified by him/her comes to his/her notice to supervisor immediately</li>
+  
+      <li>Employee shall be responsible for safe keeping and implementing the applicable controls for protecting the information assets in his/her charge. He/She shall use them in accordance with the acceptable use policy of the organization.</li>
+  
+      <li>Employee shall be responsible for safe keeping and implementing the applicable controls for protecting the information assets in his/her charge. He/She shall use them in accordance with the acceptable use policy of the organization.</li>
+</ol>
+    </div>
+
+<div class="offer-letter" >
+    <ol>
+      <li>Not withstanding the provisions of Para (8) above LG CNS-I reserves the right to terminate your services without any notice or compensation as a part of disciplinary action in situations including, but not limited to, violation of ‘Code of Conduct’, Criminal prosecution by law enforcing agencies, violation of Non-Disclosure Agreement, Breach of employment conditions, trust or financial integrity.</li>
+      
+      <li>Your appointment is subject to your being certified medically fit by LG CNS-I approved doctors. LG CNS-I would also require you to reconfirm your medical fitness from time to time.</li>
+    
+      <li>The information contained in this letter of appointment is ‘Personal & Confidential’. This letter contains sensitive, personal and confidential information and its contents are not to be shared with or divulged to other LG CNS-I employees excepting your supervisor(s).</li>
+    
+
+    </ol>
+
+    <p>Please sign the duplicate copy of this letter in token of your acceptance of the above terms. You are required to submit copies of your testimonials and passport on joining LG CNS-I.</p>
+    
+    <p>{{ employee.name }}, Welcome you to LG CNS-I and take this opportunity to wish you a long and successful career with us.</p>
+   <br>
+   <br>
+   <br>
+
+   <p>Yours Sincerely,</p>
+
+   <br>
+   <br>
+   <br>
+
+    <p><b>Seong Woon Cheong</b><br>Managing Director</p>
+</div>
+<div class="offer-letter" >
+    <h4 class="center">Compensation Structure</h4>
+    <br>
+    <br>
+    <br>
+    <table>
+      <tr class="highlight">
+        <th colspan="1"></th>
+        <th>Employee Name</th>
+        <th>{{ employee.name }}</th>
+      </tr>
+      <tr>
+        <td colspan="1"></td>
+        <td>Designation</td>
+        <td>{{ employee.designation }}</td>
+      </tr>
+      <tr>
+        <td colspan="1"></td>
+        <td>Professional Level</td>
+        <td>{{ employee.level }}</td>
+      </tr>
+    
+      <tr class="highlight">
+        <th colspan="1">I</th>
+        <th>Compensation Components</th>
+        <th>Amount</th>
+      </tr>
+    
+      <tr *ngFor="let comp of employee.compensation">
+        <td>{{ comp.id }}</td>
+        <td>{{ comp.name }}</td>
+        <td>{{ comp.amount }}</td>
+      </tr>
+    
+      <tr class="highlight">
+        <td>A</td>
+        <td>Gross Monthly</td>
+        <td>{{ employee.grossMonthly }}</td>
+      </tr>
+    
+      <tr class="highlight">
+        <th>B</th>
+        <th>Annualized Monthly Gross</th>
+        <th>{{ employee.annualizedGross }}</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>Performance Linked Incentive</th>
+        <th>{{ employee.performanceIncentive }}</th>
+      </tr>
+      <tr>
+        <th>C</th>
+        <th>Annual Gross</th>
+        <th>{{ employee.annualGross }}</th>
+      </tr>
+    
+      <tr>
+        <td colspan="3">
+          In addition, you will also be entitled to other Welfare Benefits as per prevailing policies:
+        </td>
+      </tr>
+    
+      <tr class="highlight">
+        <th colspan="1">II</th>
+        <th>Welfare Benefits</th>
+        <th>Amount</th>
+      </tr>
+    
+      <tr *ngFor="let benefit of employee.welfareBenefits">
+        <td>{{ benefit.id }}</td>
+        <td>{{ benefit.name }}</td>
+        <td>{{ benefit.amount }}</td>
+      </tr>
+    
+      <tr class="highlight">
+        <th>D</th>
+        <th>Total</th>
+        <th>{{ employee.totalWelfare }}</th>
+      </tr>
+    
+      <tr>
+        <td></td>
+        <td>CTC before Gratuity</td>
+        <td>{{ employee.ctcBeforeGratuity }}</td>
+      </tr>
+    
+      <tr class="highlight">
+        <th colspan="1">III</th>
+        <th>Others</th>
+        <th>Amount</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Gratuity</td>
+        <td>{{ employee.gratuity }}</td>
+      </tr>
+      <tr class="highlight">
+        <th>E</th>
+        <th>CTC</th>
+        <th>{{ employee.ctc }}</th>
+      </tr>
+    </table>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+  <p class="note">
+    *Flexi Benefits: Applicable as per company’s policy<br>
+    *Tax will be applicable as per Indian Tax law<br>
+    *Group Medical Insurance, Group Personal Accidental Insurance, and Group Term Insurance will be separate<br>
+    *Performance Incentive & Bonus will be separated and will be decided by management
+  </p>
+
+
+</div>
+
+
+
+</div>
