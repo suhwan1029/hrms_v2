@@ -34,6 +34,10 @@ import { AlpComponent } from './report/alp/alp.component';
 import { OlpComponent } from './report/olp/olp.component';
 import { RlpComponent } from './report/rlp/rlp.component';
 import { UlpComponent } from './report/ulp/ulp.component';
+import { OlfComponent } from './request/olf/olf.component';
+import { RfrRgComponent } from './register/rfr-rg/rfr-rg.component';
+import { AppMstComponent } from './master/app-mst/app-mst.component';
+import { DeptMstComponent } from './master/dept-mst/dept-mst.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -95,6 +99,7 @@ const routes: Routes = [
         children: [  
           { path: '', component: RequestComponent }, 
           { path: 'rfr', component: RfrComponent }, 
+          { path: 'olf', component: OlfComponent }, 
           { path: 'view-request', component: ViewRequestComponent }
         ]
       },
@@ -103,7 +108,9 @@ const routes: Routes = [
         children: [  
           { path: '', component: RequestComponent }, 
           { path: 'organization-form', component: OrganizationFormComponent }, 
-          { path: 'partner-form', component: PartnerFormComponent } 
+          { path: 'partner-form', component: PartnerFormComponent },
+          { path: 'dept-mst', component: DeptMstComponent } ,
+          { path: 'app-mst', component: AppMstComponent }  
         ] 
       },
       { 
@@ -114,6 +121,13 @@ const routes: Routes = [
           { path: 'olp', component: OlpComponent},
           { path: 'rlp', component: RlpComponent},
           { path: 'ulp', component: UlpComponent}    
+        ] 
+      },
+      { 
+        path: 'register',  
+        children: [  
+          { path: '', component: RequestComponent }, 
+          { path: 'rfr-rg', component: RfrRgComponent}   
         ] 
       }
     ]

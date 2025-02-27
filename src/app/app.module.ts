@@ -45,6 +45,11 @@ import { AlpComponent } from './report/alp/alp.component';
 import { OlpComponent } from './report/olp/olp.component';
 import { RlpComponent } from './report/rlp/rlp.component';
 import { UlpComponent } from './report/ulp/ulp.component';
+import { OlfComponent } from './request/olf/olf.component';
+import { DeptMstComponent } from './master/dept-mst/dept-mst.component';
+import { AppMstComponent } from './master/app-mst/app-mst.component';
+import { RegisterComponent } from './register/register.component';
+import { RfrRgComponent } from './register/rfr-rg/rfr-rg.component';
 
 
 @NgModule({
@@ -86,7 +91,13 @@ import { UlpComponent } from './report/ulp/ulp.component';
     AlpComponent,
     OlpComponent,
     RlpComponent,
-    UlpComponent
+    UlpComponent,
+    OlfComponent,
+    DeptMstComponent,
+    AppMstComponent,
+    RegisterComponent,
+    RfrRgComponent
+
     
 
   ],

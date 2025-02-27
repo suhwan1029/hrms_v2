@@ -2,10 +2,10 @@
     <h2>Partner Management Form</h2>
 
     <form [formGroup]="partnerForm" (ngSubmit)="submitForm()">
-        <!-- Partner Code (Read-Only) -->
+        <!-- Partner Code (Read-Only, Not Disabled) -->
         <div class="mb-3">
             <label>Partner Code:</label>
-            <input type="text" class="form-control read-only-field" formControlName="partnerCode" readonly />
+            <input type="text" class="form-control read-only-field" formControlName="partnerCode" [readonly]="true" />
         </div>
 
         <div class="mb-3">
@@ -43,7 +43,7 @@
 
         <div class="button-group">
             <button type="submit" class="btn btn-primary">Submit</button>
-             <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+            <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
         </div>
     </form>
 </div>

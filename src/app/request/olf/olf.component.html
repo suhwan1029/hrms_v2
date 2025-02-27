@@ -1,0 +1,141 @@
+<div class="container">
+  <h2>Employee Offer Letter Form</h2>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Employee Information -->
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Name</label>
+        <input type="text" class="form-control" formControlName="name" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Company Name</label>
+        <input type="text" class="form-control" formControlName="companyName" />
+      </div>
+
+
+      <div class="col-md-6 mb-3">
+        <label>Offer Date</label>
+        <input type="date" class="form-control" formControlName="offerDate" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Office Timing</label>
+        <input type="text" class="form-control" formControlName="officeTiming" />
+      </div>
+
+      <div class="col-md-12 mb-1">
+        <label>Location</label>
+        <input type="text" class="form-control" formControlName="location" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Company Address</label>
+        <input type="text" class="form-control" formControlName="companyAddress" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Designation</label>
+        <input type="text" class="form-control" formControlName="designation" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Acceptance Date</label>
+        <input type="date" class="form-control" formControlName="acceptanceDate" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Joining Date</label>
+        <input type="date" class="form-control" formControlName="joiningDate" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Level</label>
+        <input type="text" class="form-control" formControlName="level" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Managing Director</label>
+        <input type="text" class="form-control" formControlName="managingDirector" />
+      </div>
+
+    </div>
+
+    <!-- Compensation Section -->
+    <h3 >Compensation</h3>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Basic</label>
+        <input type="number" class="form-control" formControlName="basic" (input)="calculateTotals()" />
+      </div>
+      
+      <div class="col-md-6 mb-3">
+        <label>HRA</label>
+        <input type="number" class="form-control" formControlName="hra" (input)="calculateTotals()" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Company's Contribution to PF</label>
+        <input type="number" class="form-control" formControlName="pf" (input)="calculateTotals()" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Flexi Benefits</label>
+        <input type="number" class="form-control" formControlName="flexiBenefits" (input)="calculateTotals()" />
+      </div>
+    </div>
+
+    <!-- Salary Details -->
+    <h3 >Salary Details</h3>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Gross Monthly</label>
+        <input type="text" class="form-control" formControlName="grossMonthly" readonly />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Annualized Gross</label>
+        <input type="text" class="form-control" formControlName="annualizedGross" readonly />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Performance Incentive</label>
+        <input type="number" class="form-control" formControlName="performanceIncentive" (input)="calculateTotals()" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Annual Gross</label>
+        <input type="text" class="form-control" formControlName="annualGross" readonly />
+      </div>
+    </div>
+
+    <!-- CTC Details -->
+    <h3 >CTC Details</h3>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Total Welfare</label>
+        <input type="text" class="form-control" formControlName="totalWelfare" readonly />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>CTC Before Gratuity</label>
+        <input type="text" class="form-control" formControlName="ctcBeforeGratuity" readonly />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Gratuity</label>
+        <input type="number" class="form-control" formControlName="gratuity" (input)="calculateTotals()" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Total CTC</label>
+        <input type="text" class="form-control" formControlName="ctc" readonly />
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" style="margin-right: 7px;">Submit</button>
+    <button type="reset" class="btn btn-primary">Reset</button>
+  </form>
+</div>

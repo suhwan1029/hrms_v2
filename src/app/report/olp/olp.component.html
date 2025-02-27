@@ -1,4 +1,5 @@
-<button (click)="generatePDF()">Download PDF</button>
+<button (click)="generatePDF()" style="margin-right: 7px;">Download PDF</button>
+<button >Email</button>
 
 <div  #pdfContent id="pdfContent">
 <div class="offer-letter">
@@ -7,51 +8,51 @@
   <br>
 
 <div >
-  <p class="left"><b>{{ offerLetter.employeeName }}</b><br>
-  <b>{{ offerLetter.location }} </b> </p>
-  <p  class="right"><b>{{ offerLetter.offerDate }}</b></p>
+  <p class="left"><b>{{ employee.name }}</b><br>
+  <b>{{ employee.location }} </b> </p>
+  <p  class="right"><b>{{ employee.offerDate }}</b></p>
   </div>
  
 <br>
 <br>   
 <h2 class="center">OFFER LETTER</h2>
-<p class="left">Dear <b>{{ offerLetter.employeeName }},</b></p>
+<p class="left">Dear <b>{{ employee.name }},</b></p>
   <p>
-    We are pleased to offer you employment in our company having registered office at <b>{{ offerLetter.companyName }}</b>, 
-    {{ offerLetter.companyAddress }} and working location at <b>{{ offerLetter.location }}</b>,  designated as an 
-    <b>"{{ offerLetter.designation }}"</b> at location on the following terms and conditions:
+    We are pleased to offer you employment in our company having registered office at <b>{{employee.companyName }} </b>, 
+    {{ employee.companyAddress }} and working location at <b>{{ employee.location }}</b>,  designated as an 
+    <b>"{{ employee.designation }}"</b> at location on the following terms and conditions:
   </p>
 <br>
   <ol>
     <li>
-      Your compensation package on cost to the company (CTC) basis would be 
-      <b>{{ offerLetter.compensation }}/- per annum</b>. This would comprise of basic salary, allowances, and company’s provident 
+      Your compensation package on cost to the company (CTC) basis would be<b>{{ employee.ctc }}/- per annum</b>. 
+      This would comprise of basic salary, allowances, and company’s provident 
       fund contribution, benefits, and reimbursements as governed by company policies and Income Tax regulations.
     </li>
     <li>A detailed letter of employment outlining the break-up of your salary would be given upon joining.</li>
     <li>You will be on probation for three months, which may extend up to six months if necessary.</li>
-    <li>Our office timing is <b>{{ offerLetter.officeTiming }}</b>.</li>
+    <li>Our office timing is <b>{{ employee.officeTiming }}</b>.</li>
     <li>Five-day working norms shall be applicable due to business needs.</li>
     <li>
-      You authorize {{ offerLetter.companyName }} to undertake background verification. If any falsification is found, 
+      You authorize <b> {{ employee.companyName }} </b>to undertake background verification. If any falsification is found, 
       the company reserves the right to terminate your employment immediately in case of any falsification found.
     </li>
     <li>
       Your documents will go for background verification. If any discrepancy is found, appropriate action will be taken.
     </li>
     <li>
-      Please sign and return a duplicate copy of this letter in acceptance on or before <b>{{ offerLetter.acceptanceDate }}</b>. 
-      You are required to join on or before <b>{{ offerLetter.joiningDate }}</b>.
+      Please sign and return a duplicate copy of this letter in acceptance on or before <b>{{ employee.acceptanceDate }}</b>. 
+      You are required to join on or before <b>{{ employee.joiningDate }}</b>.
     </li>
   </ol>
 
-  <p>We look forward to your joining the {{ offerLetter.companyName }} family.</p>
+  <p>We look forward to your joining the {{ employee.companyName }} family.</p>
 <br>
 <p style=" font-weight: bold;">Sincerely,</p>
 <br>
 <br>
 <br>
-  <p class="sign-off"><b>{{ offerLetter.managingDirector }}</b><br>Managing Director</p>
+  <p class="sign-off"><b>{{ employee.managingDirector }}</b><br>Managing Director</p>
   <br>
   <p class="acceptance "><b>ACCEPTED</b><br>
     I accept the above offer and would join on or before ________________
@@ -84,37 +85,53 @@
       </tr>
     
       <tr class="highlight">
-        <th colspan="1">I</th>
+        <th colspan="1" style="text-align: center;">I</th>
         <th>Compensation Components</th>
-        <th>Amount</th>
+        <th style="text-align: center;">Amount</th>
       </tr>
     
-      <tr *ngFor="let comp of employee.compensation">
-        <td>{{ comp.id }}</td>
-        <td>{{ comp.name }}</td>
-        <td>{{ comp.amount }}</td>
+      <tr >
+        <td style="text-align: center;">1</td>
+        <td>Basic</td>
+        <td style="text-align: center;">{{ employee.basic }}</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">2</td>
+        <td>HRA</td>
+        <td style="text-align: center;">{{ employee.hra }}</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">3</td>
+        <td>Company's contribution to PF</td>
+        <td style="text-align: center;">{{ employee.pf}}</td>
+      </tr>
+
+      <tr>
+        <td style="text-align: center;">4</td>
+        <td>Flexi Benefits*</td>
+        <td style="text-align: center;">{{ employee.flexiBenefits }}</td>
       </tr>
     
       <tr class="highlight">
-        <td>A</td>
+        <td style="text-align: center;">A</td>
         <td>Gross Monthly</td>
-        <td>{{ employee.grossMonthly }}</td>
+        <td style="text-align: center;">{{ employee.grossMonthly }}</td>
       </tr>
     
       <tr class="highlight">
-        <th>B</th>
+        <th style="text-align: center;">B</th>
         <th>Annualized Monthly Gross</th>
-        <th>{{ employee.annualizedGross }}</th>
+        <th style="text-align: center;">{{ employee.annualizedGross }}</th>
       </tr>
       <tr>
         <th></th>
         <th>Performance Linked Incentive</th>
-        <th>{{ employee.performanceIncentive }}</th>
+        <th style="text-align: center;">{{ employee.performanceIncentive }}</th>
       </tr>
       <tr>
-        <th>C</th>
+        <th style="text-align: center;">C</th>
         <th>Annual Gross</th>
-        <th>{{ employee.annualGross }}</th>
+        <th style="text-align: center;">{{ employee.annualGross }}</th>
       </tr>
     
       <tr>
@@ -124,43 +141,53 @@
       </tr>
     
       <tr class="highlight">
-        <th colspan="1">II</th>
+        <th colspan="1" style="text-align: center;">II</th>
         <th>Welfare Benefits</th>
-        <th>Amount</th>
+        <th style="text-align: center;">Amount</th>
       </tr>
     
-      <tr *ngFor="let benefit of employee.welfareBenefits">
-        <td>{{ benefit.id }}</td>
-        <td>{{ benefit.name }}</td>
-        <td>{{ benefit.amount }}</td>
+      <tr>
+        <td style="text-align: center;">1</td>
+        <td>Birthday & Diwali Gifts ( Festival ) per annum</td>
+        <td style="text-align: center;">5000</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">2</td>
+        <td>Lunch on premises  per annum</td>
+        <td style="text-align: center;">Not Applicable</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;">3</td>
+        <td>Group mediclaim, personal accident and term life insurance</td>
+        <td style="text-align: center;">As per company policy</td>
       </tr>
     
       <tr class="highlight">
-        <th>D</th>
+        <th style="text-align: center;">D</th>
         <th>Total</th>
-        <th>{{ employee.totalWelfare }}</th>
+        <th style="text-align: center;">{{ employee.totalWelfare }}</th>
       </tr>
     
       <tr>
         <td></td>
         <td>CTC before Gratuity</td>
-        <td>{{ employee.ctcBeforeGratuity }}</td>
+        <td style="text-align: center;">{{ employee.ctcBeforeGratuity }}</td>
       </tr>
     
       <tr class="highlight">
-        <th colspan="1">III</th>
+        <th colspan="1" style="text-align: center;">III</th>
         <th>Others</th>
-        <th>Amount</th>
+        <th style="text-align: center;">Amount</th>
       </tr>
       <tr>
-        <td>1</td>
+        <td style="text-align: center;">1</td>
         <td>Gratuity</td>
-        <td>{{ employee.gratuity }}</td>
+        <td style="text-align: center;">{{ employee.gratuity }}</td>
       </tr>
       <tr class="highlight">
-        <th>E</th>
+        <th style="text-align: center;">E</th>
         <th>CTC</th>
-        <th>{{ employee.ctc }}</th>
+        <th style="text-align: center;">{{ employee.ctc }}</th>
       </tr>
     </table>
     

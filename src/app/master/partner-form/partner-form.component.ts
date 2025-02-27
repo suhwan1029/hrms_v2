@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PartnerService } from './service/partner.service';
-
+ 
 @Component({
   selector: 'app-partner-form',
+  standalone: false,
   templateUrl: './partner-form.component.html',
   styleUrls: ['./partner-form.component.css']
 })
 export class PartnerFormComponent {
   partnerForm: FormGroup;
-
+ 
   constructor(private fb: FormBuilder, private partnerService: PartnerService) {
     this.partnerForm = this.fb.group({
-      partnerCode: [''], // No default value
+      partnerCode: [{ value: '', disabled: true }], 
       partnerName: ['', Validators.required],
       partnerEmail: ['', [Validators.required, Validators.email]],
       partnerContactPerson: ['', Validators.required],
@@ -21,11 +22,15 @@ export class PartnerFormComponent {
       activeStatus: ['Y']
     });
   }
-
+ 
   submitForm() {
+    this.partnerForm.markAllAsTouched();
+ 
     if (this.partnerForm.valid) {
-      console.log('Submitting Form:', this.partnerForm.value);
-      this.partnerService.savePartner(this.partnerForm.value).subscribe(
+      const formData = this.partnerForm.getRawValue();
+ 
+      console.log('Submitting Form:', formData);
+      this.partnerService.savePartner(formData).subscribe(
         (response) => {
           console.log('Partner saved successfully:', response);
           alert('Form submitted successfully!');
@@ -37,13 +42,14 @@ export class PartnerFormComponent {
         }
       );
     } else {
+      console.log('Form is invalid:', this.partnerForm.errors);
       alert('Please fill all required fields before submitting.');
     }
   }
-
+ 
   resetForm() {
     this.partnerForm.reset({
-      partnerCode: '', // Reset as empty
+      partnerCode: { value: '', disabled: true }, 
       partnerName: '',
       partnerEmail: '',
       partnerContactPerson: '',

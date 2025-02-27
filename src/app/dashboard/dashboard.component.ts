@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   }
 
   toggleMenu(menu: string) {
-    if (menu === 'master' || menu === 'report' || menu === 'requests') {
+    if (menu === 'master' || menu === 'report' || menu === 'requests' || menu === 'register') {
       if (this.openMenu === menu) {
         this.openMenu = null;  // Close the menu if it's already open
         this.openSubMenu = null;
