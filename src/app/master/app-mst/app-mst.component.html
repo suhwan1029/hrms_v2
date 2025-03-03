@@ -1,1 +1,66 @@
-<p>app-mst works!</p>
+<div class="container">
+    <h2>Approval Master</h2>
+  
+    <!-- Department Code Input -->
+    <div class="form-group">
+      <label>Department Code:</label>
+      <input type="text" [(ngModel)]="departmentCode" class="form-control" />
+      <button (click)="fetchDepartmentDetails()" class="btn btn-primary" style="margin-top: 10px;">Fetch Details</button>
+    </div>
+  
+    <!-- Department Details (Always Visible) -->
+    <div>
+      <div class="form-group">
+        <label>Department Name:</label>
+        <input type="text" [(ngModel)]="departmentName" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label>Active:</label>
+        <input type="text" [(ngModel)]="activeStatus" class="form-control" />
+      </div>
+  
+      <hr />
+  
+      <!-- Approval Details Table -->
+      <h3>Approval Details</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Seq. No</th>
+            <th>Approval Name</th>
+            <th>Approval Email</th>
+            <th>Active Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let approval of approvalList; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>
+              <input type="text" [(ngModel)]="approvalList[i].approvalName" class="form-control" />
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="approvalList[i].approvalEmail" class="form-control" />
+            </td>
+            <td>
+              <select [(ngModel)]="approvalList[i].activeStatus" class="form-control">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="removeApprovalRow(i)">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- Add Row Button -->
+      <button (click)="addApprovalRow()" class="btn btn-primary" style="margin-right: 10px;">Add Row</button>
+  
+      <!-- Save Button -->
+      <button (click)="saveChanges()" class="btn btn-success">Save</button>
+    </div>
+  </div>
+  

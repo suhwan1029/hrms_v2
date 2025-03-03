@@ -47,6 +47,9 @@ export class DashboardComponent implements OnInit {
     }
   }
   
+  toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+  }
   
 
   isDisabled: boolean = true;
@@ -58,4 +61,9 @@ export class DashboardComponent implements OnInit {
       sidebar.classList.toggle('active');
     }
   }
+
+
+
+
+  
 }

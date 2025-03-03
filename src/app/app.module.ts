@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule here
 import { LoginComponent } from './login/login.component';
 import { LeaveComponent } from './leave/leave.component';
 import { RequestComponent } from './request/request.component';
+import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { AttendancesComponent } from './attendances/attendances.component';
@@ -38,6 +39,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RfrComponent } from './request/rfr/rfr.component';
 
+
+
+
 import { OrganizationFormComponent } from './master/organization-form/organization-form.component';
 import { PartnerFormComponent } from './master/partner-form/partner-form.component';
 import { ReportComponent } from './report/report.component';
@@ -50,6 +54,7 @@ import { DeptMstComponent } from './master/dept-mst/dept-mst.component';
 import { AppMstComponent } from './master/app-mst/app-mst.component';
 import { RegisterComponent } from './register/register.component';
 import { RfrRgComponent } from './register/rfr-rg/rfr-rg.component';
+import { DepartmentListComponent } from './register/department-list/department-list.component';
 
 
 @NgModule({
@@ -61,6 +66,7 @@ import { RfrRgComponent } from './register/rfr-rg/rfr-rg.component';
     AdminComponent,
     EmployeesComponent,
     AttendancesComponent,
+    HomeComponent ,
     PoliciesComponent,
     SignupComponent,
     RequestLeaveComponent,
@@ -96,7 +102,8 @@ import { RfrRgComponent } from './register/rfr-rg/rfr-rg.component';
     DeptMstComponent,
     AppMstComponent,
     RegisterComponent,
-    RfrRgComponent
+    RfrRgComponent,
+    DepartmentListComponent
 
     
 

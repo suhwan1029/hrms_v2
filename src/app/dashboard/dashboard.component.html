@@ -11,8 +11,8 @@
     </div>
     <ul class="menu ">
       <li>
-        <a routerLink="/dashboard/home">
-          <i class="fa-solid fa-gauge"></i> Dashboard
+        <a  routerLink="/dashboard/home">
+          <i class="fa-solid fa-gauge"></i>  Dashboard
         </a>
       </li>
   
@@ -22,10 +22,10 @@
           <i class="fa fa-chevron-down dropdown-icon"></i>
         </a>
         <ul *ngIf="openSubMenu === 'master'">
-          <li><a routerLink="/dashboard/master/organization-form" >Organization Form</a></li>
-          <li><a routerLink="/dashboard/master/partner-form">Partner Form</a></li>
-          <li><a routerLink="/dashboard/master/dept-mst">Department Form</a></li>
-          <li><a routerLink="/dashboard/master/app-mst">Approval Form</a></li>
+          <li><a routerLink="/dashboard/master/organization-form" >Organization</a></li>
+          <li><a routerLink="/dashboard/master/dept-mst">Department</a></li>
+          <li><a routerLink="/dashboard/master/app-mst">Approval</a></li>
+          <li><a routerLink="/dashboard/master/partner-form">Partner</a></li>
         </ul>
       </li>
 
@@ -61,6 +61,7 @@
         </a>
         <ul *ngIf="openMenu === 'register'">
           <li><a routerLink="/dashboard/register/rfr-rg">RFR Register</a></li>
+          <li><a routerLink="/dashboard/register/department-list">Department Register</a></li>
 
         </ul>
       </li>
@@ -88,14 +89,13 @@
           <li><a routerLink="/dashboard/admin/system-settings">System Settings</a></li>
         </ul>
       </li>
-   
 
       <li>
         <a routerLink="/dashboard/settings">
           <i class="fas fa-cogs"></i> Settings
         </a>
       </li>
-  
+      
       <li>
         <a (click)="logout()">
           <i class="fas fa-sign-out-alt"></i> Logout
@@ -108,14 +108,18 @@
   
   <div class="main-content">
     <header class="top-nav">
-      <div class="welcome-text">
-        <h2>Welcome, {{ user.name }} <i class="fa-duotone fa-solid fa-hands-praying" style=" color: #f1c27d;"></i></h2> 
-      </div>
+  
+        <div class="welcome-text">
+          Welcome , {{ user.name }} 
+          <i class="fa-solid fa-hands-praying" style="color: #f1c27d;"></i>
+        </div>
+      
+      
   
       <div class="user-info">
         <img [src]="user.profilePic" alt="User Profile" class="profile-pic">
         <div>
-          <p><strong>{{ user.name }}</strong></p>
+          <p>{{ user.name }}</p>
           <p>ID: {{ user.employeeId }}</p>
         </div>
       </div>

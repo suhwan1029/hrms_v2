@@ -1,78 +1,157 @@
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="17.jpeg" class="d-block w-100 carousel-img" alt="Slide 1">
-    </div>
-    <div class="carousel-item">
-      <img src="17.jpeg" class="d-block w-100 carousel-img" alt="Slide 2">
-    </div>
-    <div class="carousel-item">
-      <img src="17.jpeg" class="d-block w-100 carousel-img" alt="Slide 3">
-    </div>
-  </div>
-  
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-<div class="container mt-4">
-  <div class="row justify-content-center">
+<div class="container">
+  <div class="row">
     
-    <div class="col-md-3 col-6">
-      <div class="feature-card">
-        <i class="fas fa-user"></i>
-        <h5>Personal Management</h5>
+    <div class="col-lg-8 left-section">
+      
+      <div id="carouselExampleAutoplaying" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="17.jpeg" class="d-block w-100 carousel-img" alt="Slide 1">
+          </div>
+          <div class="carousel-item">
+            <img src="18.jpg" class="d-block w-100 carousel-img" alt="Slide 2">
+          </div>
+          <div class="carousel-item">
+            <img src="19.jpg" class="d-block w-100 carousel-img" alt="Slide 3">
+          </div>
+          <div class="carousel-item">
+            <img src="20.jpg" class="d-block w-100 carousel-img" alt="Slide 4">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+
+          
+      <div class="news-section">
+        <h4 class="text-dark"> 📰 Latest News</h4>
+     
+        <div *ngFor="let article of articles" class="card p-3 mb-3 shadow-sm news-card">
+          <h5>{{ article.title }} ({{ article.date }})</h5>
+          <div *ngFor="let news of article.news" class="news-item">
+            <img [src]="news.image" class="news-img">
+            <div class="news-text">
+              <p><strong>{{ news.headline }}</strong> - {{ news.source }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="col-md-3 col-6">
-      <div class="feature-card">
-        <i class="fas fa-calendar-check"></i>
-        <h5>Attendance</h5>
-      </div>
-    </div>
+   
+    <div class="col-lg-4 right-section">
+      
+      <div class="dashboard-container">
 
-    <div class="col-md-3 col-6">
-      <div class="feature-card">
-        <i class="fas fa-money-bill"></i>
-        <h5>Payroll</h5>
-      </div>
-    </div>
+        <h4> Reminders ⏰</h4>
+        <div class="section">
+          <ul class="reminder-list">
+            <li *ngFor="let reminder of reminders; let i = index">
+              <input type="checkbox" [checked]="reminder.completed" (change)="toggleReminder(i)">
+              <span [class.completed]="reminder.completed">{{ reminder.task }} (Due: {{ reminder.dueDate }})</span>
+            </li>
+          </ul>
+        </div>
+        
+        <br>
+        <h4> Upcoming Events 📅</h4>
+        <div class="section">
+        
+          <ul class="event-list">
+            <li *ngFor="let event of upcomingEvents">
+              <strong>{{ event.title }}</strong> - {{ event.date }} at {{ event.time }}
+              <span class="location">📍 {{ event.location }}</span>
+            </li>
+          </ul>
+        </div>
 
-    <div class="col-md-3 col-6">
-      <div class="feature-card">
-        <i class="fas fa-users"></i>
-        <h5>Employee Directory</h5>
-      </div>
-    </div>
+       </div>
 
+
+     <br>
+
+
+      <h4 class="text-dark">Today's Hot 10 <span class="fire-icon">🔥</span></h4>
+      <div class="card p-3 shadow-sm hot-topics">
+        <div *ngFor="let topic of hotTopics">
+          <h6><a href="#">{{ topic.title }}</a></h6>
+        </div>
+      </div>
+      <br>
+      
+      <div class="birthday-section">
+        <h4 class="text-dark"> Happy Birthday  🎂</h4>
+        <div *ngFor="let birthday of birthdays" class="card p-3 mb-3 shadow-sm birthday-card">
+          <img *ngIf="birthday.image" [src]="birthday.image" class="birthday-img">
+          <div class="birthday-text">
+            <p><strong>{{ birthday.name }}</strong></p>
+            <small>🎉 Wishing you a fantastic year ahead!</small>
+          </div>
+        </div>
+      </div>
+
+<!-- Favorites Section -->
+<h4 class="text-dark">Favorites ⭐</h4>
+<div class="card p-3 shadow-sm favorites-section">
+  <div *ngFor="let service of favoriteServices" class="favorite-item">
+    <i [class]="service.icon + ' fa-lg favorite-icon'"></i>
+    <h6>{{ service.name }}</h6>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Employee Attendance</h5>
-        <canvas id="attendanceChart"></canvas>
-      </div>
-    </div>
-  </div>
+ <br>
+<!-- Recent Holidays Section -->
+<h4 class="text-dark"> Recent Holidays 🎉</h4>
+<div class="card p-3 shadow-sm">
+  <ul class="list-group">
+    <li class="list-group-item d-flex align-items-center" *ngFor="let holiday of currentAndNextMonthHolidays">
+      <span class="holiday-emoji">{{ holiday.emoji }}</span>
+      <span class="holiday-name ms-2">{{ holiday.name }} - {{ holiday.date }}</span>
+    </li>
+  </ul>
+</div>
 
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Salary Breakdown</h5>
-        <canvas id="salaryChart"></canvas>
+<br>
+
+
+<h4 class="text-dark"> Current Date <span class="fire-icon">⏰</span></h4>
+      <div class="card p-3 shadow-lg clock-container">
+        <h5 class="text-dark text-center">
+          <span class="calendar-icon">📅</span> {{ currentDate }}
+        </h5>
+      
+        <!-- Analog Clock -->
+        <div class="clock">
+          <div class="center-circle"></div>
+      
+          <!-- Clock Hands -->
+          <div class="hand hour-hand" [style.transform]="'rotate(' + hourDeg + 'deg)'"></div>
+          <div class="hand minute-hand" [style.transform]="'rotate(' + minuteDeg + 'deg)'"></div>
+          <div class="hand second-hand" [style.transform]="'rotate(' + secondDeg + 'deg)'"></div>
+      
+          <!-- Clock Numbers -->
+          <div class="clock-number n12">12</div>
+          <div class="clock-number n3">3</div>
+          <div class="clock-number n6">6</div>
+          <div class="clock-number n9">9</div>
+        </div>
+      
+        <!-- Digital Clock -->
+        <h4 class="text-center mt-3 digital-clock">
+          🕒 {{ digitalTime }}
+        </h4>
       </div>
+      
+
+
+
+
+
+
+
     </div>
   </div>
 </div>

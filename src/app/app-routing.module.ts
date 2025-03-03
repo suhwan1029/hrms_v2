@@ -38,6 +38,7 @@ import { OlfComponent } from './request/olf/olf.component';
 import { RfrRgComponent } from './register/rfr-rg/rfr-rg.component';
 import { AppMstComponent } from './master/app-mst/app-mst.component';
 import { DeptMstComponent } from './master/dept-mst/dept-mst.component';
+import { DepartmentListComponent} from './register/department-list/department-list.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -127,7 +128,8 @@ const routes: Routes = [
         path: 'register',  
         children: [  
           { path: '', component: RequestComponent }, 
-          { path: 'rfr-rg', component: RfrRgComponent}   
+          { path: 'rfr-rg', component: RfrRgComponent},
+          { path: 'department-list', component: DepartmentListComponent}    
         ] 
       }
     ]

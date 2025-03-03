@@ -75,10 +75,28 @@ export class OlfComponent implements OnInit {
 
   onSubmit(): void {
     if (this.employeeForm.valid) {
-      const formData = JSON.stringify(this.employeeForm.getRawValue());
-      this.router.navigate(['/dashboard/report/olp'], { queryParams: { data: formData } });
+      const formData = { ...this.employeeForm.getRawValue() };
+  
+      // Convert date fields to DD/MM/YYYY format
+      formData.offerDate = this.formatDate(formData.offerDate);
+      formData.joiningDate = this.formatDate(formData.joiningDate);
+      formData.acceptanceDate = this.formatDate(formData.acceptanceDate);
+  
+      const formattedData = JSON.stringify(formData);
+      this.router.navigate(['/dashboard/report/olp'], { queryParams: { data: formattedData } });
     } else {
       alert('Please fill all required fields.');
     }
   }
+  
+  // Function to format dates as DD/MM/YYYY
+  formatDate(date: string | Date): string {
+    if (!date) return ''; // Handle empty case
+    const d = new Date(date);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+  
 }
