@@ -1,0 +1,165 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Styling for Form Container */
+  .container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+  h2 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #c00c3f;
+    font-weight: bold;
+  }
+  
+  
+  /* Form Styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Improved spacing */
+  }
+  
+  /* Labels */
+  label {
+    font-weight: normal;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+  }
+  
+  /* Input Fields */
+  input[type="text"], 
+  input[type="email"], 
+  input[type="number"],
+  textarea, 
+  select {
+    width: 100%;
+    padding: 10px; /* Slightly larger for better UX */
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 13px;
+    background: #fff;
+    transition: 0.2s ease-in-out;
+    box-sizing: border-box;
+  }
+  
+  /* Remove number spinner for ORG ID and Department ID */
+  input[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+    appearance: textfield;
+  }
+  
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  textarea {
+    height: 100px;
+    resize: vertical;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+  }
+  
+  /* Buttons Container */
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Space between buttons */
+    margin-top: 15px;
+  }
+  
+  /* Button Styling */
+  button {
+    flex: 1; /* Make buttons equal width */
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    background: #c2083d;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  button:hover {
+    background: #0056b3;
+    transform: scale(1.02);
+  }
+  
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background: #c00c3f;
+    color: white;
+    font-weight: bold;
+  }
+  
+  td {
+    color: #232222;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      max-width: 90%;
+    }
+  
+    .button-group {
+      flex-direction: column;
+    }
+  
+    button {
+      width: 100%;
+    }
+  }
+  

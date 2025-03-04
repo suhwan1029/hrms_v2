@@ -18,7 +18,7 @@ export class RfrComponent {
   constructor(private fb: FormBuilder) {
     this.rfrForm = this.fb.group({
       // First Row
-      orgGroup: ['', Validators.required],
+      orgGroup: [''],
       rfrNo: ['', Validators.required],
       projectName: ['', Validators.required],
 

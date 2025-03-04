@@ -1,1 +1,44 @@
-<p>dept-mst works!</p>
+<div class="container">
+    <h2>Department Management Form</h2>
+  
+    <!-- Department Form -->
+    <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label>ORG ID:</label>
+            <input type="number" formControlName="orgId" required />
+        </div>
+  
+        <div>
+            <label>Department ID:</label>
+            <input type="number" formControlName="departmentId" required />
+        </div>
+  
+        <div>
+            <label>Department Code:</label>
+            <input type="text" formControlName="departmentCode" required maxlength="50" />
+        </div>
+  
+        <div>
+            <label>Department Name:</label>
+            <input type="text" formControlName="departmentName" required maxlength="240" />
+        </div>
+  
+        <div>
+            <label>HOD Name:</label>
+            <input type="text" formControlName="hodName" required maxlength="50" />
+        </div>
+  
+        <div>
+            <label>Enable Flag:</label>
+            <select formControlName="enableFlag">
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
+            </select>
+        </div>
+        <div class="button-group">
+        <button type="submit" [disabled]="departmentForm.invalid">Submit</button>
+        <button type="button" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+  
