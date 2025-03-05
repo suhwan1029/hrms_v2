@@ -6,11 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DeptMstService {
-  private apiUrl = 'https://your-backend-api.com/api/dept'; // Replace with actual API
+  private apiUrl = 'https://your-backend-api.com/api/dept'; // Replace with actual backend API URL
 
   constructor(private http: HttpClient) {}
 
-  // Fetch department details
+  // Fetch list of all departments for dropdown (LOV)
+  getAllDepartments(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/all`);
+  }
+
+  // Fetch department details by department code
   getDepartmentDetails(deptCode: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${deptCode}`);
   }

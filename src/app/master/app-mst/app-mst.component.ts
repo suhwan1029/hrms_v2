@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { DeptMstService } from './service/dept-mst.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-app-mst',
@@ -7,33 +6,45 @@ import { DeptMstService } from './service/dept-mst.service';
   templateUrl: './app-mst.component.html',
   styleUrls: ['./app-mst.component.css']
 })
-export class AppMstComponent {
+export class AppMstComponent implements OnInit {
   departmentCode: string = '';
   departmentName: string = '';
   activeStatus: string = '';
   approvalList: any[] = [];
   isEditing: boolean = true; // Form is editable by default
 
-  constructor(private deptService: DeptMstService) {}
+  departmentList: any[] = [  // Hardcoded department list
+    { departmentCode: 'GDC0001', departmentName: 'GDC', activeStatus: 'Y' },
+    { departmentCode: 'GDC0002', departmentName: 'Finance', activeStatus: 'N' },
+    { departmentCode: 'GDC0003', departmentName: 'IT', activeStatus: 'N' },
+    { departmentCode: 'GDC0004', departmentName: 'Operations', activeStatus: 'N' }
+  ];
 
-  // Fetch department details from service
+  constructor() {}
+
+  ngOnInit() {
+    this.loadDepartments();
+  }
+
+  // Load department list for dropdown (already hardcoded)
+  loadDepartments() {
+    // No API call needed since data is hardcoded
+  }
+
+  // Update department details when selecting from dropdown
   fetchDepartmentDetails() {
     if (!this.departmentCode) {
-      alert('Please enter a Department Code');
+      this.departmentName = '';
+      this.activeStatus = '';
       return;
     }
 
-    this.deptService.getDepartmentDetails(this.departmentCode).subscribe(
-      (data) => {
-        this.departmentName = data.departmentName;
-        this.activeStatus = data.activeStatus;
-        this.approvalList = data.approvals || []; // Ensure list is not null
-      },
-      (error) => {
-        console.error('Error fetching department details:', error);
-        alert('Department not found!');
-      }
-    );
+    const selectedDept = this.departmentList.find(dept => dept.departmentCode === this.departmentCode);
+    if (selectedDept) {
+      this.departmentName = selectedDept.departmentName;
+      this.activeStatus = selectedDept.activeStatus === 'Y' ? 'Active' : 'Inactive';
+      this.approvalList = []; // Reset approvals (optional)
+    }
   }
 
   // Add a new row to the approval list
@@ -50,7 +61,7 @@ export class AppMstComponent {
     this.approvalList.splice(index, 1);
   }
 
-  // Save edited data (send to API)
+  // Save edited data (you can later replace this with an API call)
   saveChanges() {
     const updatedData = {
       departmentCode: this.departmentCode,
@@ -59,14 +70,7 @@ export class AppMstComponent {
       approvals: this.approvalList
     };
 
-    this.deptService.updateDepartmentDetails(updatedData).subscribe(
-      (response) => {
-        alert('Changes saved successfully!');
-      },
-      (error) => {
-        console.error('Error saving changes:', error);
-        alert('Failed to save changes.');
-      }
-    );
+    console.log('Saving data:', updatedData);
+    alert('Changes saved successfully! (Currently just logging to console)');
   }
 }
