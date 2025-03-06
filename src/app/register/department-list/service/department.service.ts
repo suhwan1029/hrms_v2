@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+
+export interface ApiResponse {
+  status: string;
+  data: Department[];
+}
 
 export interface Department {
   orgId: string;
@@ -19,9 +24,11 @@ export class DepartmentService {
 
   constructor(private http: HttpClient) {}
 
-  // ✅ Fetch all departments
+  // ✅ Fetch all departments correctly
   getDepartments(): Observable<Department[]> {
-    return this.http.get<Department[]>(this.apiUrl);
+    return this.http.get<ApiResponse>(this.apiUrl).pipe(
+      map(response => response.data) // ✅ Extract `data` field from `ApiResponse`
+    );
   }
 
   // ✅ Get department by ID

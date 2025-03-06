@@ -16,7 +16,6 @@ body {
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   min-height: 700px;
-  
 }
 
 /* Form Header */
@@ -26,7 +25,6 @@ h1 {
   margin-bottom: 15px;
   color: #c00c3f;
   font-weight: bold;
-
 }
 
 /* Form Layout */
@@ -37,17 +35,15 @@ h1 {
   justify-content: space-between;
   align-items: flex-start;
   border: none;
- 
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  flex: 1 1 calc(33% - 10px); /* Reduced width to make the fields smaller */
-  min-width: 150px; /* Smaller min-width */
+  flex: 1 1 calc(33% - 10px);
+  min-width: 150px;
   box-sizing: border-box;
-  
 }
 
 .form-group label {
@@ -100,14 +96,13 @@ legend {
   margin-top: 8px;
   text-align: left;
   font-size: 12px;
-  
 }
 
 .ctc-analysis th, .ctc-analysis td {
   padding: 6px;
   text-align: center;
   border-radius: 4px;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
 }
 
 .ctc-analysis th {
@@ -164,9 +159,16 @@ input[type="checkbox"]:checked::after {
 }
 
 /* Button Styling */
+.button-container {
+  display: flex;
+  gap: 5px;  /* Adds space between buttons */
+  justify-content: flex-start; /* Align buttons to the left */
+  flex-wrap: wrap;
+}
+
 button, .button2 {
-  min-width: 100px;
-  padding: 6px 10px;
+  min-width: 120px;
+  padding: 8px 12px;
   font-size: 14px;
   font-weight: bold;
   background: #c2083d;
@@ -215,10 +217,9 @@ button:disabled, .button2:disabled {
 /* Skills Section Styling */
 .skills-section {
   padding: 20px;
-  background:  #ffffff;
+  background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-  
 }
 
 /* Styling for Skills Textareas */
@@ -231,8 +232,8 @@ button:disabled, .button2:disabled {
   background: #fff;
   transition: 0.2s ease-in-out;
   box-sizing: border-box;
-  height: 150px;  /* Adjust the height of text areas */
-  resize: vertical;  /* Allow vertical resizing */
+  height: 150px;
+  resize: vertical;
 }
 
 /* Label Styling */

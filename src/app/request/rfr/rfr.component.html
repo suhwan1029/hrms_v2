@@ -6,8 +6,8 @@
     <div class="form-group">
       <label>Organization Group:</label>
       <select formControlName="orgGroup">
-        <option value="Internal Movement">GDC0002</option>
-        <option value="Outsource">GDC0001</option>
+        <option value="GDC0002">GDC0002</option>
+        <option value="GDC0001">GDC0001</option>
       </select>
     </div>
     <div class="form-group">
@@ -110,7 +110,7 @@
   <!-- Button Row: Reopen & CTC Analysis -->
   <div class="button-container">
     <button type="button" class="tab-btn" (click)="toggleCtcAnalysis()">CTC Analysis</button>
-    <button type="button" class="tab-btn" (click)="toggleHRReccomendation()">HR Recommendation</button>
+    <button type="button" class="tab-btn" (click)="toggleHRRecommendation()">HR Recommendation</button>
     <button type="button" class="tab-btn" (click)="toggleStatus()">Status</button>
     <button type="button" class="tab-btn" (click)="toggleReopenDate()">Reopen Date</button>
   </div>
@@ -143,7 +143,7 @@
     </fieldset>
   </div>
   <!-- HR Recommemd Tab Content -->
-  <div *ngIf="showHRReccomendation" class="ctc-container">
+  <div *ngIf="showHRRecommendation" class="ctc-container">
     <fieldset class="form-group">
       <legend>HR Reccomendation</legend>
       <table class="ctc-analysis">
@@ -235,8 +235,9 @@
   </div>
   <br>
   <!-- Submit Button -->
+  <div class="button-container">
   <button type="submit">Submit</button>
-  <button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
-
+  <button type="button" class="cancel-button" (click)="resetForm()">Cancel</button>
+</div>
   
 </form>

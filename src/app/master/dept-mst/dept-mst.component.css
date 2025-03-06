@@ -24,6 +24,12 @@ body {
     font-weight: bold;
   }
   
+  .read-only-field {
+    background: #e9ecef;
+    cursor: not-allowed;
+  }
+  
+  
   
   /* Form Styling */
   form {

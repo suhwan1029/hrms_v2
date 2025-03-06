@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DepartmentService, Department } from '../department-list/service/department.service';
+import { DepartmentService, Department } from '../department-list/Service/department.service';
 
 @Component({
   selector: 'app-department-list',
-  standalone: false, // ✅ Added standalone: false
   templateUrl: './department-list.component.html',
-  styleUrls: ['./department-list.component.css']
+  styleUrls: ['./department-list.component.css'],
+  standalone: false // ✅ Ensure it's part of an Angular module
 })
 export class DepartmentListComponent implements OnInit {
-  departments: Department[] = []; // ✅ Fetch dynamically from API
+  departments: Department[] = [];
   selectedDepartment: Department | null = null;
   departmentForm: FormGroup;
 
@@ -20,57 +20,53 @@ export class DepartmentListComponent implements OnInit {
     private departmentService: DepartmentService
   ) {
     this.departmentForm = this.fb.group({
-      orgId: [''],
       departmentId: [''],
       departmentCode: [''],
       departmentName: [''],
       hodName: [''],
-      enableFlag: [false] // ✅ Boolean flag
+      enableFlag: [false] // ✅ For form checkbox (true/false)
     });
   }
 
   ngOnInit(): void {
-    this.loadDepartments(); // ✅ Fetch department data from API
+    this.loadDepartments();
   }
 
-  // ✅ Fetch departments from API
   loadDepartments(): void {
     this.departmentService.getDepartments().subscribe({
-      next: (data) => {
-        this.departments = data;
+      next: (departments: Department[]) => {
+        console.log('Fetched Departments:', departments);
+        this.departments = departments; // ✅ Ensure data matches Department[]
       },
       error: (err) => {
         console.error('Error fetching departments:', err);
+        this.departments = [];
       }
     });
   }
 
-  // ✅ Select department and update form
   selectDepartment(department: Department) {
     this.selectedDepartment = department;
     this.departmentForm.patchValue({
       ...department,
-      enableFlag: department.enableFlag === 'Yes'
+      enableFlag: department.enableFlag === 'Yes' // ✅ Convert "Yes"/"No" to boolean for the form
     });
   }
 
-  // ✅ Submit Form Data
   onSubmit() {
     const formValue = this.departmentForm.value;
     const updatedDepartment: Department = {
       ...formValue,
-      enableFlag: formValue.enableFlag ? 'Yes' : 'No'
+      enableFlag: formValue.enableFlag ? 'Yes' : 'No' // ✅ Convert boolean back to "Yes"/"No"
     };
 
     console.log('Updated Department Data:', updatedDepartment);
   }
 
-  // ✅ Navigate to Department Master Form with selected department details
   viewDepartment(department: Department | null): void {
     if (department) {
       this.router.navigate(['/dashboard/master/dept-mst'], { 
         queryParams: { 
-          orgId: department.orgId,
           departmentId: department.departmentId,
           departmentCode: department.departmentCode,
           departmentName: department.departmentName,
@@ -79,11 +75,10 @@ export class DepartmentListComponent implements OnInit {
         }
       });
     } else {
-      this.router.navigate(['/dashboard/master/dept-mst']); // ✅ Open empty form for new department
+      this.router.navigate(['/dashboard/master/dept-mst']);
     }
   }
 
-  // ✅ Navigate to form for adding a new department
   addNewDepartment(): void {
     this.router.navigate(['/dashboard/master/dept-mst']);
   }
