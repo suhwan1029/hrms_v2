@@ -370,7 +370,7 @@ a {
   align-items: center;
   border-radius: 10px;
   background: white;
-  padding: 10px 20px;
+  padding: 10px 38px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -417,12 +417,12 @@ a {
 /* Badge */
 .badge {
   position: absolute;
-  top: -5px;
-  right: 5px;
+  top: -9px;
+  right: 2px;
   background: #c2083d;
   color: white;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
-  padding: 2px 6px;
+  padding: 1px 5px;
   border-radius: 50%;
 }
