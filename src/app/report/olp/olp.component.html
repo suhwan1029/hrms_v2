@@ -3,59 +3,67 @@
 
 <div  #pdfContent id="pdfContent">
 <div class="offer-letter">
-  <img src="5.png" alt="Company Logo" style="width: 100px; height: auto; margin-right: 20px;">
+  <img src="5.png" alt="Company Logo" style="width: 130px; height: auto; ">
+  <p style="color: rgb(107, 100, 100); font-size: 11px; ;" ><strong>Office No.1, 3rd Floor Stellar Okas 1425<br>
+    Sector-142 NOIDA, UP 201305 <br>
+    CIN : U72900UP2004PTC093496 <br> www.lgncs.com</strong></p>
  
-  <br>
 
 <div >
-  <p class="left"><b>{{ employee.name }}</b><br>
+  <p class="left" ><b>{{ employee.title }}{{ employee.name }}</b><br>
   <b>{{ employee.location }} </b> </p>
-  <p  class="right"><b>{{ employee.offerDate }}</b></p>
-  </div>
+  <p  class="right" ><b>{{ employee.offerDate }}</b></p>
+</div>
  
-<br>
-<br>   
-<h2 class="center">OFFER LETTER</h2>
-<p class="left">Dear <b>{{ employee.name }},</b></p>
-  <p>
+
+ 
+<p class="center" ><b>OFFER LETTER</b></p>
+<p class="left" style="font-size: 12px; font-weight: 500; text-align: justify;">Dear <b>{{ employee.name }},</b></p>
+  <p style="font-size: 12px; font-weight: 500; text-align: justify;">
     We are pleased to offer you employment in our company having registered office at <b>{{employee.companyName }} </b>, 
-    {{ employee.companyAddress }} and working location at <b>{{ employee.location }}</b>,  designated as an 
+    {{ employee.companyAddress }} and <b>working location at</b> {{  employee.companyAddress  }}, designated as an 
     <b>"{{ employee.designation }}"</b> at location on the following terms and conditions:
   </p>
-<br>
-  <ol>
+  <ol style="font-size: 12px; font-weight: 500; text-align: justify;">
     <li>
-      Your compensation package on cost to the company (CTC) basis would be<b>{{ employee.ctc }}/- per annum</b>. 
+      Your compensation package on cost to the company (CTC) basis would be <b>{{ employee.ctc }}/-per annum</b>. 
       This would comprise of basic salary, allowances, and company’s provident 
-      fund contribution, benefits, and reimbursements as governed by company policies and Income Tax regulations.
+      fund contribution, benefits, and reimbursements as governed by company policies and Income Tax regulationsin force from time to time. A detailed spreadsheet reflecting the same is attached.
     </li>
+    <br>
     <li>A detailed letter of employment outlining the break-up of your salary would be given upon joining.</li>
-    <li>You will be on probation for three months, which may extend up to six months if necessary.</li>
+    <br>
+    <li>You will be on probation for a period of three months from the date of joining. Your probation period may be extended, if considered necessary, at the sole discretion of the company, subject to maximum of six months.</li>
+    <br>
     <li>Our office timing is <b>{{ employee.officeTiming }}</b>.</li>
-    <li>Five-day working norms shall be applicable due to business needs.</li>
+    <br>
+    <li>Due to business needs, please note that the five days working norms shall be applicable to you. </li>
+    <br>
     <li>
-      You authorize <b> {{ employee.companyName }} </b>to undertake background verification. If any falsification is found, 
-      the company reserves the right to terminate your employment immediately in case of any falsification found.
+      You authorize LG CNS-I to undertake background verification check to determine the correctness of your 
+      credentials submitted at the time of extending the offer to you. Following the outcome from such background verification check,
+       the company reserves the right to terminate your employment immediately in case of any falsification found
     </li>
+    <br>
     <li>
-      Your documents will go for background verification. If any discrepancy is found, appropriate action will be taken.
+      Your documents will go for background verification, if any discrepancy will find than, company will take appropriate action.
     </li>
+    <br>
     <li>
       Please sign and return a duplicate copy of this letter in acceptance on or before <b>{{ employee.acceptanceDate }}</b>. 
       You are required to join on or before <b>{{ employee.joiningDate }}</b>.
     </li>
   </ol>
 
-  <p>We look forward to your joining the {{ employee.companyName }} family.</p>
+  <p style="font-size: 12px; font-weight: 500; text-align: justify;">We look forward to your joining the LG CNS-I family.</p>
+
+<p style=" font-weight: bold; font-size: 12px; text-align: justify;">Sincerely,</p>
 <br>
-<p style=" font-weight: bold;">Sincerely,</p>
 <br>
-<br>
-<br>
-  <p class="sign-off"><b>{{ employee.managingDirector }}</b><br>Managing Director</p>
-  <br>
-  <p class="acceptance "><b>ACCEPTED</b><br>
-    I accept the above offer and would join on or before ________________
+  <p class="sign-off" style="font-size: 12px; font-weight: 500; text-align: justify;"><b>{{ employee.managingDirector }}</b><br>Managing Director</p>
+
+  <p class="acceptance " style="font-size: 12px; font-weight: 500; text-decoration: underline !important;"><b>ACCEPTED</b></p>
+   <p style="text-align: center; font-size: 12px; font-weight: 500;"> I accept the above offer and would join on or before ________________
   </p>
 </div>
 
@@ -195,11 +203,7 @@
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+   
     
   <p class="note">
     *Flexi Benefits: Applicable as per company’s policy<br>

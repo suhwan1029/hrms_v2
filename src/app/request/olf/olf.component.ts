@@ -10,9 +10,12 @@ import { Router } from '@angular/router';
 })
 export class OlfComponent implements OnInit {
   employeeForm: FormGroup;
+  public titleList: string[] = ['Mr.', 'Mrs.', 'Miss', 'Dr.', 'Prof.'];
 
   constructor(private fb: FormBuilder, private router: Router) { 
+   
     this.employeeForm = this.fb.group({
+      title: [''],  // Bind title to a form control, not an array
       name: [''],
       location: [''],
       offerDate: [''],
@@ -38,6 +41,7 @@ export class OlfComponent implements OnInit {
       ctc: ['']
     });
   }
+  
 
   ngOnInit(): void {
     // ✅ Automatically update totals when form values change
@@ -77,10 +81,10 @@ export class OlfComponent implements OnInit {
     if (this.employeeForm.valid) {
       const formData = { ...this.employeeForm.getRawValue() };
   
-      // Convert date fields to DD/MM/YYYY format
-      formData.offerDate = this.formatDate(formData.offerDate);
-      formData.joiningDate = this.formatDate(formData.joiningDate);
-      formData.acceptanceDate = this.formatDate(formData.acceptanceDate);
+      // Convert date fields only if they exist
+      formData.offerDate = formData.offerDate ? this.formatDateToText(formData.offerDate) : '';
+      formData.joiningDate = formData.joiningDate ? this.formatDateToText(formData.joiningDate) : '';
+      formData.acceptanceDate = formData.acceptanceDate ? this.formatDateToText(formData.acceptanceDate) : '';
   
       const formattedData = JSON.stringify(formData);
       this.router.navigate(['/dashboard/report/olp'], { queryParams: { data: formattedData } });
@@ -89,14 +93,23 @@ export class OlfComponent implements OnInit {
     }
   }
   
-  // Function to format dates as DD/MM/YYYY
-  formatDate(date: string | Date): string {
-    if (!date) return ''; // Handle empty case
-    const d = new Date(date);
-    const day = String(d.getDate()).padStart(2, '0');
-    const month = String(d.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-    const year = d.getFullYear();
-    return `${day}/${month}/${year}`;
+  formatDateToText(dateStr: string): string {
+    if (!dateStr) return ''; // Handle empty case
+  
+    // Check if input is already a valid date object
+    let date: Date;
+    if (typeof dateStr === 'string' && dateStr.includes('/')) {
+      const [day, month, year] = dateStr.split('/').map(Number);
+      date = new Date(year, month - 1, day); // Months are 0-based
+    } else {
+      date = new Date(dateStr);
+    }
+  
+    if (isNaN(date.getTime())) return ''; // Handle invalid date case
+  
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
   }
+  
   
 }

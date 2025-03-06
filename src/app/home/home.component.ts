@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit , ElementRef, ViewChild} from '@angular/core';
 
 declare var bootstrap: any; // Declare Bootstrap for TypeScript
 
@@ -9,6 +9,7 @@ declare var bootstrap: any; // Declare Bootstrap for TypeScript
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  @ViewChild('navList') navList!: ElementRef;
   currentDate: string;
   todayDate: string = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
@@ -248,6 +249,9 @@ ngOnInit1(): void {}
 toggleReminder(index: number) {
   this.reminders[index].completed = !this.reminders[index].completed;
 }
+
+
+
 
 
 }

@@ -1,7 +1,7 @@
 /* Set A4 page size and standard margins */
 @page {
   size: A4;
-  margin: 2cm; /* Standard margin */
+  margin: 0cm; /* Standard margin */
 }
 
 /* General Body Styling */
@@ -34,7 +34,7 @@ button {
   max-width: 21cm; /* A4 width */
   min-height: 29.7cm; /* A4 height */
   margin: auto; /* Center horizontally */
-  padding: 2cm;
+  padding: 1.5cm;
   font-size: 14px;
   box-sizing: border-box;
   background: white;
@@ -43,21 +43,17 @@ button {
   flex-direction: column;
    }
 
-/* Centered Header */
-.center {
-  text-align: center;
-  font-weight: bold;
-  font-size: 14px; /* Adjusted for readability */
-  text-decoration: underline;
-  margin-bottom: 8px;
-}
+
 .acceptance {
   text-align: center;
+  text-decoration: underline;
 }
 .right { text-align: right;
-         font-weight: bold;}
+         font-weight: bold; 
+         font-size: 12px;}
 .left {
   text-align: left;
+  font-size: 12px;
 }
 /* Page Break for A4 Printing */
 .page-break {
@@ -166,8 +162,8 @@ tr td:first-child {
 .center {
   text-align: center;
   font-weight: bold;
-  font-size: 18px; /* Ensured consistency */
   text-decoration: underline;
+  font-size: 18px; /* Ensured consistency */
   margin-bottom: 10px;
 }
 .highlight {

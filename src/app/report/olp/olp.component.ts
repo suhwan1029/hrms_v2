@@ -37,7 +37,7 @@ export class OlpComponent implements OnInit {
       const pageWidth = 210;
       const pageHeight = 297;
       const marginLeft = 5;
-      const marginTop = 10;
+      const marginTop = 2;
   
       let isFirstPage = true;
       let index = 0;
