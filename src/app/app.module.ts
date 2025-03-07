@@ -55,6 +55,7 @@ import { AppMstComponent } from './master/app-mst/app-mst.component';
 import { RegisterComponent } from './register/register.component';
 import { RfrRgComponent } from './register/rfr-rg/rfr-rg.component';
 import { DepartmentListComponent } from './register/department-list/department-list.component';
+import { UlfComponent } from './request/ulf/ulf.component';
 
 
 @NgModule({
@@ -103,7 +104,8 @@ import { DepartmentListComponent } from './register/department-list/department-l
     AppMstComponent,
     RegisterComponent,
     RfrRgComponent,
-    DepartmentListComponent
+    DepartmentListComponent,
+    UlfComponent
 
     
 

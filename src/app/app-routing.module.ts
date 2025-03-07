@@ -38,7 +38,8 @@ import { OlfComponent } from './request/olf/olf.component';
 import { RfrRgComponent } from './register/rfr-rg/rfr-rg.component';
 import { AppMstComponent } from './master/app-mst/app-mst.component';
 import { DeptMstComponent } from './master/dept-mst/dept-mst.component';
-import { DepartmentListComponent} from './register/department-list/department-list.component'
+import { DepartmentListComponent } from './register/department-list/department-list.component';
+import { UlfComponent } from './request/ulf/ulf.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -101,6 +102,7 @@ const routes: Routes = [
           { path: '', component: RequestComponent }, 
           { path: 'rfr', component: RfrComponent }, 
           { path: 'olf', component: OlfComponent }, 
+          { path: 'ulf', component: UlfComponent }, 
           { path: 'view-request', component: ViewRequestComponent }
         ]
       },

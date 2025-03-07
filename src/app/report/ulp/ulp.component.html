@@ -19,8 +19,8 @@
 
     <p>
         Ms. <b>{{ employee.name }}</b>, having Passport No. <b>{{ employee.passportNo }}</b>, is being appointed as 
-        <b>{{ employee.designation }}</b> in our company, <b>{{ company.name }}</b>, having a registered address at 
-        <b>{{ company.address }}</b>. On payment of full salary with perks as per rules in India, we take full 
+        <b>{{ employee.designation }}</b> in our company, <b>{{ employee.Companyname }}</b>, having a registered address at 
+        <b>{{ employee.Companyaddress }}</b>. On payment of full salary with perks as per rules in India, we take full 
         responsibility for her activities and conduct during her stay in India.
         In case of any adverse notice during her stay, we undertake and assure to repatriate her at our cost.
         The Korea address of <b>{{ employee.name }}</b> is as follows:
@@ -40,7 +40,7 @@
         </tr>
     </table>
 
-    <p>For <b>{{ company.name }}</b></p>
+    <p>For <b>{{ employee.Companyname }}</b></p>
 
     <br>
     <br>
@@ -50,8 +50,8 @@
     <p class="right">Managing Director</p>
 
     <p class="right">Working Address:</p>
-    <p><b>{{ company.name }}</b></p>
-    <p>{{ company.address }}</p>
+    <p><b>{{ employee.Companyname }}</b></p>
+    <p>{{ employee.Companyaddress }}</p>
 
    
 </div>

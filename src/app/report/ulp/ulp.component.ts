@@ -1,31 +1,35 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-request-letter',
-  standalone: false,
+  standalone:false,
   templateUrl: './ulp.component.html',
   styleUrls: ['./ulp.component.css']
 })
-export class UlpComponent {
+export class UlpComponent implements OnInit {
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
 
   currentDate = new Date().toLocaleDateString();
+  employee: any = {};  // Holds employee data
 
-  company = {
-    name: 'ABC India Private Limited',
-    address: 'Sector 62, Noida, Uttar Pradesh, India'
-  };
+  constructor(private route: ActivatedRoute) {}
 
-
-  employee = {
-    name: 'Ishmeet Singh',
-    passportNo: '875875875',
-    designation: 'Assistant Manager',
-    visaNo: '123456789',
-    address: 'Sector 62, Noida'
-  };
+  ngOnInit() {
+    // ✅ Extract query parameters and store in `employee` object
+    this.route.queryParams.subscribe(params => {
+      this.employee = {
+        companyName: params['companyName'] || 'ABC India Private Limited',
+        companyAddress: params['companyAddress'] || 'Sector 62, Noida, Uttar Pradesh, India',
+        name: params['name'] || 'N/A',
+        passportNo: params['passportNo'] || 'N/A',
+        designation: params['designation'] || 'N/A',
+        address: params['address'] || 'N/A'
+      };
+    });
+  }
 
   generatePDF() {
     const content = this.pdfContent.nativeElement;

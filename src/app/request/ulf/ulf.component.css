@@ -8,8 +8,8 @@ body {
 
 /* Styling for Form Container */
 .container {
-    max-width: 1000px;
-    margin: 50px auto;
+    max-width: 1700px;
+    margin: 1px auto;
     padding: 20px;
     background: #ffffff;
     border-radius: 10px;
@@ -93,7 +93,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 button {
-    min-width: 90px;
+    min-width: 120px;
     padding: 10px 14px;
     font-size: 14px;
     font-weight: bold;
@@ -134,10 +134,4 @@ button:disabled {
     .effective-dates {
         flex-direction: column;
     }
-}
-select {
-    -webkit-appearance: menulist; /* Ensures dropdown appearance in WebKit browsers */
-    -moz-appearance: menulist; /* Ensures dropdown appearance in Firefox */
-    appearance: menulist;
-    background-color: #fff;
-}
+}  

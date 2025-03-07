@@ -12,27 +12,28 @@ export class AppMstComponent implements OnInit {
   departmentName: string = '';
   activeStatus: string = '';
   approvalList: any[] = [];
-  isEditing: boolean = true; // Form is editable by default
+  isEditing: boolean = true;
+  departmentList: any[] = []; // Now empty, will be populated dynamically
 
-  departmentList: any[] = [  // Hardcoded department list
-    { departmentCode: 'GDC0001', departmentName: 'GDC', activeStatus: 'Y' },
-    { departmentCode: 'GDC0002', departmentName: 'Finance', activeStatus: 'N' },
-    { departmentCode: 'GDC0003', departmentName: 'IT', activeStatus: 'N' },
-    { departmentCode: 'GDC0004', departmentName: 'Operations', activeStatus: 'N' }
-  ];
-
-  constructor(private appMstService: AppMstService) {}  // Injecting the service
+  constructor(private appMstService: AppMstService) {}
 
   ngOnInit() {
     this.loadDepartments();
+    this.initializeApprovalRows();
   }
 
-  // Load department list for dropdown (already hardcoded)
   loadDepartments() {
-    // No API call needed since data is hardcoded
+    this.appMstService.getDepartments().subscribe({
+      next: (data) => {
+        this.departmentList = data;
+      },
+      error: (error) => {
+        console.error('Error fetching department list:', error);
+        alert('Failed to load departments.');
+      }
+    });
   }
 
-  // Update department details when selecting from dropdown
   fetchDepartmentDetails() {
     if (!this.departmentCode) {
       this.departmentName = '';
@@ -43,27 +44,48 @@ export class AppMstComponent implements OnInit {
     const selectedDept = this.departmentList.find(dept => dept.departmentCode === this.departmentCode);
     if (selectedDept) {
       this.departmentName = selectedDept.departmentName;
-      this.activeStatus = selectedDept.activeStatus === 'Y' ? 'Active' : 'Inactive';
-      this.approvalList = []; // Reset approvals (optional)
+      this.activeStatus = selectedDept.activeStatus;
+      this.initializeApprovalRows();
     }
   }
 
-  // Add a new row to the approval list
-  addApprovalRow() {
-    this.approvalList.push({
+  initializeApprovalRows() {
+    this.approvalList = Array.from({ length: 5 }, (_, index) => ({
+      id: index + 1,
       approvalName: '',
       approvalEmail: '',
-      activeStatus: 'Active'
+      activeStatus: 'Y'
+    }));
+  }
+
+  addApprovalRow() {
+    this.approvalList.push({
+      id: this.approvalList.length + 1,
+      approvalName: '',
+      approvalEmail: '',
+      activeStatus: 'Y'
     });
   }
 
-  // Remove a specific row from the approval list
   removeApprovalRow(index: number) {
-    this.approvalList.splice(index, 1);
+    if (this.approvalList.length > 5) {
+      this.approvalList.splice(index, 1);
+    } else {
+      alert('At least 5 rows should be present.');
+    }
   }
 
-  // Save edited data and call API
+  toggleActiveStatus(event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+    this.activeStatus = isChecked ? 'Y' : 'N';
+  }
+
   saveChanges() {
+    if (!this.departmentCode) {
+      alert('Please select a department before saving.');
+      return;
+    }
+
     const updatedData = {
       departmentCode: this.departmentCode,
       departmentName: this.departmentName,
