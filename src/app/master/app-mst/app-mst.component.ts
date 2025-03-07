@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AppMstService } from './service/app-mst.service';
 
 @Component({
   selector: 'app-app-mst',
-  standalone: false,
+  standalone:false,
   templateUrl: './app-mst.component.html',
   styleUrls: ['./app-mst.component.css']
 })
@@ -20,7 +21,7 @@ export class AppMstComponent implements OnInit {
     { departmentCode: 'GDC0004', departmentName: 'Operations', activeStatus: 'N' }
   ];
 
-  constructor() {}
+  constructor(private appMstService: AppMstService) {}  // Injecting the service
 
   ngOnInit() {
     this.loadDepartments();
@@ -61,7 +62,7 @@ export class AppMstComponent implements OnInit {
     this.approvalList.splice(index, 1);
   }
 
-  // Save edited data (you can later replace this with an API call)
+  // Save edited data and call API
   saveChanges() {
     const updatedData = {
       departmentCode: this.departmentCode,
@@ -70,7 +71,15 @@ export class AppMstComponent implements OnInit {
       approvals: this.approvalList
     };
 
-    console.log('Saving data:', updatedData);
-    alert('Changes saved successfully! (Currently just logging to console)');
+    this.appMstService.saveDepartment(updatedData).subscribe({
+      next: (response) => {
+        console.log('Response:', response);
+        alert('Changes saved successfully!');
+      },
+      error: (error) => {
+        console.error('Error saving data:', error);
+        alert('Failed to save changes.');
+      }
+    });
   }
 }
