@@ -6,12 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppMstService {
-  private apiUrl = 'https://your-api-url.com/departments'; // Replace with your actual API endpoint
+  private apiUrl = 'https://your-api-url.com/departments'; 
+  private apiUr2 = 'https://your-api-url.com/departments';// Replace with your actual API endpoint
 
   constructor(private http: HttpClient) {}
 
   getDepartments(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(this.apiUr2);
   }
 
   saveDepartment(data: any): Observable<any> {
