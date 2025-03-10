@@ -2,20 +2,34 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+interface ApiResponse {
+  status: string;
+  data: Department[];
+}
+
+interface Department {
+  departmentId: number;
+  departmentCode: string;
+  departmentName: string;
+  enableFlag: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AppMstService {
-  private apiUrl = 'https://your-api-url.com/departments'; 
-  private apiUr2 = 'https://your-api-url.com/departments';// Replace with your actual API endpoint
+  private getDepartmentsUrl = 'https://your-api-url.com/get-departments'; // ✅ First URL for fetching
+  private saveDepartmentUrl = 'https://your-api-url.com/save-department'; // ✅ Second URL for saving
 
   constructor(private http: HttpClient) {}
 
-  getDepartments(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUr2);
+  // ✅ Fetch departments using the first URL
+  getDepartments(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.getDepartmentsUrl);
   }
 
-  saveDepartment(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/save`, data);
+  // ✅ Save department using the second URL
+  saveDepartment(data: Department): Observable<any> {
+    return this.http.post(this.saveDepartmentUrl, data);
   }
 }

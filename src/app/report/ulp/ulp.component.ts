@@ -21,13 +21,16 @@ export class UlpComponent implements OnInit {
     // ✅ Extract query parameters and store in `employee` object
     this.route.queryParams.subscribe(params => {
       this.employee = {
-        companyName: params['companyName'] || 'ABC India Private Limited',
-        companyAddress: params['companyAddress'] || 'Sector 62, Noida, Uttar Pradesh, India',
+        title: params['title'] || '',  // ✅ Added title field
         name: params['name'] || 'N/A',
         passportNo: params['passportNo'] || 'N/A',
+        md: params['md'] || 'N/A',
         designation: params['designation'] || 'N/A',
+        companyName: params['companyName'] || 'ABC India Private Limited',
+        companyAddress: params['companyAddress'] || 'Sector 62, Noida, Uttar Pradesh, India',
         address: params['address'] || 'N/A'
       };
+      console.log("🔍 Received Employee Data:", this.employee); // ✅ Debugging
     });
   }
 

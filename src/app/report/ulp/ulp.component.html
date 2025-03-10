@@ -18,14 +18,13 @@
     <br>
 
     <p>
-        Ms. <b>{{ employee.name }}</b>, having Passport No. <b>{{ employee.passportNo }}</b>, is being appointed as 
-        <b>{{ employee.designation }}</b> in our company, <b>{{ employee.Companyname }}</b>, having a registered address at 
-        <b>{{ employee.Companyaddress }}</b>. On payment of full salary with perks as per rules in India, we take full 
-        responsibility for her activities and conduct during her stay in India.
-        In case of any adverse notice during her stay, we undertake and assure to repatriate her at our cost.
-        The Korea address of <b>{{ employee.name }}</b> is as follows:
+        <b>{{ employee.title }}{{ employee.name }} is a Korean National, having Passport No. {{ employee.passportNo }}, is being appointed as 
+        {{ employee.designation }} in our company, {{ employee.Companyname }}, having a registered address at 
+       {{ employee.Companyaddress }}. On payment of full salary with perks as per rules in India and hence we take full responsibility for 
+        the activities and conduct of{{ employee.title }}{{ employee.name }}, during her stay in India. In case anything adverse comes to notice during the period of her stay with our company, 
+        we further undertake and assure to repatriate her at our cost. The Korea address of {{ employee.title }}{{ employee.name }}, is as follows :</b>
     </p>
-    <p> <b>{{ employee.name }}</b> is a permanent resident of {{ employee.address }} Will be entitled for issuance of her multiple EV. The details of her passport No is as follows :</p>
+    <p> {{ employee.name }} is a permanent resident of {{ employee.address }} Will be entitled for issuance of her multiple EV. The details of her passport No is as follows :</p>
 
     <table>
         <tr>
@@ -40,13 +39,13 @@
         </tr>
     </table>
 
-    <p>For <b>{{ employee.Companyname }}</b></p>
+    <p>For {{ employee.Companyname }}</p>
 
     <br>
     <br>
     <br>
 
-    <p class="right"><b>ABC</b></p>
+    <p class="right"><b>{{ employee.md }}</b></p>
     <p class="right">Managing Director</p>
 
     <p class="right">Working Address:</p>
