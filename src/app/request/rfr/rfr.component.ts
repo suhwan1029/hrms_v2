@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RfrService } from '../rfr/service/rfr.service'; // Ensure this service is imported correctly
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router'; // Import ActivatedRoute
+import { RfrService } from '../rfr/service/rfr.service';
+import { ApprovalFormComponent } from '../approval-form/approval-form.component';
 
 @Component({
   selector: 'app-rfr',
@@ -10,15 +13,19 @@ import { RfrService } from '../rfr/service/rfr.service'; // Ensure this service 
 })
 export class RfrComponent implements OnInit {
   rfrForm: FormGroup;
-
   showCtcAnalysis: boolean = false;
   showHRRecommendation: boolean = false;
   showStatus: boolean = false;
   showReopenDate: boolean = false;
+  isDisabled: boolean = true; 
 
-  constructor(private fb: FormBuilder, private rfrService: RfrService) {
+  constructor(
+    private fb: FormBuilder, 
+    private rfrService: RfrService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute // Inject ActivatedRoute to get route params
+  ) {
     this.rfrForm = this.fb.group({
-     
       orgGroup: ['GDC0002'],
       rfrNo: ['', Validators.required],
       projectName: ['', Validators.required],
@@ -45,9 +52,9 @@ export class RfrComponent implements OnInit {
       marketAverage: [''],
       quartileBasedAverage: [''],
       hrRecommendation: [''],
-      hold: [''],
+      hold: [false],  // Changed to boolean
       statusDate: [''],
-      closed: [''],
+      closed: [false],  // Changed to boolean
       additionalStatusDate: [''],
       reopenDateDept: [''],
       reopenDateHR: [''],
@@ -60,7 +67,16 @@ export class RfrComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Get RFR number from route params and load data
+    this.route.paramMap.subscribe(params => {
+      const rfrNo = params.get('rfrNo'); 
+      console.log(rfrNo);
+      if (rfrNo) {
+        this.loadRfr(rfrNo);
+      }
+    });
+  }
 
   toggleCtcAnalysis() {
     this.showCtcAnalysis = !this.showCtcAnalysis;
@@ -82,7 +98,6 @@ export class RfrComponent implements OnInit {
     if (this.rfrForm.valid) {
       const formValues = this.rfrForm.getRawValue();
 
-      // Transform form data into the required JSON structure
       const formattedData = {
         orgGroup: formValues.orgGroup,
         rfrNo: formValues.rfrNo,
@@ -101,7 +116,7 @@ export class RfrComponent implements OnInit {
         industry: formValues.industry,
         cpTolerance: formValues.cpTolerance,
         currentInternalAverage: formValues.currentInternalAverage,
-        hold: formValues.hold,
+        hold: formValues.hold ? 'H' : '',  // Convert boolean to 'H'
         hrRecommendation: formValues.hrRecommendation,
         managerRecommendation: formValues.managerRecommendation,
         marketAverage: formValues.marketAverage,
@@ -111,7 +126,7 @@ export class RfrComponent implements OnInit {
         reasonUnitPrice: formValues.reasonUnitPrice,
         statusDate: formValues.statusDate,
         unitPrice: formValues.unitPrice,
-        closed: formValues.closed,
+        closed: formValues.closed ? 'C' : '',  // Convert boolean to 'C'
         reopenDate: {
           reopenDateDept: formValues.reopenDateDept,
           reopenDateHR: formValues.reopenDateHR,
@@ -130,6 +145,7 @@ export class RfrComponent implements OnInit {
         (response) => {
           console.log('RFR Created:', response);
           alert('RFR saved successfully!');
+          this.isDisabled = false; 
         },
         (error) => {
           console.error('Error saving RFR:', error);
@@ -144,8 +160,7 @@ export class RfrComponent implements OnInit {
 
   resetForm() {
     this.rfrForm.reset({
-     
-      orgGroup:'GDC0002',
+      orgGroup: 'GDC0002',
       rfrNo: '',
       projectName: '',
       location: '',
@@ -171,9 +186,9 @@ export class RfrComponent implements OnInit {
       marketAverage: '',
       quartileBasedAverage: '',
       hrRecommendation: '',
-      hold: '',
+      hold: false,  // Reset to false
       statusDate: '',
-      closed: '',
+      closed: false,  // Reset to false
       additionalStatusDate: '',
       reopenDateDept: '',
       reopenDateHR: '',
@@ -184,16 +199,43 @@ export class RfrComponent implements OnInit {
       essentialSkills: '',
       desirableSkills: ''
     });
+    this.isDisabled = true;
   }
 
   loadRfr(rfrNo: string) {
     this.rfrService.getRfrById(rfrNo).subscribe(
       (data) => {
-        this.rfrForm.patchValue(data);
+        this.rfrForm.patchValue({
+          ...data,
+          hold: data.hold === 'H',  // Convert 'H' to boolean
+          closed: data.closed === 'C'  // Convert 'C' to boolean
+        });
       },
       (error) => {
         console.error('Error fetching RFR:', error);
+        alert('Error fetching RFR:');
       }
     );
+  }
+
+  /**
+   * Opens the approval dialog when clicking "Approval"
+   */
+  onApprovalClick() {
+    if (!this.isDisabled) {
+      const dialogRef = this.dialog.open(ApprovalFormComponent, {
+        width: '500px',
+        data: this.rfrForm.value
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          console.log('Approval confirmed:', result);
+          alert('Approval processed successfully!');
+        }
+      });
+    } else {
+      alert('Please save the RFR before approval.');
+    }
   }
 }

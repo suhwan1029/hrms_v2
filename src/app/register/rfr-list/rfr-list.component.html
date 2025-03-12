@@ -1,0 +1,69 @@
+<div class="container">
+    <h2>RFR List</h2>
+    
+    <!-- 🔹 Date Range Filter -->
+    <div class="row mb-3">
+      <div class="col-md-3">
+        <label>From Date:</label>
+        <input type="date" [(ngModel)]="fromDate" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label>To Date:</label>
+        <input type="date" [(ngModel)]="toDate" class="form-control">
+      </div>
+      <div class="col-md-3 d-flex align-items-end">
+        <button class="btn btn-primary me-2" (click)="filterByDate()">
+          <i class="fas fa-search"></i> Search
+        </button>
+        <button class="btn btn-secondary me-2" (click)="clearFilters()">
+          <i class="fas fa-times"></i> Clear
+        </button>
+      </div>
+      <div class="col-md-3 d-flex align-items-end justify-content-end">
+        <button class="btn btn-success" (click)="addNewRFR()">
+          <i class="fas fa-plus"></i> Add New RFR
+        </button>
+      </div>
+    </div>
+  
+    <!-- 🔹 RFR Table -->
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>RFR No</th>
+            <th>RFR Date</th>
+            <th>Organization Group</th>
+            <th>Project Name</th>
+            <th>No. of Positions</th>
+            <th>Designation</th>
+            <th>Experience</th>
+            <th>Vacancy Type</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rfr of filteredRFRList">
+            <td>{{ rfr.rfrNo }}</td>
+            <td>{{ rfr.rfrDate }}</td>
+            <td>{{ rfr.organizationGroup }}</td>
+            <td>{{ rfr.projectName }}</td>
+            <td>{{ rfr.numberOfPositions }}</td>
+            <td>{{ rfr.designation }}</td>
+            <td>{{ rfr.experience }} years</td>
+            <td>{{ rfr.vacancyType }}</td>
+            <td [ngClass]="{'text-success': rfr.status === 'Open', 'text-danger': rfr.status === 'Closed'}">
+              {{ rfr.status }}
+            </td>
+            <td>
+              <button class="btn btn-primary btn-sm" (click)="viewRFR(rfr)" [disabled]="rfr.status === 'Closed'">
+                <i class="fas fa-eye"></i> View
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

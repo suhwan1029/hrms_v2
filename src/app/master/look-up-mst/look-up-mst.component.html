@@ -1,0 +1,119 @@
+<div class="container mt-1 ms-0" style="max-width: 95%;">
+  <h2 class="mt-3" style="text-align: left;">Lookup Master</h2>
+
+  <!-- Lookup Type Dropdown & Inputs -->
+  <div class="row mb-1">
+      <div class="col-md-4">
+          <label for="lookupType" class="form-label"><b>Lookup Type</b></label>
+          <input 
+  type="text" 
+  [(ngModel)]="lookupType" 
+  (input)="lookupType = lookupType.toUpperCase()" 
+  class="form-control"
+/>
+
+      </div>
+
+      <div class="col-md-4">
+          <label class="form-label"> <b>Meaning</b></label>
+          <input type="text" [(ngModel)]="lookupMeaning" class="form-control" />
+      </div>
+
+      <div class="col-md-4">
+          <label class="form-label"><b>Description</b></label>
+          <input type="text" [(ngModel)]="lookupDescription" class="form-control" />
+      </div>
+  </div>
+
+  <h2 class="mt-3" style="text-align: left;">Lookup Details</h2>
+
+  <!-- Lookup Table -->
+  <div class="table-responsive">
+      <table class="table table-bordered">
+          <thead>
+              <tr style="text-align: center;">
+                  <th style="width: 5%;">Seq. No</th>
+                  <th style="width: 10%;">Lookup Code</th>
+                  <th style="width: 13%;">Lookup Value</th>
+                  <th style="width: 25%;">Meaning</th>
+                  <th style="width: 25%;">Description</th>
+                  <th style="width: 9%;">From Date</th>
+                  <th style="width: 9%;">To Date</th>
+                  <th style="width: 5%;">Enabled</th>
+                  <th style="width: 9%;">Action</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let entry of lookupEntries; let i = index" style="text-align: center;">
+                  <td>{{ i + 1 }}</td>
+                  <td><input type="text" [(ngModel)]="entry.lookupCode" class="form-control" /></td>
+                  <td><input type="text" [(ngModel)]="entry.lookupValue" class="form-control" /></td>
+                  <td><input type="text" [(ngModel)]="entry.meaning" class="form-control" /></td>
+                  <td><input type="text" [(ngModel)]="entry.description" class="form-control" /></td>
+                  <td><input type="date" [(ngModel)]="entry.fromDate" class="form-control" /></td>
+                  <td><input type="date" [(ngModel)]="entry.toDate" class="form-control" /></td>
+                  <td>
+                    <input type="checkbox" [checked]="entry.activeStatus" (change)="toggleCheckbox(entry, $event)"  class="form-check-input"  > 
+                  </td>
+                                   
+                  <td class="text-center">
+                      <i (click)="removeLookupRow(i)" class="fa fa-trash text-danger" title="Remove" style="cursor: pointer;"></i>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+
+  <div class="mt-3">
+      <button class="btn btn-primary" (click)="addLookupRow()" style="margin-right: 10px;"><i class="fa fa-plus"></i> Add Row</button>
+      <button class="btn btn-success" (click)="saveChanges()">Save</button>
+  </div>
+</div>
+
+<!-- Bootstrap Alert Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="alertModalLabel">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius: 12px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">
+  
+        <!-- Modal Header with X Icon Inline and Aligned Right -->
+        <div class="modal-header" style="
+          background: #f8f9fa; 
+          color: #c2083d; 
+          border-top-left-radius: 12px; 
+          border-top-right-radius: 12px; 
+          display: flex; 
+          align-items: center; 
+          justify-content: space-between; 
+        
+          height: 40px;">
+          
+          <h5 class="modal-title" id="alertModalLabel" style="margin: 0; font-size: 17px;">
+            <i class="bi bi-exclamation-triangle-fill"></i> Alert
+          </h5>
+  
+          <!-- Close Button with X Sign Properly Aligned -->
+          <button type="button" data-bs-dismiss="modal" aria-label="Close" 
+            style="font-size: 24px; color: rgb(121, 120, 120); background: transparent; border: none;">
+           <span style="margin-left: 90px;">&times; </span> <!-- "X" sign -->
+          </button>
+        </div>
+  
+        <!-- Modal Body with Custom Style -->
+        <div class="modal-body" style="font-size: 1.1rem; text-align: center; padding: 20px; background-color: #f8f9fa; border-radius: 0 0 12px 12px;">
+          <p style="color: #444; font-weight: 500;">
+            {{ alertMessage }}
+          </p>
+        </div>
+  
+        <!-- Modal Footer with Custom Button -->
+        <div class="modal-footer" style="border-top: none; justify-content: center; background-color: #f8f9fa;">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" 
+            style="padding: 4px 12px; font-size: 15.5px; border-radius: 14px; min-width: 70px; height: 30px;">
+            OK
+          </button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  

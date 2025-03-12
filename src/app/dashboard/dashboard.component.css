@@ -137,11 +137,7 @@ ul li a {
 }
 
 /* Disabled Links */
-a.disabled {
-  pointer-events: none;
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+
 
 /* Sidebar Toggle Button */
 .sidebar-toggle {
@@ -312,7 +308,7 @@ body.dark-mode {
 }
 
 .menu .dropdown a {
-  justify-content: space-between; /* Keeps text left & dropdown icon right */
+  margin-left: auto; /* Moves the dropdown arrow to the right */
 }
 
 .menu .dropdown-icon {

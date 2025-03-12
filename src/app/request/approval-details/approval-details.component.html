@@ -1,0 +1,66 @@
+<div class="container mt-3">
+    <!-- Single Card Box -->
+    <div class="card p-4 shadow-sm">
+      <h3 class="text-center text-danger fw-bold">Approval Details</h3>
+  
+      <!-- Approval Details Section -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Request for Resource No.</label>
+          <input type="text" class="form-control" [(ngModel)]="approvalData.requestNo" disabled />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Department Code</label>
+          <input type="text" class="form-control" [(ngModel)]="approvalData.deptCode" disabled />
+        </div>
+      </div>
+  
+      <!-- Approval Table -->
+      <h4 class="text-danger">Approval Details</h4>
+      <table class="table table-bordered">
+        <thead class="text-light" style="background-color: #a50e2d;">
+          <tr>
+            <th>Seq No.</th>
+            <th>Approval Name</th>
+            <th>Approval Email</th>
+            <th>Approve Status</th>
+            <th>Remarks</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let approver of approvalData.approvals; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>
+              <div class="input-group">
+                <input type="text" class="form-control" [(ngModel)]="approver.name" />
+                <button class="btn btn-outline-danger">🔍</button>
+              </div>
+            </td>
+            <td>
+              <input type="email" class="form-control" [(ngModel)]="approver.email" />
+            </td>
+            <td>
+              <select class="form-select" [(ngModel)]="approver.status">
+                <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+              </select>
+            </td>
+            <td>
+              <input type="text" class="form-control" [(ngModel)]="approver.remarks" />
+            </td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="removeApprover(i)">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- Buttons Aligned Left -->
+      <div class="d-flex justify-content-start mt-3">
+        <button class="btn btn-danger me-2" (click)="addApprover()">+ Add Approver</button>
+        <button class="btn btn-danger me-2" (click)="onSave()">💾 Save</button>
+        <button class="btn btn-secondary" (click)="onClose()">❌ Exit</button>
+      </div>
+    </div>
+  </div>
+  

@@ -13,30 +13,28 @@ body {
 }
 
 .offer-letter {
-    width: 80%;
-    max-width: 21cm;
-    min-height: 29.7cm;
-    margin: auto;
-    padding: 2cm;
+    width: 80%; /* Adjust width */
+    max-width: 21cm; /* A4 width */
+    min-height: 29.7cm; /* A4 height */
+    margin: auto; /* Center horizontally */
+    padding: 1.3cm;
     font-size: 14px;
     box-sizing: border-box;
     background: white;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
-}
-
+     }
 .center {
     text-align: center;
     font-weight: bold;
     font-size: 16px;
-    text-decoration: underline;
     margin-bottom: 8px;
 }
 
 .right {
     text-align: left;
-    font-weight: bold;
+   
 }
 
 .left {
@@ -74,3 +72,7 @@ button {
     transition: all 0.2s ease-in-out;
 }
 
+.justify {
+    text-align: justify;
+    line-height: 1.6;
+}

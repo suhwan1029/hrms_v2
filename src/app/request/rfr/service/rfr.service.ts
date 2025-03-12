@@ -36,6 +36,15 @@ export class RfrService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  approveRfr(rfrNo: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/approve/${rfrNo}`, {})
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+
+
+
+
   /** 📌 Generic error handler */
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Something went wrong. Please try again later.';

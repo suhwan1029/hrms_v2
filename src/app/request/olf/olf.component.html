@@ -1,9 +1,9 @@
 <div class="container col-md-10 mt-1 ms-0">
-  <h2>Employee Offer Letter Form</h2>
+  <h2 style="text-align: left;">Employee Offer Letter Form</h2>
   <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
     
     <!-- Employee Information -->
-    <div class="row">
+    <div class="row border p-3 " >
       <div class="col-md-3 mb-3">
         <label>Title</label>
         <select class="left" formControlName="title">
@@ -66,10 +66,10 @@
         <input type="text" class="form-control" formControlName="managingDirector" />
       </div>
     </div>
-
+    <br>
     <!-- Compensation Section -->
     <h3>Compensation</h3>
-    <div class="row">
+    <div class="row border p-3  ">
       <div class="col-md-3 mb-3">
         <label>Basic</label>
         <input type="number" class="form-control" formControlName="basic" (input)="calculateTotals()" />
@@ -90,10 +90,10 @@
         <input type="number" class="form-control" formControlName="flexiBenefits" (input)="calculateTotals()" />
       </div>
     </div>
-
+    <br>
     <!-- Salary Details -->
     <h3>Salary Details</h3>
-    <div class="row">
+    <div class="row border p-3  ">
       <div class="col-md-3 mb-3">
         <label>Gross Monthly</label>
         <input type="text" class="form-control" formControlName="grossMonthly" readonly />
@@ -114,10 +114,10 @@
         <input type="text" class="form-control" formControlName="annualGross" readonly />
       </div>
     </div>
-
+    <br>
     <!-- CTC Details -->
     <h3>CTC Details</h3>
-    <div class="row">
+    <div class="row border p-3 ">
       <div class="col-md-3 mb-3">
         <label>Total Welfare</label>
         <input type="text" class="form-control" formControlName="totalWelfare" readonly />
@@ -138,7 +138,7 @@
         <input type="text" class="form-control" formControlName="ctc" readonly />
       </div>
     </div>
-
+     <br>
     <!-- Submit Button -->
     <button type="submit" class="btn btn-primary" style="margin-right: 7px;">Submit</button>
     <button type="reset" class="btn btn-primary">Reset</button>

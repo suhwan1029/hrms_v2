@@ -1,56 +1,86 @@
-<button (click)="generatePDF()">Download PDF</button>
+<div class="btn-group">
+  <button 
+    type="button" 
+    class="btn btn-primary dropdown-toggle" 
+    (click)="toggleDropdown()" 
+    aria-expanded="false">
+    Create Document
+  </button>
+  
+  <ul class="dropdown-menu" 
+      [class.show]="isDropdownOpen" 
+      style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); z-index: 1050; margin-top: 5px; padding: 6px; min-width: 120px;">
 
+    <li class="d-flex justify-content-center align-items-center" style="gap: 10px; padding: 5px;">
+      <a class="dropdown-item p-1 d-flex align-items-center justify-content-center" (click)="sendMail()" style="cursor: pointer;">
+        <i class="fa fa-envelope text-primary fa-lg"></i>
+      </a>
+      <a class="dropdown-item p-1 d-flex align-items-center justify-content-center" (click)="generatePDF()" style="cursor: pointer;">
+        <i class="fa fa-file-pdf text-danger fa-lg"></i>
+      </a>
+      <a class="dropdown-item p-1 d-flex align-items-center justify-content-center" (click)="generateWord()" style="cursor: pointer;">
+        <i class="fa fa-file-word text-primary fa-lg"></i>
+      </a>
+    </li>
+
+  </ul>
+</div>
 
 <div #pdfContent class="offer-letter">
+    <img src="5.png" alt="Company Logo" style="width: 130px; height: auto; ">
+    <p style="color: rgb(107, 100, 100); font-size: 11px; ;" ><strong>Office No.1, 3rd Floor Stellar Okas 1425<br>
+      Sector-142 NOIDA, UP 201305 <br>
+      CIN : U72900UP2004PTC093496 <br> www.lgncs.com</strong></p>
     <br>
     <br>
-    <br>
-
-    <p class="right"><b>{{ currentDate }}</b></p>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-    <h3 class="center">UNDERTAKING AND FINANCIAL GUARANTEE</h3>
     <br>
     <br>
 
-    <p>
-        <b>{{ employee.title }}{{ employee.name }} is a Korean National, having Passport No. {{ employee.passportNo }}, is being appointed as 
-        {{ employee.designation }} in our company, {{ employee.Companyname }}, having a registered address at 
-       {{ employee.Companyaddress }}. On payment of full salary with perks as per rules in India and hence we take full responsibility for 
-        the activities and conduct of{{ employee.title }}{{ employee.name }}, during her stay in India. In case anything adverse comes to notice during the period of her stay with our company, 
-        we further undertake and assure to repatriate her at our cost. The Korea address of {{ employee.title }}{{ employee.name }}, is as follows :</b>
+    <p class="right" style=" font-family: Times New Roman;"><b>{{ currentDate }}</b></p>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+
+
+    <h3 class="center" style=" font-family: Times New Roman;"  >UNDERTAKING AND FINANCIAL GUARANTEE</h3>
+    <br>
+    <br>
+
+    <p class="justify" style=" font-family: Times New Roman;">
+        <b>{{ employee.title }} {{ employee.name }} is a {{employee.nationality}} National, having Passport No. {{ employee.passportNo }}, is being appointed as 
+        {{ employee.designation }} in our company, {{ employee.Companyame }}, having a registered address at 
+       {{ employee.companyAddress }}. On payment of full salary with perks as per rules in India and hence we take full responsibility for 
+        the activities and conduct of {{ employee.title }} {{ employee.name }}, during her stay in India. In case anything adverse comes to notice during the period of her stay with our company, 
+        we further undertake and assure to repatriate her at our cost.The {{employee.nationality}} address of {{ employee.title }} {{ employee.name }}, is as follows :</b>
     </p>
-    <p> {{ employee.name }} is a permanent resident of {{ employee.address }} Will be entitled for issuance of her multiple EV. The details of her passport No is as follows :</p>
+    <p class="justify" style=" font-family: Times New Roman;"> {{ employee.title }} {{ employee.name }} is a permanent resident of {{ employee.address }} Will be entitled for issuance of her multiple EV. The details of her passport No is as follows :</p>
 
-    <table>
+    <table style=" font-family: Times New Roman;">
         <tr>
             <th>Name</th>
             <th>Passport Number</th>
             <th>Details</th>
         </tr>
         <tr>
-            <td>{{ employee.name }}</td>
-            <td>{{ employee.passportNo }}</td>
-            <td>Self</td>
+            <td style=" font-family: Times New Roman;">{{ employee.name }}</td>
+            <td style=" font-family: Times New Roman;">{{ employee.passportNo }}</td>
+            <td style=" font-family: Times New Roman;">{{ employee.detail }}</td>
         </tr>
     </table>
 
-    <p>For {{ employee.Companyname }}</p>
+    <p style=" font-family: Times New Roman;">For {{ employee.companyName }}</p>
 
     <br>
     <br>
     <br>
 
-    <p class="right"><b>{{ employee.md }}</b></p>
-    <p class="right">Managing Director</p>
+    <p class="right" style=" font-family: Times New Roman;"><b>{{ employee.md }} <br>Managing Director</b></p>
+    <br>
 
-    <p class="right">Working Address:</p>
-    <p><b>{{ employee.Companyname }}</b></p>
-    <p>{{ employee.Companyaddress }}</p>
+    <p class="right" style=" font-family: Times New Roman;"><b>Working Address:</b> <br> {{ employee.companyName }}<br>{{ employee.companyAddress }}</p>
+   
 
    
 </div>

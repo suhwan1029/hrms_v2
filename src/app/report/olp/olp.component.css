@@ -162,7 +162,7 @@ tr td:first-child {
 .center {
   text-align: center;
   font-weight: bold;
-  text-decoration: underline;
+
   font-size: 18px; /* Ensured consistency */
   margin-bottom: 10px;
 }

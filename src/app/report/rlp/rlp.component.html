@@ -1,35 +1,79 @@
-<button (click)="generatePDF()">Download PDF</button>
+<div class="btn-group">
+  <button 
+    type="button" 
+    class="btn btn-primary dropdown-toggle" 
+    (click)="toggleDropdown()" 
+    aria-expanded="false">
+    Create Document
+  </button>
+  
+  <ul class="dropdown-menu" 
+      [class.show]="isDropdownOpen" 
+      style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); z-index: 1050; margin-top: 5px; padding: 6px; min-width: 120px;">
+
+    <li class="d-flex justify-content-center align-items-center" style="gap: 10px; padding: 5px;">
+      <a class="dropdown-item p-1 d-flex align-items-center justify-content-center"  style="cursor: pointer;">
+        <i class="fa fa-envelope text-primary fa-lg"></i>
+      </a>
+      <a class="dropdown-item p-1 d-flex align-items-center justify-content-center" (click)="generatePDF()" style="cursor: pointer;">
+        <i class="fa fa-file-pdf text-danger fa-lg"></i>
+      </a>
+      <a class="dropdown-item p-1 d-flex align-items-center justify-content-center" (click)="generateWord()" style="cursor: pointer;">
+        <i class="fa fa-file-word text-primary fa-lg"></i>
+      </a>
+    </li>
+
+  </ul>
+</div>
 
 <div #pdfContent class="offer-letter">
-    <p class="right">{{ currentDate }}</p>
+
+
+  <img src="5.png" alt="Company Logo" style="width: 130px; height: auto; ">
+    <p style="color: rgb(107, 100, 100); font-size: 11px; ;" ><strong>Office No.1, 3rd Floor Stellar Okas 1425<br>
+      Sector-142 NOIDA, UP 201305 <br>
+      CIN : U72900UP2004PTC093496 <br> www.lgncs.com</strong></p>
+    <br>
+
   
-    <p><strong>To,</strong><br>Abc<br><strong>New Delhi-110066</strong></p>
+    <div class="header-container">
+      <p><b>To,</b><br>
+     <b><span [innerHTML]="formatAddress(employee.toaddress)"></span></b></p>
+
+
+      <p class="right">{{ currentDate }}</p>
+      
+    </div>
+    
   
     <p>Dear Sir,</p>
+
   
     <br>
-    <br>
-    <h3 class="center">SUB: - RESIDENTIAL PERMIT FOR {{ employee.name }}</h3>
-  
-    <p>
-      {{ company.name }} is a company in the field of Business IT Services and Consulting.
-      <strong>{{ employee.name }}</strong>, a South Korean Citizen, holding Passport No.
-      <strong>{{ employee.passportNo }}</strong>, is employed with {{ company.name }} as
-      an <strong>Assistant Manager</strong> in Greater Noida office.
+   
+    <h3 class="center justify">SUB: - RESIDENTIAL PERMIT FOR {{ employee.name }}</h3>
+   <br>
+    <p class="justify">
+      {{ employee.companyName }} is a company in the field of Business IT Services and Consulting.
+      <strong>{{ employee.title }}{{ employee.name }}</strong>, a {{ employee.nationality }} Citizen, holding Passport No.
+      <strong>{{ employee.passportNo }}</strong>, is employed with {{ employee.cname }} as
+      an <strong>{{ employee.designation }}</strong> in {{ employee.location }} office. He will be continue working 
+      in {{ employee.location }} office till {{ formatEndDate(employee.endDate) }}
+
     </p>
   
     <p>
-      This letter is being issued for the purpose of granting <strong>{{ employee.name }}</strong> a resident permit.
+      This letter is being issued for the purpose of granting <strong>{{ employee.title }}{{ employee.name }}</strong> a resident permit.
    <br>
       <strong>His details are as follows:</strong></p>
-    <table class="comp-table">
+    <table class="comp-table ">
       <tr>
-        <th>Detail</th>
-        <th>Value</th>
+        <th style="text-align: center;">Title</th>
+        <th style="text-align: center;">Detail</th>
       </tr>
       <tr>
         <td>Employee Name</td>
-        <td>{{ employee.name }}</td>
+        <td>{{ employee.title }}{{ employee.name }}</td>
       </tr>
       <tr>
         <td>Passport No</td>
@@ -41,18 +85,16 @@
       </tr>
     </table>
   
-    <p><strong>He is residing at:</strong></p>
-    <p>{{ employee.address }}
+    <p><strong>He is residing at:</strong> <br> <span [innerHTML]="formatAddress(employee.empaddress)"></span></p>
     <br>
-     We kindly request you to grant {{ employee.name }} a resident permit.
+    <p>
+     We kindly request you to grant <strong>{{ employee.title }}{{ employee.name }}</strong> a resident permit.
      <br>
-     Thanking You,</p>
+     Thanking You, <br> Yours Sincerely,</p>
+   <br>  
+    <p><strong>For {{ employee.companyName }}</strong></p>
   
-    <p>Yours Sincerely,</p>
-   <br><br>  
-    <p><strong>For {{ company.name }}</strong></p>
-  
-    <p><strong>abc</strong><br>
+    <p><strong>{{ employee.teamLeader }}</strong><br>
       <strong>Team Leader – Business Management</strong></p>
   </div>
   

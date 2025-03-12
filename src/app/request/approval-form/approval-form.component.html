@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>Approval Details</h2>
+
+<div mat-dialog-content>
+  <form>
+    <mat-form-field class="full-width">
+      <mat-label>Request for Resource No.</mat-label>
+      <input matInput [(ngModel)]="approvalData.requestNo" name="requestNo" [disabled]="true" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Department Code</mat-label>
+      <input matInput [(ngModel)]="approvalData.deptCode" name="deptCode" [disabled]="true" />
+    </mat-form-field>
+
+    <table mat-table [dataSource]="approvalData.approvals" class="mat-elevation-z8 full-width">
+      <!-- Approval Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Approval Name</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field>
+            <mat-label>Approval Name</mat-label>
+            <input matInput [(ngModel)]="element.name" name="name-{{element.id}}" />
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <!-- Approval Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Approval Email</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput [(ngModel)]="element.email" name="email-{{element.id}}" />
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <!-- Approve Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Approve Status</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select [(ngModel)]="element.status" name="status-{{element.id}}">
+              <mat-option value="APPROVED">Approved</mat-option>
+              <mat-option value="PENDING">Pending</mat-option>
+              <mat-option value="REJECTED">Rejected</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <!-- Remarks Column -->
+      <ng-container matColumnDef="remarks">
+        <th mat-header-cell *matHeaderCellDef>Remarks</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field>
+            <mat-label>Remarks</mat-label>
+            <input matInput [(ngModel)]="element.remarks" name="remarks-{{element.id}}" />
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Exit</button>
+  <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+</div>

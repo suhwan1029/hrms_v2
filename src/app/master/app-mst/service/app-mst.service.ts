@@ -18,18 +18,20 @@ interface Department {
   providedIn: 'root'
 })
 export class AppMstService {
-  private getDepartmentsUrl = 'https://your-api-url.com/get-departments'; // ✅ First URL for fetching
-  private saveDepartmentUrl = 'https://your-api-url.com/save-department'; // ✅ Second URL for saving
+  private getDepartmentsUrl = 'http://localhost:9095/approvalMaster'; // ✅ First URL for fetching
+ 
 
   constructor(private http: HttpClient) {}
 
   // ✅ Fetch departments using the first URL
   getDepartments(): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(this.getDepartmentsUrl);
+    return this.http.get<ApiResponse>(`${this.getDepartmentsUrl}/approval`);
   }
+  
 
-  // ✅ Save department using the second URL
   saveDepartment(data: Department): Observable<any> {
-    return this.http.post(this.saveDepartmentUrl, data);
+    return this.http.post(`${this.getDepartmentsUrl}/departmentCodeList`, data);
   }
+  
 }
+

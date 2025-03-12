@@ -33,7 +33,7 @@ button {
     max-width: 21cm; /* A4 width */
     min-height: 29.7cm; /* A4 height */
     margin: auto; /* Center horizontally */
-    padding: 2cm;
+    padding: 1.5cm;
     font-size: 14px;
     box-sizing: border-box;
     background: white;
@@ -46,7 +46,7 @@ button {
     max-width: 21cm; /* A4 width */
     min-height: 29.7cm; /* A4 height */
     margin: auto; /* Center horizontally */
-    padding: 2cm;
+    padding: 1cm;
     font-size: 5px;
     box-sizing: border-box;
     background: white;
@@ -60,7 +60,7 @@ button {
     text-align: center;
     font-weight: bold;
     font-size: 16px;
-    text-decoration: underline;
+   
     margin-bottom: 8px;
 }
 
@@ -107,7 +107,7 @@ th {
 /* Section Headings */
 h3, h4 {
     font-weight: bold;
-    text-decoration: underline;
+  
     margin-top: 15px;
 }
 
@@ -192,7 +192,7 @@ tr td:first-child {
     text-align: center;
     font-weight: bold;
     font-size: 14px; /* Ensured consistency */
-    text-decoration: underline;
+  
     margin-bottom: 10px;
 }
 

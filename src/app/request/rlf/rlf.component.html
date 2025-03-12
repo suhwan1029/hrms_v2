@@ -1,0 +1,88 @@
+<div class="container col-md-7 mt-1 ms-0 p-4">
+  <h2 style="text-align: left;">Request Letter Form</h2>
+
+  <form [formGroup]="rlfForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <!-- First Row -->
+
+      <div class="col-md-4 mb-3">
+        <label for="title">Title</label>
+        <select id="title" class="form-select" formControlName="title">
+          <option value="">-- Select Title --</option>
+          <option *ngFor="let title of titleList" [value]="title">{{ title }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Employee Name</label>
+        <input type="text" class="form-control" formControlName="name" required />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Nationality</label>
+        <input type="text" class="form-control" formControlName="nationality" required />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>End Date</label>
+        <input type="date" class="form-control" formControlName="endDate" required />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Designation</label>
+        <input type="text" class="form-control" formControlName="designation" required />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Passport Number</label>
+        <input type="text" class="form-control" formControlName="passportNo" required />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Team Leader</label>
+        <input type="text" class="form-control" formControlName="teamLeader" required />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Location</label>
+        <input type="text" class="form-control" formControlName="location" required />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Current Date</label>
+        <input type="date" class="form-control" formControlName="currentDate" required />
+      </div>
+
+      <!-- Second Row -->
+      <div class="col-md-6 mb-3">
+        <label>Company Name</label>
+        <input type="text" class="form-control" formControlName="companyName" required />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Visa Number</label>
+        <input type="text" class="form-control" formControlName="visaNo" required />
+      </div>
+
+      <!-- Third Row -->
+      <div class="col-md-12 mb-3">
+        <label>Company Address</label>
+        <textarea class="form-control" formControlName="address" required></textarea>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <label>To Address</label>
+        <textarea class="form-control" formControlName="toaddress" required></textarea>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <label>Employee Address</label>
+        <textarea class="form-control" formControlName="empaddress" required></textarea>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-success" [disabled]="!rlfForm.valid">Submit</button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Reset</button>
+  </form>
+</div>

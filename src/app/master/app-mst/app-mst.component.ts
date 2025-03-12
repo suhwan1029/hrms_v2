@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppMstService } from './service/app-mst.service';
+declare var bootstrap: any; // Required for Bootstrap modal
 
 @Component({
   selector: 'app-app-mst',
@@ -14,7 +15,9 @@ export class AppMstComponent implements OnInit {
   activeStatus: string = 'N'; // Status (Y/N)
   approvalList: any[] = []; // Approval list
   isEditing: boolean = true;
+
   departmentList: any[] = []; // Stores department list from API
+  alertMessage = '';
 
   constructor(private appMstService: AppMstService) {}
 
@@ -105,7 +108,8 @@ export class AppMstComponent implements OnInit {
     if (this.approvalList.length > 5) {
       this.approvalList.splice(index, 1);
     } else {
-      alert('At least 5 rows should be present.');
+      this.alertMessage = 'At least 5 rows should be present.';
+      this.showAlert();
     }
   }
 
@@ -114,7 +118,8 @@ export class AppMstComponent implements OnInit {
    */
   toggleActiveStatus(event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
-    this.activeStatus = isChecked ? 'Y' : 'N';
+    this.activeStatus = isChecked ? 'Y' : 'N'; 
+    console.log('Updated activeStatus:', this.activeStatus);
   }
 
   /**
@@ -154,4 +159,39 @@ export class AppMstComponent implements OnInit {
     const target = event.target as HTMLInputElement;
     approval.activeStatus = target.checked ? 'Y' : 'N';
   }
+
+  validateEmail(index: number) {
+    const email = this.approvalList[index].approvalEmail?.trim(); // Trim spaces
+    if (!email) return; // Don't validate empty inputs
+  
+    // Check if any other email in the list matches
+    const duplicate = this.approvalList.some((approval, i) => 
+      i !== index && approval.approvalEmail?.trim().toLowerCase() === email.toLowerCase()
+    );
+  
+    if (duplicate) {
+      this.alertMessage = 'This email is already used!';
+      this.approvalList[index].duplicateEmail = true; // Add invalid flag
+      this.showAlert();
+  
+      // Clear email after a short delay
+      setTimeout(() => {
+        this.approvalList[index].approvalEmail = ''; 
+        this.approvalList[index].duplicateEmail = false; // Remove invalid flag
+      }, 1000);
+    } else {
+      this.approvalList[index].duplicateEmail = false; // Reset flag if no duplicate
+    }
+  }
+  
+  
+  
+  showAlert() {
+    const modalElement = document.getElementById('alertModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
+  
 }

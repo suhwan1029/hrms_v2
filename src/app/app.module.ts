@@ -3,6 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http'; 
+import { MatTabsModule } from '@angular/material/tabs';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+ 
+ 
+
+
 
 // Import necessary modules
 import { FormsModule } from '@angular/forms'; // Import FormsModule here
@@ -56,6 +70,15 @@ import { RegisterComponent } from './register/register.component';
 import { RfrRgComponent } from './register/rfr-rg/rfr-rg.component';
 import { DepartmentListComponent } from './register/department-list/department-list.component';
 import { UlfComponent } from './request/ulf/ulf.component';
+import { AlfComponent } from './request/alf/alf.component';
+import { LookUpMstComponent } from './master/look-up-mst/look-up-mst.component';
+import { RlfComponent } from './request/rlf/rlf.component';
+import { EmployeeMstComponent } from './employees/employee-mst/employee-mst.component';
+import { RfrListComponent } from './register/rfr-list/rfr-list.component';
+import { ApprovalDetailsComponent } from './request/approval-details/approval-details.component';
+import { ApprovalFormComponent } from './request/approval-form/approval-form.component';
+import { PartnerListComponent } from './register/partner-list/partner-list.component';
+
 
 
 @NgModule({
@@ -105,9 +128,16 @@ import { UlfComponent } from './request/ulf/ulf.component';
     RegisterComponent,
     RfrRgComponent,
     DepartmentListComponent,
-    UlfComponent
-
-    
+    UlfComponent,
+    AlfComponent,
+    LookUpMstComponent,
+    RlfComponent,
+    EmployeeMstComponent,
+    RfrListComponent,
+    ApprovalDetailsComponent,
+    ApprovalFormComponent,
+    PartnerListComponent,
+ 
 
   ],
   imports: [
@@ -115,7 +145,16 @@ import { UlfComponent } from './request/ulf/ulf.component';
     AppRoutingModule,
     HttpClientModule, 
     FormsModule ,
-    ReactiveFormsModule
+    MatTabsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule, // Required for Angular Material
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule, // ✅ Required for mat-form-field
+    MatSelectModule, // ✅ Required for mat-select
+    MatButtonModule, // ✅ Required for mat-button
+    MatTableModule, // ✅ Required for mat-table
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

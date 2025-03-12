@@ -1,0 +1,83 @@
+<div class="container col-md-8 mt-1 ms-0">
+
+    <h2 style="text-align: left;">Employee Master Form</h2>
+
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <!-- First Row -->
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label for="orgId">Organization ID</label>
+            <input id="orgId" formControlName="orgId" type="text" class="form-control" />
+            <div *ngIf="employeeForm.get('orgId')?.invalid && employeeForm.get('orgId')?.touched" class="text-danger">
+              Organization ID is required
+            </div>
+          </div>
+      
+          <div class="form-group col-md-3">
+            <label for="employeeId">Employee ID</label>
+            <input id="employeeId" formControlName="employeeId" type="text" class="form-control" />
+            <div *ngIf="employeeForm.get('employeeId')?.invalid && employeeForm.get('employeeId')?.touched" class="text-danger">
+              Employee ID is required
+            </div>
+          </div>
+      
+          <div class="form-group col-md-3">
+            <label for="employeeNo">Employee No</label>
+            <input id="employeeNo" formControlName="employeeNo" type="text" class="form-control" />
+            <div *ngIf="employeeForm.get('employeeNo')?.invalid && employeeForm.get('employeeNo')?.touched" class="text-danger">
+              Employee No is required
+            </div>
+          </div>
+      
+          <div class="form-group col-md-3">
+            <label for="employeeName">Employee Name</label>
+            <input id="employeeName" formControlName="employeeName" type="text" class="form-control" />
+            <div *ngIf="employeeForm.get('employeeName')?.invalid && employeeForm.get('employeeName')?.touched" class="text-danger">
+              Employee Name is required
+            </div>
+          </div>
+        </div>
+      
+        <!-- Additional rows can follow the same structure as the first row -->
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label for="gender">Gender</label>
+            <input id="gender" formControlName="gender" type="text" class="form-control" />
+            <div *ngIf="employeeForm.get('gender')?.invalid && employeeForm.get('gender')?.touched" class="text-danger">
+              Gender is required
+            </div>
+          </div>
+      
+          <div class="form-group col-md-3">
+            <label for="englishName">English Name</label>
+            <input id="englishName" formControlName="englishName" type="text" class="form-control" />
+            <div *ngIf="employeeForm.get('englishName')?.invalid && employeeForm.get('englishName')?.touched" class="text-danger">
+              English Name is required
+            </div>
+          </div>
+      
+          <div class="form-group col-md-3">
+            <label for="emailId">Email ID</label>
+            <input id="emailId" formControlName="emailId" type="email" class="form-control" />
+            <div *ngIf="employeeForm.get('emailId')?.invalid && employeeForm.get('emailId')?.touched" class="text-danger">
+              Valid Email ID is required
+            </div>
+          </div>
+      
+          <div class="form-group col-md-3">
+            <label for="employeeType">Employee Type</label>
+            <input id="employeeType" formControlName="employeeType" type="text" class="form-control" />
+            <div *ngIf="employeeForm.get('employeeType')?.invalid && employeeForm.get('employeeType')?.touched" class="text-danger">
+              Employee Type is required
+            </div>
+          </div>
+        </div>
+      
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Submit</button>
+        </div>
+      </form>
+      
+  </div>
+  

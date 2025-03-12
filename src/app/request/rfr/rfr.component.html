@@ -1,4 +1,3 @@
-<div  class="container col-md-10 mt-1 ms-0">
 <form [formGroup]="rfrForm" (ngSubmit)="onSubmit()" class="rfr-form">
   <h1>Request for Resource (RFR)</h1>
 
@@ -239,8 +238,7 @@
   <div class="button-container">
   <button type="submit">Submit</button>
   <button type="button" class="cancel-button" (click)="resetForm()">Cancel</button>
+  <button type="button" class="Approval" [disabled]="isDisabled" (click)="onApprovalClick()">Approval</button>
 </div>
   
 </form>
-
-</div>

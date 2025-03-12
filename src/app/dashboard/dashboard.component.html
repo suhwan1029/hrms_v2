@@ -26,6 +26,7 @@
           <li><a routerLink="/dashboard/master/dept-mst">Department</a></li>
           <li><a routerLink="/dashboard/master/app-mst">Approval</a></li>
           <li><a routerLink="/dashboard/master/partner-form">Partner</a></li>
+          <li><a routerLink="/dashboard/master/look-up-mst">Look Up</a></li>
         </ul>
       </li>
 
@@ -38,6 +39,8 @@
           <li><a routerLink="/dashboard/request/rfr">RFR</a></li>
           <li><a routerLink="/dashboard/request/olf">Offer Letter Form</a></li>
           <li><a routerLink="/dashboard/request/ulf">Undertaking Letter Form</a></li>
+          <li><a routerLink="/dashboard/request/rlf">Request Letter Report</a></li>
+          <li><a routerLink="/dashboard/request/approval-details">Approval Details</a></li>
           <li><a routerLink="/dashboard/request/view-request">View Request</a></li>
         </ul>
       </li>
@@ -54,26 +57,28 @@
           <li><a routerLink="/dashboard/report/ulp">Undertaking Letter Report</a></li>
         </ul>
       </li>
-      
+
       <li class="dropdown">
         <a (click)="toggleMenu('register')">
           <i class="fa-solid fa-table-list"></i> Register
           <i class="fa fa-chevron-down dropdown-icon"></i>
         </a>
         <ul *ngIf="openMenu === 'register'">
-          <li><a routerLink="/dashboard/register/rfr-rg">RFR Register</a></li>
+          
+          <li><a routerLink="/dashboard/register/rfr-list">RFR Register</a></li>
+          <li><a routerLink="/dashboard/register/partner-list">Partner Register</a></li>
           <li><a routerLink="/dashboard/register/department-list">Department Register</a></li>
 
         </ul>
       </li>
     
       <li class="dropdown">
-        <a (click)="!isDisabled && toggleMenu('employees')"[class.disabled]="isDisabled">
+        <a (click)=" toggleMenu('employees')" >
           <i class="fas fa-users"></i> Employees
-          <i class="fas fa-chevron-down"></i>
+          <i class="fa fa-chevron-down dropdown-icon"></i>
         </a>
         <ul *ngIf="openMenu === 'employees'">
-          <li><a routerLink="/dashboard/employees/add-employee">Add Employee</a></li>
+          <li><a routerLink="/dashboard/employees/employee-mst">Employee Master Form</a></li>
           <li><a routerLink="/dashboard/employees/employee-list">Employee List</a></li>
           <li><a routerLink="/dashboard/employees/employee-details">Employee Details</a></li>
         </ul>

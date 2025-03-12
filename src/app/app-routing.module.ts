@@ -40,6 +40,12 @@ import { AppMstComponent } from './master/app-mst/app-mst.component';
 import { DeptMstComponent } from './master/dept-mst/dept-mst.component';
 import { DepartmentListComponent } from './register/department-list/department-list.component';
 import { UlfComponent } from './request/ulf/ulf.component';
+import { LookUpMstComponent} from './master/look-up-mst/look-up-mst.component';
+import { RlfComponent } from './request/rlf/rlf.component'
+import { EmployeeMstComponent } from './employees/employee-mst/employee-mst.component'
+import { ApprovalDetailsComponent } from './request/approval-details/approval-details.component'
+import { RfrListComponent } from './register/rfr-list/rfr-list.component'
+import { PartnerListComponent } from './register/partner-list/partner-list.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -73,6 +79,7 @@ const routes: Routes = [
         path: 'employees', 
         children: [ 
           { path: '', component: RequestComponent },
+          { path: 'employee-mst', component: EmployeeMstComponent }  ,
           { path: 'add-employee', component: AddEmployeeComponent },
           { path: 'employee-details', component: EmployeeDetailsComponent },
           { path: 'employee-list', component: EmployeeListComponent }    
@@ -101,9 +108,12 @@ const routes: Routes = [
         children: [  
           { path: '', component: RequestComponent }, 
           { path: 'rfr', component: RfrComponent }, 
+          { path: 'rfr/:rfrNo', component: RfrComponent },
           { path: 'olf', component: OlfComponent }, 
           { path: 'ulf', component: UlfComponent }, 
-          { path: 'view-request', component: ViewRequestComponent }
+          { path: 'rlf', component: RlfComponent }, 
+          { path: 'approval-details', component: ApprovalDetailsComponent },
+          { path: 'view-request', component: ViewRequestComponent }  
         ]
       },
       { 
@@ -113,7 +123,8 @@ const routes: Routes = [
           { path: 'organization-form', component: OrganizationFormComponent }, 
           { path: 'partner-form', component: PartnerFormComponent },
           { path: 'dept-mst', component: DeptMstComponent } ,
-          { path: 'app-mst', component: AppMstComponent }  
+          { path: 'app-mst', component: AppMstComponent }  ,
+          { path: 'look-up-mst', component: LookUpMstComponent }  
         ] 
       },
       { 
@@ -131,6 +142,8 @@ const routes: Routes = [
         children: [  
           { path: '', component: RequestComponent }, 
           { path: 'rfr-rg', component: RfrRgComponent},
+          { path: 'rfr-list', component: RfrListComponent},
+          { path: 'partner-list', component: PartnerListComponent},
           { path: 'department-list', component: DepartmentListComponent}    
         ] 
       }

@@ -1,55 +1,75 @@
-<div class="container col-md-6 mt-1 ms-0">
-    <h2>Undertaking Letter Form </h2>
-    
-    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-      <div class="row ">
-        <div class="col-md-3 mb-3">
-          <label for="title">Title</label>
-          <select id="title" class="form-control" formControlName="title">
-            <option value="">-- Select Title --</option>
-            <option *ngFor="let title of titleList" [value]="title">{{ title }}</option>
-          </select>
-        </div>
-        
-        <div class="col-md-6 mb-2">
-          <label>Employee Name</label>
-          <input type="text" class="form-control" formControlName="name" required />
-        </div>
-        
-        <div class="col-md-6 mb-2">
-          <label>Passport Number</label>
-          <input type="text" class="form-control" formControlName="passportNo" required />
-        </div>
-        
-        <div class="col-md-6 mb-2">
-          <label>Designation</label>
-          <input type="text" class="form-control" formControlName="designation" required />
-        </div>
+<div class="container col-md-8 mt-1 ms-0 p-4">
+  <h2 style="text-align: left;">Undertaking Letter Form</h2>
 
-        <div class="col-md-12 mb-2">
-          <label>Managing Director</label>
-          <input type="text" class="form-control" formControlName="md" required />
-        </div>
-        
-        <div class="col-md-6 mb-3">
-          <label>Company Name</label>
-          <input type="text" class="form-control" formControlName="companyName" required />
-        </div>
-        
-        <div class="col-md-12 mb-3">
-          <label>Company Address</label>
-          <input type="text" class="form-control" formControlName="companyAddress" required />
-        </div>
-
-        
-        <div class="col-md-12 mb-3">
-          <label>Resident Address</label>
-          <input type="text" class="form-control" formControlName="address" required />
-        </div>
-
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <!-- First Row: Title, Employee Name, Nationality -->
+      <div class="col-md-4 mb-3">
+        <label for="title">Title</label>
+        <select id="title" class="form-select" formControlName="title">
+          <option value="">-- Select Title --</option>
+          <option *ngFor="let title of titleList" [value]="title">{{ title }}</option>
+        </select>
       </div>
-      
-      <button type="submit" class="btn btn-success">Submit</button>
-      <button type="button" class="btn btn-secondary ms-2" (click)="employeeForm.reset()">Reset</button>
-    </form>
+
+      <div class="col-md-4 mb-3">
+        <label>Employee Name</label>
+        <input type="text" class="form-control" formControlName="name" required />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Nationality</label>
+        <input type="text" class="form-control" formControlName="nationality" required />
+      </div>
+
+      <!-- Second Row -->
+      <div class="col-md-4 mb-3">
+        <label>Passport Number</label>
+        <input type="text" class="form-control" formControlName="passportNo" required />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Designation</label>
+        <input type="text" class="form-control" formControlName="designation" required />
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label>Managing Director</label>
+        <input type="text" class="form-control" formControlName="md" required />
+      </div>
+
+      <!-- Third Row -->
+      <div class="col-md-6 mb-3">
+        <label>Details</label>
+        <input type="text" class="form-control" formControlName="detail" required />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>Company Name</label>
+        <input type="text" class="form-control" formControlName="companyName" required />
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <label>Company Address</label>
+        <input type="text" class="form-control" formControlName="companyAddress" required />
+      </div>
+
+      <!-- Fourth Row -->
+      <div class="col-md-12 mb-3">
+        <label>Resident Address</label>
+        <input type="text" class="form-control" formControlName="address" required />
+      </div>
+    </div>
+
+   
+
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-success" [disabled]="!employeeForm.valid">Submit</button>
+
+    <button type="button" class="btn btn-secondary ms-2" (click)="employeeForm.reset()">Reset</button>
+    
+  
+    
+  </form>
 </div>
+
