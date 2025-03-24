@@ -12,16 +12,20 @@ export class LookupMstService {
 
   // Fetch all lookup entries
   getLookups(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}`);
+    return this.http.get<any[]>(this.apiUrl);
   }
 
   // Add a new lookup entry
   addLookup(lookupData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}`, lookupData);
+    return this.http.post<any>(this.apiUrl, lookupData);
+
   }
 
-  // Update lookup entry
+  // Update lookup entry (Ensuring ID exists)
   updateLookup(lookupData: any): Observable<any> {
+    if (!lookupData.id) {
+      throw new Error('Lookup entry must have an ID for update.');
+    }
     return this.http.put<any>(`${this.apiUrl}/${lookupData.id}`, lookupData);
   }
 

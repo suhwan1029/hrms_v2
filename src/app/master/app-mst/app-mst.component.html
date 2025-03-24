@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label>Department Code<span class="text-danger" style="font-size: 15px;">*</span> :</label>
+          <label><b>Department Code</b><span class="text-danger" style="font-size: 15px;">*</span> :</label>
           <select [(ngModel)]="departmentCode" (change)="fetchDepartmentDetails()" class="form-control">
             <option value="">Select Department</option>
             <option *ngFor="let dept of departmentList" [value]="dept.departmentCode">
@@ -17,14 +17,14 @@
   
       <div class="col-md-6" style="margin-top: 2px;">
         <div class="form-group">
-          <label>Department Name :</label>
+          <label><b>Department Name :</b></label>
           <input type="text" [(ngModel)]="departmentName" class="form-control" readonly />
         </div>
       </div>
     </div>
   
     <div class="col-md-4 mt-2">
-      <label>Status :</label>
+      <label><b>Status :</b></label>
       <input 
         type="checkbox" 
         [checked]="activeStatus === 'Y'" 

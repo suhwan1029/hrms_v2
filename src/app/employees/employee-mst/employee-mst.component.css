@@ -8,7 +8,7 @@ body {
 
 /* Styling for Form Container */
 .container {
-    max-width: 1000px;
+    max-width: 1700px;
     margin: 50px auto;
     padding: 20px;
     background: #ffffff;
@@ -20,7 +20,7 @@ body {
 /* Form Header */
 h2 {
     text-align: center;
-    font-size: 22px;
+    font-size: 24px;
     margin-bottom: 15px;
     color: #c00c3f;
     font-weight: bold;
@@ -41,32 +41,99 @@ h2 {
 }
 
 /* Input Fields */
-input[type="text"], 
-input[type="email"], 
-input[type="date"],
-textarea, 
-select {
+input[type="text"], textarea, select {
     width: 100%;
-    padding: 8px;
+    padding: 6px;
     border: 1px solid #bbb;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 15px;
     background: #fff;
     transition: 0.2s ease-in-out;
     box-sizing: border-box;
-    height: 36px;
-}
-
-textarea {
-    height: 80px;
-    resize: vertical;
-}
-
-input:focus, textarea:focus, select:focus {
+    height: 34px;
+  }
+  
+  input:focus, textarea:focus, select:focus {
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
-}
+  }
+  
+  /* Fieldset Styling */
+  fieldset {
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 15px;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  legend {
+    font-weight: bold;
+    font-size: 15px;
+    color: #c00c3f;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #eaf4ff;
+  }
+  
+  /* Table Styling */
+  .ctc-analysis {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    text-align: left;
+    font-size: 12px;
+  }
+  
+  .ctc-analysis th, .ctc-analysis td {
+    padding: 6px;
+    text-align: center;
+    border-radius: 4px;
+    border: 2px solid #ddd;
+  }
+  
+  .ctc-analysis th {
+    background: #c00c3f;
+    color: white;
+    font-size: 12px;
+  }
+  
+  .ctc-analysis tr:nth-child(even) {
+    background: #f1f8ff;
+  }
+  
+  /* Checkbox Styling */
+  input[type="checkbox"] {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #007bff;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+  
+  input[type="checkbox"]:checked {
+    background-color: #2e6ef8;
+    border-color: #0056b3;
+  }
+  
+  input[type="checkbox"]::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    top: 2px;
+    left: 5px;
+    transform: rotate(45deg);
+    display: none;
+  }
+  
 
 /* Read-Only Field */
 .read-only-field {
@@ -94,7 +161,7 @@ input:focus, textarea:focus, select:focus {
 
 button {
     min-width: 90px;
-    padding: 10px 14px;
+    padding: 10px 23px;
     font-size: 14px;
     font-weight: bold;
     background: #c2083d;
@@ -140,4 +207,44 @@ select {
     -moz-appearance: menulist; /* Ensures dropdown appearance in Firefox */
     appearance: menulist;
     background-color: #fff;
+}
+
+.row{
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1* var(--bs-gutter-y));
+}
+
+table {
+  font-size: 14px; /* Adjust as needed */
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  font-size: 14px; 
+  padding: 5px; /* Reduce padding */
+  text-align: center;
+
+}
+td input::placeholder, 
+td textarea::placeholder {
+  font-size: 14px; /* Adjust as needed */
+}
+
+.toggle-header {
+  cursor: pointer;
+  color: #c00c3f;
+ 
+  display: flex;
+  align-items: center;
+}
+.toggle-header i {
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+.content {
+  margin-top: 10px;
 }

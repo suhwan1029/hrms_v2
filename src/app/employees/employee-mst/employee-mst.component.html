@@ -1,83 +1,662 @@
-<div class="container col-md-8 mt-1 ms-0">
+<div class="container col-md-11 mt-1 ms-0">
+  
 
-    <h2 style="text-align: left;">Employee Master Form</h2>
 
-    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-        <!-- First Row -->
-        <div class="row">
-          <div class="form-group col-md-3">
-            <label for="orgId">Organization ID</label>
-            <input id="orgId" formControlName="orgId" type="text" class="form-control" />
-            <div *ngIf="employeeForm.get('orgId')?.invalid && employeeForm.get('orgId')?.touched" class="text-danger">
-              Organization ID is required
-            </div>
-          </div>
-      
-          <div class="form-group col-md-3">
-            <label for="employeeId">Employee ID</label>
-            <input id="employeeId" formControlName="employeeId" type="text" class="form-control" />
-            <div *ngIf="employeeForm.get('employeeId')?.invalid && employeeForm.get('employeeId')?.touched" class="text-danger">
-              Employee ID is required
-            </div>
-          </div>
-      
-          <div class="form-group col-md-3">
-            <label for="employeeNo">Employee No</label>
-            <input id="employeeNo" formControlName="employeeNo" type="text" class="form-control" />
-            <div *ngIf="employeeForm.get('employeeNo')?.invalid && employeeForm.get('employeeNo')?.touched" class="text-danger">
-              Employee No is required
-            </div>
-          </div>
-      
-          <div class="form-group col-md-3">
-            <label for="employeeName">Employee Name</label>
-            <input id="employeeName" formControlName="employeeName" type="text" class="form-control" />
-            <div *ngIf="employeeForm.get('employeeName')?.invalid && employeeForm.get('employeeName')?.touched" class="text-danger">
-              Employee Name is required
-            </div>
-          </div>
-        </div>
-      
-        <!-- Additional rows can follow the same structure as the first row -->
-        <div class="row">
-          <div class="form-group col-md-3">
-            <label for="gender">Gender</label>
-            <input id="gender" formControlName="gender" type="text" class="form-control" />
-            <div *ngIf="employeeForm.get('gender')?.invalid && employeeForm.get('gender')?.touched" class="text-danger">
-              Gender is required
-            </div>
-          </div>
-      
-          <div class="form-group col-md-3">
-            <label for="englishName">English Name</label>
-            <input id="englishName" formControlName="englishName" type="text" class="form-control" />
-            <div *ngIf="employeeForm.get('englishName')?.invalid && employeeForm.get('englishName')?.touched" class="text-danger">
-              English Name is required
-            </div>
-          </div>
-      
-          <div class="form-group col-md-3">
-            <label for="emailId">Email ID</label>
-            <input id="emailId" formControlName="emailId" type="email" class="form-control" />
-            <div *ngIf="employeeForm.get('emailId')?.invalid && employeeForm.get('emailId')?.touched" class="text-danger">
-              Valid Email ID is required
-            </div>
-          </div>
-      
-          <div class="form-group col-md-3">
-            <label for="employeeType">Employee Type</label>
-            <input id="employeeType" formControlName="employeeType" type="text" class="form-control" />
-            <div *ngIf="employeeForm.get('employeeType')?.invalid && employeeForm.get('employeeType')?.touched" class="text-danger">
-              Employee Type is required
-            </div>
-          </div>
-        </div>
-      
-        <!-- Submit Button -->
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Submit</button>
-        </div>
-      </form>
-      
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+  <div class="d-flex justify-content-between align-items-start w-100">
+    <!-- Left Side: Heading -->
+    <h2 class="m-0">Employee Master Form</h2>
+  
+    <!-- Right Side: Employee Image Upload -->
+    <div class="d-flex flex-column align-items-center gap-2">
+      <span style="color: #c00c3f; font-weight: 500;">Employee Image</span>
+  
+      <img *ngIf="imageUrl" [src]="imageUrl" alt="Employee Image"
+        class="rounded-circle border" style="width: 70px; height: 70px; object-fit: cover;">
+  
+      <button type="button" class="btn btn-primary d-flex align-items-center justify-content-center"
+        (click)="fileInput.click()">
+        <i class="fa fa-plus me-1"></i> Image
+      </button>
+  
+      <input id="employeeImage" #fileInput type="file" class="d-none"
+        accept="image/*" (change)="previewFile($event)" />
+    </div>
   </div>
   
+  
+  
+
+  <h4 style="text-align: left; color: #c00c3f;" ><i class="fa-solid" style="margin-right: 4px; font-size: large;"></i>Basic Information</h4>
+<div *ngIf="isOpen['basicInfo']" class="content">
+ <div class=" border p-3 "  > 
+ <div class="row">
+  
+  <div class="form-group col-md-4">
+    <label for="employeeId">Employee ID</label>
+    <input id="employeeId" formControlName="employeeId" type="number" class="form-control" required />
+  </div>
+  <div class="form-group col-md-4">
+    <label for="employeeNo">Employee No</label>
+    <input id="employeeNo" formControlName="employeeNo" type="text" class="form-control" required />
+  </div>
+  <div class="form-group col-md-4">
+    <label for="title">Title</label>
+    <select id="title" formControlName="title" class="form-control" required>
+      <option value="" disabled selected>Select Title</option>
+      <option value="Mr">Mr.</option>
+      <option value="Ms">Ms.</option>
+      <option value="Mrs">Mrs.</option>
+      <option value="Dr">Dr.</option>
+      <option value="Prof">Prof.</option>
+    </select>
+  </div>
+  
+</div>
+
+
+<!-- Row 2 -->
+<div class="row">
+  <div class="form-group col-md-4">
+    <label for="employeeName">Employee Name</label>
+    <input id="employeeName" formControlName="employeeName" type="text" class="form-control" required />
+  </div>
+  <div class="form-group col-md-4">
+    <label for="englishName">English Name</label>
+    <input id="englishName" formControlName="englishName" type="text" class="form-control" required />
+  </div>
+  <div class="form-group col-md-4">
+    <label for="gender">Gender</label>
+    <select id="gender" formControlName="gender" class="form-control" required>
+      <option value="">Select</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+  </div>
+  <div class="form-group col-md-4">
+    <label for="officialPhoneNumber">Official Phone Number</label>
+    <input id="officialPhoneNumber" formControlName="officialPhoneNumber" type="number" class="form-control" required />
+    </div>
+ 
+  
+    <div class="form-group col-md-4">
+      <label for="emailId">Email ID</label>
+      <input id="emailId" formControlName="emailId" type="email" class="form-control" required />
+
+      <br>
+    </div>
+    
+ 
+</div>
+
+
+</div>
+</div>
+<br>
+<!-- Row 5 -->
+<h4 style="text-align: left; color: #c00c3f;" ><i class="fa-solid" style="margin-right: 4px; font-size: large;"></i>Work Information</h4>
+
+<div *ngIf="isOpen['workInfo']" class="content">
+<div class=" border p-3 " > 
+<div class="row">
+  <div class="form-group col-md-4">
+    <label for="department">Department</label>
+    <input id="department" formControlName="department" type="text" class="form-control" required />
+
+  </div>
+  <div class="form-group col-md-4">
+    <label for="designation">Designation</label>
+    <input id="designation" formControlName="designation" type="text" class="form-control" required />
+  </div>
+ 
+   
+  <div class="form-group col-md-4">
+    <label for="job">Job</label>
+    <input id="job" formControlName="job" type="text" class="form-control" required />
+  </div>
+
+
+  
+  
+  <div class="form-group col-md-4">
+    <label for="jobPosition">Job Position</label>
+    <input id="jobPosition" formControlName="jobPosition" type="text" class="form-control" required />
+  </div>
+ 
+
+
+  <div class="form-group col-md-4">
+    <label for="promotionDate">Promotion Date</label>
+    <input id="promotionDate" formControlName="promotionDate" type="date" class="form-control" required />
+  </div>
+  <div class="form-group col-md-4">
+    <label for="enteringDate">Entering Date</label>
+    <input id="enteringDate" formControlName="enteringDate" type="date" class="form-control" required />
+  </div>
+  <div class="form-group col-md-4">
+    <label for="lgEnteringDate">LG Entering Date</label>
+    <input id="lgEnteringDate" formControlName="lgEnteringDate" type="date" class="form-control" required />
+  </div>
+
+  
+ 
+
+
+  <div class="form-group col-md-4">
+    <label for="confirmationDate">Confirmation Date</label>
+    <input id="confirmationDate" formControlName="confirmationDate" type="date" class="form-control" required />
+  </div>
+  <div class="form-group col-md-4">
+    <label for="contractType">Contract Type</label>
+    <select id="contractType" formControlName="contractType" class="form-control" required>
+      <option value="">Select</option>
+      <option value="Full-time">Full-time</option>
+      <option value="Part-time">Part-time</option>
+    </select>
+  </div>
+  <div class="form-group col-md-4">
+    <label for="workLocation">Work Location</label>
+    <input id="workLocation" formControlName="workLocation" type="text" class="form-control" required />
+  </div>
+ 
+
+  <div class="form-group col-md-4">
+    <label for="employeeType">Employee Type</label>
+    <select id="employeeType" formControlName="employeeType" class="form-control" required>
+      <option value="">Select</option>
+      <option value="Permanent">Permanent</option>
+      <option value="Contract">Contract</option>
+    </select>
+  </div>
+  
+
+  <div class="form-group col-md-4">
+    <label for="dateOfRetirement">Date of Retirement</label>
+    <input id="dateOfRetirement" formControlName="dateOfRetirement" type="date" class="form-control" required />
+  </div>
+  
+
+  <div class="form-group col-md-4">
+    <label for="reportingManager">Reporting Manager</label>
+    <input id="reportingManager" formControlName="reportingManager" type="text" class="form-control" required />
+    </div>
+
+  
+ 
+
+ 
+
+  <div class="form-group col-md-4">
+    <label for="status">Employee Status</label>
+    <select id="status" formControlName="status" class="form-control" required>
+      <option value="">Select</option>
+      <option value="Active">Active</option>
+      <option value="Inactive">Inactive</option>
+      <option value="Resigned">Resigned</option>
+      <option value="Terminated">Terminated</option>
+    </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="recruitmentType">Recruitment Type</label>
+      <select id="recruitmentType" formControlName="recruitmentType" class="form-control" required>
+        <option value="" disabled selected>Select Recruitment Type</option>
+        <option value="Campus">Campus</option>
+        <option value="Direct">Direct</option>
+        <option value="Referral">Referral</option>
+        <option value="Agency">Agency</option>
+      </select>
+    </div>
+    
+    <div class="form-group col-md-4">
+    <label for="leaveClassification">Leave Classification</label>
+    <input id="leaveClassification" formControlName="leaveClassification" type="text" class="form-control" required />
+    </div>
+    <div class="form-group col-md-4">
+      <label for="grade">Grade</label>
+      <input id="grade" formControlName="grade" type="text" class="form-control" required />
+      </div>
+     
+
+    
+      <div class="form-group col-md-4">
+        <label for="hiringType">Hiring Type</label>
+        <select id="hiringType" formControlName="hiringType" class="form-control" required>
+          <option value="" disabled selected>Select Hiring Type</option>
+          <option value="Permanent">Permanent</option>
+          <option value="Contract">Contract</option>
+          <option value="Intern">Intern</option>
+          <option value="Freelance">Freelance</option>
+        </select>
+      </div>
+      
+      <div class="form-group col-md-4">
+        <label for="career">Career</label>
+        <input id="career" formControlName="career" type="text" class="form-control" required />
+        </div>
+
+      <div class="form-group col-md-4">
+        <label for="periodOfLeave">Period of Leave</label>
+        <input id="periodOfLeave" formControlName="periodOfLeave" type="text" class="form-control" required />
+        </div>
+        <div class="form-group col-md-4">
+        <label for="vacation">Vacation</label>
+        <input id="vacation" formControlName="vacation" type="text" class="form-control" required />
+        </div>
+        <div class="form-group col-md-4">
+        <label for="virtualUser">Virtual User</label>
+        <input id="virtualUser" formControlName="virtualUser" type="text" class="form-control" required />
+        </div>
+
+      <div class="form-group col-md-4">
+        <label for="resignationDate">Resignation Date</label>
+        <input id="resignationDate" formControlName="resignationDate" type="date" class="form-control" required />
+        </div>
+      
+      <div class="form-group col-md-4">
+      <label for="lastWorkingDate">Last Working Date</label>
+      <input id="lastWorkingDate" formControlName="lastWorkingDate" type="date" class="form-control" required />
+    <br>  
+    </div>
+    </div>
+
+  </div>
+</div>
+  
+<br>
+<h4 style="text-align: left; color: #c00c3f;"><i class="fa-solid" style="margin-right: 4px; font-size: large;"></i>Personal Information</h4>
+
+<div *ngIf="isOpen['personalInfo']" class="content">
+<div class=" border p-3 " > 
+  <div class="row">
+  <div class="form-group col-md-4">
+    <label for="aadharNumber">Aadhar Number</label>
+    <input id="aadharNumber" formControlName="aadharNumber" type="number" class="form-control" required />
+    </div>
+    
+    <div class="form-group col-md-4">
+      <label for="panNumber">PAN Number</label>
+      <input id="panNumber" formControlName="panNumber" type="text" class="form-control" required />
+      </div>
+     
+      
+      <div class="form-group col-md-4">
+        <label for="uanNumber">UAN Number</label>
+        <input id="uanNumber" formControlName="uanNumber" type="text" class="form-control" required />
+        </div>
+
+    
+
+      <div class="form-group col-md-4">
+        <label for="passportNo">Passport Number</label>
+        <input id="passportNo" formControlName="passportNo" type="text" class="form-control" required />
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="birthDate">Birth Date</label>
+          <input id="birthDate" formControlName="birthDate" type="date" class="form-control" required />
+        </div>
+    
+        <div class="form-group col-md-4">
+          <label for="nationality">Nationality</label>
+          <input id="nationality" formControlName="nationality" type="text" class="form-control" required />
+         
+        </div>
+       
+
+        <div class="form-group col-md-4">
+          <label for="maritalStatus">Marital Status</label>
+          <select id="maritalStatus" formControlName="maritalStatus" class="form-control" required>
+            <option value="">Select</option>
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+          </select>
+        </div>
+
+        
+        <div class="form-group col-md-4">
+          <label for="mobileNumber">Mobile Number</label>
+          <input id="mobileNumber" formControlName="mobileNumber" type="number" class="form-control" required />
+          </div>
+
+        
+          <div class="form-group col-md-4">
+          <label for="externalEmail">External Email ID</label>
+          <input id="externalEmail" formControlName="externalEmail" type="email" class="form-control" required />
+          </div>
+
+          
+
+          
+          <div class="form-group col-md-12">
+            <label for="homeAddress">Residence Address</label>
+            <textarea id="homeAddress" formControlName="homeAddress" class="form-control" rows="3" required></textarea>
+            <br>
+            </div>
+       
+          </div>
+          
+        </div>
+
+ </div>
+          <br>
+
+
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Left Side: Buttons -->
+              <div class="mb-2 d-flex flex-wrap gap-2">
+                <button type="button" (click)="toggleExperience()" class="btn btn-secondary mb-2"  style="margin-right: 10px;"><i class="fa-solid fa-caret-down" style="margin-right: 2px;"></i> Experience</button>
+                <button type="button" (click)="toggleEducation()" class="btn btn-secondary mb-2" style="margin-right: 10px;" ><i class="fa-solid fa-caret-down" style="margin-right: 2px;"></i> Education</button>
+                <button type="button" (click)="togglePromotion()" class="btn btn-secondary mb-2" style="margin-right: 10px;"><i class="fa-solid fa-caret-down" style="margin-right: 2px;"></i> Promotion</button>
+                <button type="button" (click)="toggleQualification()" class="btn btn-secondary mb-2" style="margin-right: 10px;"><i class="fa-solid fa-caret-down" style="margin-right: 2px;"></i> Qualification</button>
+               
+              </div>
+            
+              <!-- Right Side: Employee Image Upload -->
+              <div class="d-flex align-items-center gap-2">  
+      
+              </div>
+            </div>
+     
+
+
+
+
+<div class="row">
+
+</div>
+  <!-- Toggle Button -->
+  <div>
+  
+
+  </div>
+  
+  <!-- Conditional Experience Section -->
+  <div *ngIf="showExperience">
+    <!-- Experience Section Container -->
+    <div class="experience-container">
+   
+
+    <div class="container mt-3 p-4">
+      <h3 class="mb-4" style=" color: #c2083d;">Experience Details</h3> <!-- Heading -->
+    
+      <div formArrayName="experienceDetails">
+        <!-- Experience Table -->
+        <table class="experience-table table table-bordered table-striped mx-auto">
+          <thead class="text-center">
+            <tr>
+              <th>Company Name</th>
+              <th>Job Title</th>
+              <th>Department</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Loop through experience details -->
+            <tr *ngFor="let exp of experienceDetails.controls; let i = index" [formGroupName]="i">
+              <td>
+                <input formControlName="companyName" placeholder="Company Name" class="form-control" />
+              </td>
+              <td>
+                <input formControlName="jobTitle" placeholder="Job Title" class="form-control" />
+              </td>
+              <td>
+                <input formControlName="department" placeholder="Department" class="form-control" />
+              </td>
+              <td>
+                <input formControlName="startDate" type="date" class="form-control" />
+              </td>
+              <td>
+                <input formControlName="endDate" type="date" class="form-control" />
+              </td>
+              <td class="text-center">
+                <i class="fa fa-trash text-danger" style="cursor: pointer;" (click)="removeExperience(i)"></i>
+              </td>
+            </tr>
+          </tbody>
+          
+        </table>  
+        <div class="mt-3">
+          <button type="button" class="btn btn-primary" (click)="addExperience()"><i class="fa fa-plus"> </i> Experience</button>
+        </div>    
+      </div>
+    </div>
+
+    
+    
+  </div>
+  
+  </div>
+ 
+  
+  <div *ngIf="showEducation" class="mt-4" style=" color: #c2083d;">
+    <div class="container mt-3 p-4">
+    <h3 style=" color: #c2083d;">Education Details</h3>
+    <div formArrayName="educationDetails">
+      <table class="education-table table table-bordered table-striped mx-auto">
+        <thead class="text-center">
+          <tr>
+            <th style="width: 20%;">Institute Name</th>
+            <th style="width: 10%;">Admission Date</th>
+            <th style="width: 10%;">Passout Date</th>
+            <th style="width: 15%;">Course Name</th>
+            <th style="width: 20%;">Multiple Sub-Course</th>
+            <th style="width: 10%;">Graduation Category</th>
+            <th style="width: 10%;">Degree Name</th>
+            <th style="width: 5%;">Actions</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let edu of educationDetails.controls; let i = index" [formGroupName]="i">
+            <td>
+              <input formControlName="instituteName" placeholder="Institute Name" class="form-control" />
+            </td>
+            <td>
+              <input type="date" formControlName="admissionDate" class="form-control" />
+            </td>
+            <td>
+              <input type="date" formControlName="passoutDate" class="form-control" />
+            </td>
+            <td>
+              <input formControlName="courseName" placeholder="Course Name" class="form-control" />
+            </td>
+            <td>
+              <input formControlName="multipleSubCourse" placeholder="Multiple Sub-Courses" class="form-control" />
+            </td>
+            <td>
+              <input formControlName="graduationCategory" placeholder="Graduation Category" class="form-control" />
+            </td>
+            <td>
+              <input formControlName="degreeName" placeholder="Degree Name" class="form-control" />
+            </td>
+            <td class="text-center">
+              <i class="fa fa-trash text-danger" style="cursor: pointer;" (click)="removeEducation(i)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-3">
+      <button type="button" class="btn btn-primary" (click)="addEducation()"><i class="fa fa-plus " style="font-size: 20px; margin-top: 3px;" > </i> Education</button>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Promotion Section -->
+  <div *ngIf="showPromotion" class="mt-4">
+    <div class="container mt-3 p-4">
+    <h3 style=" color: #c2083d;">Promotion Details</h3>
+    <div formArrayName="promotionDetails">
+      <table class="promotion-table table table-bordered table-striped mx-auto">
+        <thead class="text-center">
+          <tr>
+            <th>Promotion Code</th>
+            <th>Promotion Type</th>
+            <th>Position Level</th>
+            <th>Old Designation</th>
+            <th>New Designation</th>
+            <th>Effective From Date</th>
+            <th>Effective To Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prom of promotionDetails.controls; let i = index" [formGroupName]="i">
+            <td>
+              <input formControlName="promotionCode" placeholder="Promotion Code" class="form-control" />
+            </td>
+            <td>
+              <input formControlName="promotionType" placeholder="Promotion Type" class="form-control" />
+            </td>
+            <td>
+              <input formControlName="positionLevel" placeholder="Position Level" class="form-control" />
+            </td>
+            <td>
+              <input formControlName="oldDesignation" placeholder="Old Designation" class="form-control" />
+            </td>
+            <td>
+              <input formControlName="newDesignation" placeholder="New Designation" class="form-control" />
+            </td>
+            <td>
+              <input type="date" formControlName="effectiveFromDate" class="form-control" />
+            </td>
+            <td>
+              <input type="date" formControlName="effectiveToDate" class="form-control" />
+            </td>
+            <td class="text-center">
+              <i class="fa fa-trash text-danger" style="cursor: pointer;" (click)="removePromotion(i)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-3">
+      <button type="button" class="btn btn-primary" (click)="addPromotion()"><i class="fa fa-plus"> </i> Promotion</button>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Qualification Section -->
+  <div *ngIf="showQualification" class="mt-4">
+    <div class="container mt-3 p-4">
+    <h3 style=" color: #c2083d;">Qualification Details</h3>
+    <div formArrayName="qualificationDetails">
+      <table class="qualification-table table table-bordered table-striped mx-auto">
+        <thead class="text-center">
+          <tr>
+            <th>Qualification Name</th>
+            <th>Qualification Level</th>
+            <th>Publisher</th>
+            <th>Document Number</th>
+            <th>Qualification Date</th>
+            <th>Qualification Evidence Check</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let qual of qualificationDetails.controls; let i = index" [formGroupName]="i">
+            <td>
+              <input formControlName="qualificationName" placeholder="Qualification Name" class="form-control" />
+            </td>
+            <td>
+              <input formControlName="qualificationLevel" placeholder="Qualification Level" class="form-control" />
+            </td>
+            <td>
+              <input formControlName="publisher" placeholder="Publisher" class="form-control" />
+            </td>
+            <td>
+              <input formControlName="docNumber" placeholder="Document Number" class="form-control" />
+            </td>
+            <td>
+              <input type="date" formControlName="qualificationDate" class="form-control" />
+            </td>
+            <td>
+              <input formControlName="qualificationEvidenceCheck" placeholder="Y/N" class="form-control" />
+            </td>
+            <td class="text-center">
+              <i class="fa fa-trash text-danger" style="cursor: pointer;" (click)="removeQualification(i)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-3">
+      <button type="button" class="btn btn-primary" (click)="addQualification()"><i class="fa fa-plus"> </i> Qualification</button>
+    </div>
+  </div>
+</div>
+
+
+  <br>
+  <br>
+  
+  <!-- Submit Button -->
+  <button type="submit" style="margin-right: 10px;">Submit</button>
+
+  
+    <button type="button" (click)="resetForm()">Reset</button>
+  
+</form>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Bootstrap Alert Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="alertModalLabel">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 12px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">
+
+      <!-- Modal Header with X Icon Inline and Aligned Right -->
+      <div class="modal-header" style="
+        background: #f8f9fa; 
+        color: #c2083d; 
+        border-top-left-radius: 12px; 
+        border-top-right-radius: 12px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between; 
+      
+        height: 40px;">
+        
+        <h5 class="modal-title" id="alertModalLabel" style="margin: 0; font-size: 17px;">
+          <i class="bi bi-exclamation-triangle-fill"></i> Alert
+        </h5>
+
+        <!-- Close Button with X Sign Properly Aligned -->
+        <button type="button" data-bs-dismiss="modal" aria-label="Close" 
+          style="font-size: 24px; color: rgb(121, 120, 120); background: transparent; border: none;">
+         <span style="margin-left: 90px;">&times; </span> <!-- "X" sign -->
+        </button>
+      </div>
+
+      <!-- Modal Body with Custom Style -->
+      <div class="modal-body" style="font-size: 1.1rem; text-align: center; padding: 20px; background-color: #f8f9fa; border-radius: 0 0 12px 12px;">
+        <p style="color: #444; font-weight: 500;">
+          {{ alertMessage }}
+        </p>
+      </div>
+
+      <!-- Modal Footer with Custom Button -->
+      <div class="modal-footer" style="border-top: none; justify-content: center; background-color: #f8f9fa;">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" 
+          style="padding: 4px 12px; font-size: 15.5px; border-radius: 14px; min-width: 70px; height: 30px;">
+          OK
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

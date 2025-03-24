@@ -49,53 +49,80 @@ export class LookUpMstComponent implements OnInit {
   }
 
   saveChanges() {
+    let filteredEntries = this.lookupEntries.filter(entry => 
+      entry.lookupCode.trim() || entry.lookupValue.trim() || entry.meaning.trim() || 
+      entry.description.trim() || entry.fromDate.trim() || entry.toDate.trim()
+    );
+  
     let formattedOutput = {
       lookupType: this.lookupType,
-      Meaning: this.lookupMeaning,
-      Description: this.lookupDescription,
-      lookupEntries: this.lookupEntries
+      meaning: this.lookupMeaning,
+      description: this.lookupDescription,
+      lookupEntries: filteredEntries.map(entry => ({
+        lookupCode: entry.lookupCode,
+        lookupValue: entry.lookupValue,
+        meaning: entry.meaning,
+        description: entry.description,
+        fromDate: entry.fromDate,
+        toDate: entry.toDate,
+        activeStatus: entry.activeStatus === 'Y' ? 'Y' : 'N'
+      }))
     };
-
-    console.log('Formatted Lookup Data:', JSON.stringify(formattedOutput, null, 2));
-
+  
+    console.log(JSON.stringify(formattedOutput, null, 2));
+  
     let hasError = false;
-
-    this.lookupEntries.forEach(entry => {
+  
+    filteredEntries.forEach(entry => {
       if (!entry.lookupCode || !entry.lookupValue) {
         hasError = true;
         return;
       }
-
+  
       if (entry.id) {
-        this.lookupService.updateLookup(entry).subscribe(
-          () => console.log('Updated Entry:', entry),
-          () => hasError = true
-        );
-      } else {
-        this.lookupService.addLookup(entry).subscribe(
-          response => {
-            entry.id = response.id;
-            console.log('Added Entry:', entry);
+        this.lookupService.updateLookup(entry).subscribe({
+          next: () => {
+            console.log('Lookup entry updated successfully:', entry);
+            this.showAlert('Lookup entry updated successfully!');
           },
-          () => hasError = true
-        );
+          error: (err) => {
+            console.error('Error updating lookup entry:', err);
+            this.showAlert('Failed to update lookup entry!');
+            hasError = true;
+          }
+        });
+      } else {
+        this.lookupService.addLookup(formattedOutput).subscribe({
+          next: (response) => {
+            entry.id = response.id;
+            console.log('Lookup entry added successfully:', entry);
+            this.showAlert('Lookup entry added successfully!');
+          },
+          error: (err) => {
+            console.error('Error adding lookup entry:', err);
+            this.showAlert('Failed to add lookup entry!');
+            hasError = true;
+          }
+        });
       }
     });
-
-    if (hasError) {
-      this.showAlert('Error saving lookup data. Please check inputs.');
-    } else {
-      this.showAlert('Lookup data saved successfully.');
-    }
   }
+  
+  
 
   showAlert(message: string) {
     this.alertMessage = message;
-    const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
-    alertModal.show();
+    const alertModal = document.getElementById('alertModal');
+  
+    if (alertModal) {
+      alertModal.removeAttribute('aria-hidden'); // ✅ Ensure the modal is accessible
+      const modalInstance = new bootstrap.Modal(alertModal);
+      modalInstance.show();
+    }
   }
+  
   toggleCheckbox(entry: any, event: any) {
-    entry.activeStatus = event.target.checked; // Toggle based on user interaction
+    entry.activeStatus = event.target.checked ? 'Y' : 'N'; 
     console.log(`Updated activeStatus for ${entry.lookupCode}:`, entry.activeStatus);
   }
   
