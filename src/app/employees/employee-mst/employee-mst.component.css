@@ -248,3 +248,6 @@ td textarea::placeholder {
 .content {
   margin-top: 10px;
 }
+.fa-rotate-90 {
+  transform: rotate(90deg);
+}

@@ -78,6 +78,8 @@ import { RfrListComponent } from './register/rfr-list/rfr-list.component';
 import { ApprovalDetailsComponent } from './request/approval-details/approval-details.component';
 import { ApprovalFormComponent } from './request/approval-form/approval-form.component';
 import { PartnerListComponent } from './register/partner-list/partner-list.component';
+import { EmpRgComponent } from './register/emp-rg/emp-rg.component';
+
 
 
 
@@ -137,6 +139,7 @@ import { PartnerListComponent } from './register/partner-list/partner-list.compo
     ApprovalDetailsComponent,
     ApprovalFormComponent,
     PartnerListComponent,
+    EmpRgComponent
  
 
   ],

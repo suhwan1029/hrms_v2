@@ -34,4 +34,9 @@ export class EmployeeService {
     console.log(`Deleting employee ID: ${id}`);
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
+  
+  uploadFile(fileData: FormData): Observable<{ filePath: string }> {
+    return this.http.post<{ filePath: string }>('http://localhost:3000/upload', fileData);
+  }
+  
 }

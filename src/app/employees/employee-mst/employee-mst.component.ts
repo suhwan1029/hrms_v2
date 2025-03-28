@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { EmployeeService } from './service/employee.service'; 
+import { ActivatedRoute } from '@angular/router';
+
+
 
 declare var bootstrap: any; 
 
@@ -11,21 +14,26 @@ declare var bootstrap: any;
   styleUrls: ['./employee-mst.component.css']
 })
 export class EmployeeMstComponent implements OnInit {
+  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
+
   employeeForm: FormGroup;
+  employee: any;
   showExperience = false;
   showEducation = false;
   showPromotion = false;
   showQualification = false;
   alertMessage: string = '';
   isOpen: { [key: string]: boolean } = {
-    personalInfo: true,
+    personalInfo: false,
     basicInfo: true,
-    workInfo: true
+    workInfo: false
   };
+  isDisabled: boolean = true; // Set to true to disable fields
+
   
   imageUrl: string | ArrayBuffer | null = null;
 
-  constructor(private fb: FormBuilder, private employeeService: EmployeeService) {
+  constructor(private fb: FormBuilder, private employeeService: EmployeeService , private route: ActivatedRoute) {
     this.employeeForm = this.fb.group({
       
       orgId: [''],
@@ -78,7 +86,6 @@ export class EmployeeMstComponent implements OnInit {
       resignationDate: [''],
       status: [''],
       
-      
       // Dynamic Form Arrays for each section
       experienceDetails: this.fb.array([this.createExperience()]),
       educationDetails: this.fb.array([this.createEducation()]),
@@ -87,57 +94,135 @@ export class EmployeeMstComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Accessing the employee data from history.state
+    this.employee = history.state?.employee;
 
-  // Experience form group creation
-  createExperience(): FormGroup {
+    console.log('History State Employee:', this.employee);
+
+    if (this.employee) {
+      this.fillFormWithEmployeeData();
+    } else {
+      console.log('No employee data found in history.state');
+    }
+}
+
+fillFormWithEmployeeData(): void {
+  console.log('Employee Data:', this.employee);
+
+  this.employeeForm.patchValue({
+    orgId: this.employee.orgId,
+    employeeId: this.employee.employeeId,
+    employeeNo: this.employee.employeeNo,
+    employeeName: this.employee.employeeName,
+    gender: this.employee.gender,
+    englishName: this.employee.englishName,
+    emailId: this.employee.emailId,
+    employeeType: this.employee.employeeType,
+    job: this.employee.job,
+    title: this.employee.title,
+    jobPosition: this.employee.jobPosition,
+    promotionDate: this.employee.promotionDate,
+    enteringDate: this.employee.enteringDate,
+    lgEnteringDate: this.employee.lgEnteringDate,
+    recruitmentType: this.employee.recruitmentType,
+    birthDate: this.employee.birthDate,
+    dateOfRetirement: this.employee.dateOfRetirement,
+    leaveClassification: this.employee.leaveClassification,
+    hiringType: this.employee.hiringType,
+    resignDate: this.employee.resignDate,
+    lastWorkingDate: this.employee.lastWorkingDate,
+    designation: this.employee.designation,
+    grade: this.employee.grade,
+    bloodGroup: this.employee.bloodGroup,
+    mobileNumber: this.employee.mobileNumber,
+    department: this.employee.department,
+    maritalStatus: this.employee.maritalStatus,
+    passportNo: this.employee.passportNo,
+    employeeImage: this.employee.employeeImage,
+    confirmationDate: this.employee.confirmationDate,
+    contractType: this.employee.contractType,
+    workLocation: this.employee.workLocation,
+    reportingManager: this.employee.reportingManager,
+    employeeStatus: this.employee.employeeStatus,
+    career: this.employee.career,
+    graduateSchool: this.employee.graduateSchool,
+    periodOfLeave: this.employee.periodOfLeave,
+    nationality: this.employee.nationality,
+    vacation: this.employee.vacation,
+    virtualUser: this.employee.virtualUser,
+    officialPhoneNumber: this.employee.officialPhoneNumber,
+    mobileNo: this.employee.mobileNo,
+    externalEmail: this.employee.externalEmail,
+    homeAddress: this.employee.homeAddress,
+    panNumber: this.employee.panNumber,
+    aadharNumber: this.employee.aadharNumber,
+    uanNumber: this.employee.uanNumber,
+    resignationDate: this.employee.resignationDate,
+    status: this.employee.status,
+  });
+
+  // Handle FormArrays properly
+  this.setFormArrayData('experienceDetails', this.employee.experience || []);
+  this.setFormArrayData('educationDetails', this.employee.education || []);
+  this.setFormArrayData('promotionDetails', this.employee.promotion || []);
+  this.setFormArrayData('qualificationDetails', this.employee.qualification || []);
+}
+
+setFormArrayData(controlName: string, data: any[]): void {
+  const control = this.employeeForm.get(controlName) as FormArray;
+  control.clear(); // Clear existing data
+
+  data.forEach(item => {
+    control.push(this.fb.group(item)); // Add new form groups
+  });
+}
+  // Example methods to create form groups for nested arrays
+  createExperience(experience?: any): FormGroup {
     return this.fb.group({
-      companyName: ['', Validators.required],
-      jobTitle: ['', Validators.required],
-      department: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
+      companyName: [experience?.companyName || ''],
+      jobTitle: [experience?.jobTitle || ''],
+      department: [experience?.department || ''],
+      startDate: [experience?.startDate || ''],
+      endDate: [experience?.endDate || '']
     });
   }
-
-  // Education form group creation
-  createEducation(): FormGroup {
+  
+  createEducation(education?: any): FormGroup {
     return this.fb.group({
-      instituteName: ['', Validators.required],
-      admissionDate: ['', Validators.required],
-      passoutDate: ['', Validators.required],
-      courseName: ['', Validators.required],
-      multipleSubCourse: [''],
-      graduationCategory: [''],
-      degreeName: ['', Validators.required],
+      instituteName: [education?.instituteName || ''],
+      admissionDate: [education?.admissionDate || ''],
+      passoutDate: [education?.passoutDate || ''],
+      courseName: [education?.courseName || ''],
+      multipleSubCourse: [education?.multipleSubCourse || ''],
+      graduationCategory: [education?.graduationCategory || ''],
+      degreeName: [education?.degreeName || '']
     });
   }
-
-  // Promotion form group creation
-  createPromotion(): FormGroup {
+  
+  createPromotion(promotion?: any): FormGroup {
     return this.fb.group({
-      promotionCode: ['', Validators.required],
-      promotionType: ['', Validators.required],
-      positionLevel: [''],
-      oldDesignation: ['', Validators.required],
-      newDesignation: ['', Validators.required],
-      effectiveFromDate: ['', Validators.required],
-      effectiveToDate: ['', Validators.required],
+      promotionCode: [promotion?.promotionCode || ''],
+      promotionType: [promotion?.promotionType || ''],
+      positionLevel: [promotion?.positionLevel || ''],
+      oldDesignation: [promotion?.oldDesignation || ''],
+      newDesignation: [promotion?.newDesignation || ''],
+      effectiveFromDate: [promotion?.effectiveFromDate || ''],
+      effectiveToDate: [promotion?.effectiveToDate || '']
     });
   }
-
-  // Qualification form group creation
-  createQualification(): FormGroup {
+  
+  createQualification(qualification?: any): FormGroup {
     return this.fb.group({
-      qualificationName: ['', Validators.required],
-      qualificationLevel: ['', Validators.required],
-      publisher: ['', Validators.required],
-      docNumber: ['', Validators.required],
-      qualificationDate: ['', Validators.required],
-      qualificationEvidenceCheck: ['', Validators.required],
+      qualificationName: [qualification?.qualificationName || ''],
+      qualificationLevel: [qualification?.qualificationLevel || ''],
+      publisher: [qualification?.publisher || ''],
+      docNumber: [qualification?.docNumber || ''],
+      qualificationDate: [qualification?.qualificationDate || ''],
+      qualificationEvidenceCheck: [qualification?.qualificationEvidenceCheck || '']
     });
   }
-
+  
   // Toggle section visibility
   toggleExperience() {
     this.showExperience = !this.showExperience;
@@ -287,32 +372,24 @@ export class EmployeeMstComponent implements OnInit {
     });
   }
   
-  
   triggerFileInput(): void {
-    const fileInput = document.getElementById('employeeImage') as HTMLInputElement;
-    if (fileInput) {
-      fileInput.click();
+    if (this.fileInput) {
+      this.fileInput.nativeElement.click();  // ✅ Correct reference
     }
   }
 
   previewFile(event: Event): void {
     const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
+    if (input.files && input.files[0]) {
       const file = input.files[0];
+  
+      // Create a FileReader to generate a preview
       const reader = new FileReader();
-  
       reader.onload = () => {
-        this.imageUrl = reader.result as string;
-        
-       
-        this.employeeForm.patchValue({
-          employeeImage: this.imageUrl
-        });
-  
-        this.employeeForm.get('employeeImage')?.updateValueAndValidity();
+        this.imageUrl = reader.result as string;  // Set the preview URL
+        this.employeeForm.patchValue({ employeeImage: file.name }); // Store the file name
       };
-  
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file);  // Convert file to Base64
     }
   }
   
@@ -333,4 +410,13 @@ export class EmployeeMstComponent implements OnInit {
       this.isOpen[section] = !this.isOpen[section];
     }
   }
+
+
+  toggleFields(): void {
+    this.isDisabled = !this.isDisabled;
+  }
+
+   
+  
+  
 }

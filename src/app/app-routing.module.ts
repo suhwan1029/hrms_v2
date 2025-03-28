@@ -46,6 +46,7 @@ import { EmployeeMstComponent } from './employees/employee-mst/employee-mst.comp
 import { ApprovalDetailsComponent } from './request/approval-details/approval-details.component'
 import { RfrListComponent } from './register/rfr-list/rfr-list.component'
 import { PartnerListComponent } from './register/partner-list/partner-list.component'
+import { EmpRgComponent } from './register/emp-rg/emp-rg.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -144,7 +145,8 @@ const routes: Routes = [
           { path: 'rfr-rg', component: RfrRgComponent},
           { path: 'rfr-list', component: RfrListComponent},
           { path: 'partner-list', component: PartnerListComponent},
-          { path: 'department-list', component: DepartmentListComponent}    
+          { path: 'department-list', component: DepartmentListComponent},
+          { path: 'emp-rg', component: EmpRgComponent}      
         ] 
       }
     ]

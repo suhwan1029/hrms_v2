@@ -1,88 +1,250 @@
 <div class="container col-md-7 mt-1 ms-0 p-4">
-  <h2 style="text-align: left;">Request Letter Form</h2>
+ 
+  <div class="form-container" style="position: relative;">
+    <h2 style="text-align: left;">Request Letter Form</h2>
+    
+    <p class="mandatory-text">* Mandatory fields</p>
+    <!-- Your form fields here -->
+  </div>
+
 
   <form [formGroup]="rlfForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <!-- First Row -->
-
       <div class="col-md-4 mb-3">
-        <label for="title">Title</label>
-        <select id="title" class="form-select" formControlName="title">
+        <label for="title">Title <span class="text-danger">*</span></label>
+        <select id="title" class="form-select" formControlName="title"
+                [class.is-invalid]="rlfForm.get('title')?.invalid && rlfForm.get('title')?.touched">
           <option value="">-- Select Title --</option>
           <option *ngFor="let title of titleList" [value]="title">{{ title }}</option>
         </select>
+        <div class="invalid-feedback">Title is required.</div>
       </div>
-
+    
       <div class="col-md-4 mb-3">
-        <label>Employee Name</label>
-        <input type="text" class="form-control" formControlName="name" required />
+        <label>Employee Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="name"
+               [class.is-invalid]="rlfForm.get('name')?.invalid && rlfForm.get('name')?.touched" required />
+        <div class="invalid-feedback">Employee Name is required.</div>
       </div>
-
+    
       <div class="col-md-4 mb-3">
-        <label>Nationality</label>
-        <input type="text" class="form-control" formControlName="nationality" required />
+        <label>Nationality <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="nationality"
+               [class.is-invalid]="rlfForm.get('nationality')?.invalid && rlfForm.get('nationality')?.touched" required />
+        <div class="invalid-feedback">Nationality is required.</div>
       </div>
-
+    
       <div class="col-md-4 mb-3">
-        <label>End Date</label>
-        <input type="date" class="form-control" formControlName="endDate" required />
+        <label>End Date <span class="text-danger">*</span></label>
+        <input type="date" class="form-control" formControlName="endDate"
+               [class.is-invalid]="rlfForm.get('endDate')?.invalid && rlfForm.get('endDate')?.touched" required />
+        <div class="invalid-feedback">End Date is required.</div>
       </div>
-
+    
       <div class="col-md-4 mb-3">
-        <label>Designation</label>
-        <input type="text" class="form-control" formControlName="designation" required />
+        <label>Designation <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="designation"
+               [class.is-invalid]="rlfForm.get('designation')?.invalid && rlfForm.get('designation')?.touched" required />
+        <div class="invalid-feedback">Designation is required.</div>
       </div>
-
+    
       <div class="col-md-4 mb-3">
-        <label>Passport Number</label>
-        <input type="text" class="form-control" formControlName="passportNo" required />
+        <label>Passport Number <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="passportNo"
+               [class.is-invalid]="rlfForm.get('passportNo')?.invalid && rlfForm.get('passportNo')?.touched" required />
+        <div class="invalid-feedback">Passport Number is required.</div>
       </div>
-
+    
       <div class="col-md-4 mb-3">
-        <label>Team Leader</label>
-        <input type="text" class="form-control" formControlName="teamLeader" required />
+        <label>Team Leader <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="teamLeader"
+               [class.is-invalid]="rlfForm.get('teamLeader')?.invalid && rlfForm.get('teamLeader')?.touched" required />
+        <div class="invalid-feedback">Team Leader is required.</div>
       </div>
-
+    
       <div class="col-md-4 mb-3">
-        <label>Location</label>
-        <input type="text" class="form-control" formControlName="location" required />
+        <label>Location <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="location"
+               [class.is-invalid]="rlfForm.get('location')?.invalid && rlfForm.get('location')?.touched" required />
+        <div class="invalid-feedback">Location is required.</div>
       </div>
-
+    
       <div class="col-md-4 mb-3">
-        <label>Current Date</label>
-        <input type="date" class="form-control" formControlName="currentDate" required />
+        <label>Current Date <span class="text-danger">*</span></label>
+        <input type="date" class="form-control" formControlName="currentDate"
+               [class.is-invalid]="rlfForm.get('currentDate')?.invalid && rlfForm.get('currentDate')?.touched" required />
+        <div class="invalid-feedback">Current Date is required.</div>
       </div>
-
+    
       <!-- Second Row -->
       <div class="col-md-6 mb-3">
-        <label>Company Name</label>
-        <input type="text" class="form-control" formControlName="companyName" required />
+        <label>Company Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="companyName"
+               [class.is-invalid]="rlfForm.get('companyName')?.invalid && rlfForm.get('companyName')?.touched" required />
+        <div class="invalid-feedback">Company Name is required.</div>
       </div>
-
+    
       <div class="col-md-6 mb-3">
-        <label>Visa Number</label>
-        <input type="text" class="form-control" formControlName="visaNo" required />
+        <label>Visa Number <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="visaNo"
+               [class.is-invalid]="rlfForm.get('visaNo')?.invalid && rlfForm.get('visaNo')?.touched" required />
+        <div class="invalid-feedback">Visa Number is required.</div>
       </div>
-
+    
       <!-- Third Row -->
       <div class="col-md-12 mb-3">
-        <label>Company Address</label>
-        <textarea class="form-control" formControlName="address" required></textarea>
+        <label>Company Address <span class="text-danger">*</span></label>
+        <textarea class="form-control" formControlName="address"
+                  [class.is-invalid]="rlfForm.get('address')?.invalid && rlfForm.get('address')?.touched" required></textarea>
+        <div class="invalid-feedback">Company Address is required.</div>
       </div>
-
+    
       <div class="col-md-12 mb-3">
-        <label>To Address</label>
-        <textarea class="form-control" formControlName="toaddress" required></textarea>
+        <label>To Address <span class="text-danger">*</span></label>
+        <textarea class="form-control" formControlName="toaddress"
+                  [class.is-invalid]="rlfForm.get('toaddress')?.invalid && rlfForm.get('toaddress')?.touched" required></textarea>
+        <div class="invalid-feedback">To Address is required.</div>
       </div>
-
+    
       <div class="col-md-12 mb-3">
-        <label>Employee Address</label>
-        <textarea class="form-control" formControlName="empaddress" required></textarea>
+        <label>Employee Address <span class="text-danger">*</span></label>
+        <textarea class="form-control" formControlName="empaddress"
+                  [class.is-invalid]="rlfForm.get('empaddress')?.invalid && rlfForm.get('empaddress')?.touched" required></textarea>
+        <div class="invalid-feedback">Employee Address is required.</div>
       </div>
     </div>
+    
 
     <!-- Buttons -->
-    <button type="submit" class="btn btn-success" [disabled]="!rlfForm.valid">Submit</button>
-    <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Reset</button>
+   
+    <div class="d-flex justify-content-end">
+     
+    </div>
+
+
+    <div class="d-flex justify-content-between">
+      <div>
+        <button type="submit" class="btn btn-success" [disabled]="!rlfForm.valid" (click)="onSubmit()">Submit</button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Reset</button>
+      </div>
+    
+      <div class="btn-group">
+        <button 
+          type="button" 
+          class="btn btn-primary dropdown-toggle" 
+          (click)="toggleDropdown()" 
+          aria-expanded="false"
+          [disabled]="!isSubmitted"> <!-- ✅ Enable only after submit -->
+          Create Document
+        </button>
+    
+        <ul class="dropdown-menu" 
+            [class.show]="isDropdownOpen" 
+            style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); z-index: 1050; margin-top: 5px; padding: 6px; min-width: 120px;">
+    
+          <li class="d-flex justify-content-center align-items-center" style="gap: 10px; padding: 5px;">
+            <a class="dropdown-item p-1 d-flex align-items-center justify-content-center"  style="cursor: pointer;">
+              <i class="fa fa-envelope text-primary fa-lg"></i>
+            </a>
+            <a class="dropdown-item p-1 d-flex align-items-center justify-content-center"  style="cursor: pointer;">
+              <i class="fa fa-file-pdf text-danger fa-lg"></i>
+            </a>
+            <a class="dropdown-item p-1 d-flex align-items-center justify-content-center"  style="cursor: pointer;">
+              <i class="fa fa-file-word text-primary fa-lg"></i>
+            </a>
+          </li>
+    
+        </ul>
+      </div>
+    </div>
+    
+    
+    
+   
   </form>
 </div>
+
+
+
+
+
+    <!------------------------------------------------------------- report ---------------------------------------------------------------------->
+
+    <div style="height: 0; overflow: hidden;">
+      <div #pdfContent class="offer-letter" *ngIf="employee"  >
+
+
+        <img src="5.png" alt="Company Logo" style="width: 130px; height: auto; ">
+          <p style="color: rgb(107, 100, 100); font-size: 11px; ;" ><strong>Office No.1, 3rd Floor Stellar Okas 1425<br>
+            Sector-142 NOIDA, UP 201305 <br>
+            CIN : U72900UP2004PTC093496 <br> www.lgncs.com</strong></p>
+          <br>
+      
+        
+          <div class="header-container">
+            <p><b>To,</b><br>
+           <b><span [innerHTML]="formatAddress(employee.toaddress)"></span></b></p>
+      
+      
+            <p class="right">{{ currentDate }}</p>
+            
+          </div>
+          
+        
+          <p>Dear Sir,</p>
+      
+        
+          <br>
+         
+          <h3 class="center justify">SUB: - RESIDENTIAL PERMIT FOR {{ employee.name }}</h3>
+         <br>
+          <p class="justify">
+            {{ employee.companyName }} is a company in the field of Business IT Services and Consulting.
+            <strong>{{ employee.title }}{{ employee.name }}</strong>, a {{ employee.nationality }} Citizen, holding Passport No.
+            <strong>{{ employee.passportNo }}</strong>, is employed with {{ employee.cname }} as
+            an <strong>{{ employee.designation }}</strong> in {{ employee.location }} office. He will be continue working 
+            in {{ employee.location }} office till {{ formatEndDate(employee.endDate) }}
+      
+          </p>
+        
+          <p>
+            This letter is being issued for the purpose of granting <strong>{{ employee.title }}{{ employee.name }}</strong> a resident permit.
+         <br>
+            <strong>His details are as follows:</strong></p>
+          <table class="comp-table ">
+            <tr>
+              <th style="text-align: center;">Title</th>
+              <th style="text-align: center;">Detail</th>
+            </tr>
+            <tr>
+              <td>Employee Name</td>
+              <td>{{ employee.title }}{{ employee.name }}</td>
+            </tr>
+            <tr>
+              <td>Passport No</td>
+              <td>{{ employee.passportNo }}</td>
+            </tr>
+            <tr>
+              <td>Visa No</td>
+              <td>{{ employee.visaNo }}</td>
+            </tr>
+          </table>
+        
+          <p><strong>He is residing at:</strong> <br> <span [innerHTML]="formatAddress(employee.empaddress)"></span></p>
+          <br>
+          <p>
+           We kindly request you to grant <strong>{{ employee.title }}{{ employee.name }}</strong> a resident permit.
+           <br>
+           Thanking You, <br> Yours Sincerely,</p>
+         <br>  
+          <p><strong>For {{ employee.companyName }}</strong></p>
+        
+          <p><strong>{{ employee.teamLeader }}</strong><br>
+            <strong>Team Leader – Business Management</strong></p>
+        </div>
+    </div>
+    
+
+
+  

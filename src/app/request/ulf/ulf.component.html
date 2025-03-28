@@ -63,13 +63,118 @@
 
    
 
-    <!-- Buttons -->
-    <button type="submit" class="btn btn-success" [disabled]="!employeeForm.valid">Submit</button>
-
-    <button type="button" class="btn btn-secondary ms-2" (click)="employeeForm.reset()">Reset</button>
+    <div class="d-flex justify-content-between">
+      <div>
+        <button type="submit" class="btn btn-success" [disabled]="!employeeForm.valid" (click)="onSubmit()">Submit</button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Reset</button>
+      </div>
+    
+      <div class="btn-group">
+        <button 
+          type="button" 
+          class="btn btn-primary dropdown-toggle" 
+          (click)="toggleDropdown()" 
+          aria-expanded="false"
+          [disabled]="!isSubmitted"> <!-- ✅ Enable only after submit -->
+          Create Document
+        </button>
+    
+        <ul class="dropdown-menu" 
+            [class.show]="isDropdownOpen" 
+            style="position: absolute; top: 100%; left: 50%; transform: translateX(-50%); z-index: 1050; margin-top: 5px; padding: 6px; min-width: 120px;">
+    
+          <li class="d-flex justify-content-center align-items-center" style="gap: 10px; padding: 5px;">
+            <a class="dropdown-item p-1 d-flex align-items-center justify-content-center"  style="cursor: pointer;">
+              <i class="fa fa-envelope text-primary fa-lg"></i>
+            </a>
+            <a class="dropdown-item p-1 d-flex align-items-center justify-content-center" (click)="generatePDF()" style="cursor: pointer;">
+              <i class="fa fa-file-pdf text-danger fa-lg"></i>
+            </a>
+            <a class="dropdown-item p-1 d-flex align-items-center justify-content-center" (click)="generateWord()" style="cursor: pointer;">
+              <i class="fa fa-file-word text-primary fa-lg"></i>
+            </a>
+          </li>
+    
+        </ul>
+      </div>
+    </div>
     
   
     
   </form>
 </div>
 
+
+
+
+
+
+
+
+      <!--------------------------------------------------------- report ----------------------------------------------------------------------->
+
+
+
+ <div style="height: 0; overflow: hidden;">
+<div #pdfContent class="offer-letter" *ngIf="employeeForm"  >
+
+<div #pdfContent class="offer-letter">
+  <img src="5.png" alt="Company Logo" style="width: 130px; height: auto; ">
+  <p style="color: rgb(107, 100, 100); font-size: 11px; ;" ><strong>Office No.1, 3rd Floor Stellar Okas 1425<br>
+    Sector-142 NOIDA, UP 201305 <br>
+    CIN : U72900UP2004PTC093496 <br> www.lgncs.com</strong></p>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <p class="right" style=" font-family: Times New Roman;"><b>{{ currentDate }}</b></p>
+<br>
+<br>
+<br>
+<br>
+
+
+
+  <h3 class="center" style=" font-family: Times New Roman;"  >UNDERTAKING AND FINANCIAL GUARANTEE</h3>
+  <br>
+  <br>
+
+  <p class="justify" style=" font-family: Times New Roman;">
+      <b>{{ employeeData.title }} {{ employeeData.name }} is a {{employeeData.nationality}} National, having Passport No. {{ employeeData.passportNo }}, is being appointed as 
+      {{ employeeData.designation }} in our company, {{ employeeData.Companyame }}, having a registered address at 
+     {{ employeeData.companyAddress }}. On payment of full salary with perks as per rules in India and hence we take full responsibility for 
+      the activities and conduct of {{ employeeData.title }} {{ employeeData.name }}, during her stay in India. In case anything adverse comes to notice during the period of her stay with our company, 
+      we further undertake and assure to repatriate her at our cost.The {{employeeData.nationality}} address of {{ employeeData.title }} {{ employeeData.name }}, is as follows :</b>
+  </p>
+  <p class="justify" style=" font-family: Times New Roman;"> {{ employeeData.title }} {{ employeeData.name }} is a permanent resident of {{ employeeData.address }} Will be entitled for issuance of her multiple EV. The details of her passport No is as follows :</p>
+
+  <table style=" font-family: Times New Roman;">
+      <tr>
+          <th>Name</th>
+          <th>Passport Number</th>
+          <th>Details</th>
+      </tr>
+      <tr>
+          <td style=" font-family: Times New Roman;">{{ employeeData.name }}</td>
+          <td style=" font-family: Times New Roman;">{{ employeeData.passportNo }}</td>
+          <td style=" font-family: Times New Roman;">{{ employeeData.detail }}</td>
+      </tr>
+  </table>
+
+  <p style=" font-family: Times New Roman;">For {{ employeeData.companyName }}</p>
+
+  <br>
+  <br>
+  <br>
+
+  <p class="right" style=" font-family: Times New Roman;"><b>{{ employeeData.md }} <br>Managing Director</b></p>
+  <br>
+
+  <p class="right" style=" font-family: Times New Roman;"><b>Working Address:</b> <br> {{ employeeData.companyName }}<br>{{ employeeData.companyAddress }}</p>
+ 
+
+ 
+</div>
+</div>
+</div>

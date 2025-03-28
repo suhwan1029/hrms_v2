@@ -153,3 +153,96 @@ select {
     font-size: 14px;
   }
   
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+.offer-letter {
+    width: 100%; /* Adjust width */
+    max-width: 21cm; /* A4 width */
+    min-height: 29.7cm; /* A4 height */
+    margin: auto; /* Center horizontally */
+    padding: 1cm;
+    font-size: 14px;
+    box-sizing: border-box;
+    background: white;
+   
+    display: flex;
+    flex-direction: column;
+     }
+.center {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.right {
+    text-align: left;
+   
+}
+
+.left {
+    text-align: left;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 6px;
+    font-size: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #d3d3d3;
+    font-weight: bold;
+}
+
+button {
+    min-width: 100px;
+    padding: 6px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    background: #c2083d;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.justify {
+    text-align: justify;
+    line-height: 1.6;
+}
